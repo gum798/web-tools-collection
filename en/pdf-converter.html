@@ -382,7 +382,11 @@
             if (file && file.type === 'application/pdf') {
                 convertPdfToPng(file);
             } else {
-                alert('Please select a PDF file.');
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast('Please select a PDF file.', 'warning');
+                } else {
+                    alert('Please select a PDF file.');
+                }
             }
         }
         
@@ -403,7 +407,11 @@
             if (files.length > 0 && files[0].type === 'application/pdf') {
                 convertPdfToPng(files[0]);
             } else {
-                alert('Please upload a PDF file.');
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast('Please upload a PDF file.', 'warning');
+                } else {
+                    alert('Please upload a PDF file.');
+                }
             }
         }
         
@@ -471,7 +479,11 @@
                 
             } catch (error) {
                 console.error('Error during PDF conversion:', error);
-                alert('An error occurred during PDF conversion.');
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast('An error occurred during PDF conversion.', 'error');
+                } else {
+                    alert('An error occurred during PDF conversion.');
+                }
                 progressContainer.style.display = 'none';
             }
         }
@@ -504,7 +516,11 @@
         
         function downloadAll() {
             if (convertedImages.length === 0) {
-                alert('No converted images available.');
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast('No converted images available.', 'warning');
+                } else {
+                    alert('No converted images available.');
+                }
                 return;
             }
             

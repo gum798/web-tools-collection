@@ -388,7 +388,11 @@
             if (file && file.type === 'application/pdf') {
                 convertPdfToPng(file);
             } else {
-                alert('PDF 파일을 선택해주세요.');
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast('PDF 파일을 선택해주세요.', 'warning');
+                } else {
+                    alert('PDF 파일을 선택해주세요.');
+                }
             }
         }
         
@@ -409,7 +413,11 @@
             if (files.length > 0 && files[0].type === 'application/pdf') {
                 convertPdfToPng(files[0]);
             } else {
-                alert('PDF 파일을 업로드해주세요.');
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast('PDF 파일을 업로드해주세요.', 'warning');
+                } else {
+                    alert('PDF 파일을 업로드해주세요.');
+                }
             }
         }
         
@@ -477,7 +485,11 @@
                 
             } catch (error) {
                 console.error('PDF 변환 중 오류 발생:', error);
-                alert('PDF 변환 중 오류가 발생했습니다.');
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast('PDF 변환 중 오류가 발생했습니다.', 'error');
+                } else {
+                    alert('PDF 변환 중 오류가 발생했습니다.');
+                }
                 progressContainer.style.display = 'none';
             }
         }
@@ -510,7 +522,11 @@
         
         function downloadAll() {
             if (convertedImages.length === 0) {
-                alert('변환된 이미지가 없습니다.');
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast('변환된 이미지가 없습니다.', 'warning');
+                } else {
+                    alert('변환된 이미지가 없습니다.');
+                }
                 return;
             }
             

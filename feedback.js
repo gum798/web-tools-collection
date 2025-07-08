@@ -13,7 +13,7 @@ const translations = {
         optionalFieldsButton: "📝 선택 입력 항목",
         namePlaceholder: "이름을 입력해주세요",
         emailPlaceholder: "이메일을 입력해주세요",
-        messagePlaceholder: "어떤 기능이 필요하신가요? 또는 개선 사항이 있으신가요?",
+        messagePlaceholder: "어떤 기능이 필요하신가요? 또는 개선 사항이 있으신가요? (Tab + Space/Enter로 빠른 전송)",
         submitButton: "📨 의견 보내기",
         cancelButton: "취소",
         successMessage: "의견이 성공적으로 전송되었습니다! 감사합니다 🎉",
@@ -38,7 +38,7 @@ const translations = {
         optionalFieldsButton: "📝 Optional Fields",
         namePlaceholder: "Enter your name",
         emailPlaceholder: "Enter your email",
-        messagePlaceholder: "What features do you need? Any suggestions for improvement?",
+        messagePlaceholder: "What features do you need? Any suggestions for improvement? (Tab + Space/Enter for quick submit)",
         submitButton: "📨 Send Feedback",
         cancelButton: "Cancel",
         successMessage: "Feedback sent successfully! Thank you 🎉",
@@ -148,7 +148,7 @@ class FeedbackSystem {
                     </div>
                     <div class="feedback-form-group">
                         <label>${this.getText('messageLabel')} *</label>
-                        <textarea id="feedback-message" placeholder="${this.getText('messagePlaceholder')}" required></textarea>
+                        <textarea id="feedback-message" placeholder="${this.getText('messagePlaceholder')}" required onkeydown="feedbackSystem.handleTextareaKeydown(event)"></textarea>
                     </div>
                     <div class="feedback-form-actions">
                         <button type="button" class="feedback-btn-cancel" onclick="feedbackSystem.closeModal()">
@@ -365,6 +365,79 @@ class FeedbackSystem {
                 }
             }
             
+            .feedback-toast {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+                z-index: 10001;
+                opacity: 0;
+                transform: translateX(400px);
+                transition: all 0.3s ease;
+                min-width: 300px;
+                max-width: 500px;
+                border-left: 4px solid #007bff;
+            }
+            
+            .feedback-toast-show {
+                opacity: 1 !important;
+                transform: translateX(0) !important;
+            }
+            
+            .feedback-toast-success {
+                border-left-color: #28a745;
+                background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            }
+            
+            .feedback-toast-error {
+                border-left-color: #dc3545;
+                background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            }
+            
+            .feedback-toast-warning {
+                border-left-color: #ffc107;
+                background: linear-gradient(135deg, #fff3cd, #ffeeba);
+            }
+            
+            .feedback-toast-info {
+                border-left-color: #17a2b8;
+                background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+            }
+            
+            .feedback-toast-content {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 16px 20px;
+            }
+            
+            .feedback-toast-icon {
+                font-size: 20px;
+                flex-shrink: 0;
+            }
+            
+            .feedback-toast-message {
+                font-size: 14px;
+                font-weight: 500;
+                color: #333;
+                line-height: 1.4;
+            }
+            
+            @media (max-width: 600px) {
+                .feedback-toast {
+                    right: 10px;
+                    left: 10px;
+                    min-width: auto;
+                    transform: translateY(-100px);
+                }
+                
+                .feedback-toast-show {
+                    transform: translateY(0) !important;
+                }
+            }
+            
             .feedback-form-actions {
                 display: flex;
                 gap: 15px;
@@ -499,7 +572,7 @@ class FeedbackSystem {
         const submitBtn = document.querySelector('.feedback-btn-submit');
         
         if (!message) {
-            alert(this.getText('requiredMessage'));
+            this.showToast(this.getText('requiredMessage'), 'warning');
             return;
         }
         
@@ -532,12 +605,12 @@ class FeedbackSystem {
                 console.log('EmailJS not loaded, saved to localStorage only');
             }
             
-            alert(this.getText('successMessage'));
+            this.showToast(this.getText('successMessage'), 'success');
             this.closeModal();
             
         } catch (error) {
             console.error('Feedback submission error:', error);
-            alert(this.getText('errorMessage'));
+            this.showToast(this.getText('errorMessage'), 'error');
         } finally {
             // Reset button state
             submitBtn.textContent = originalText;
@@ -575,6 +648,92 @@ class FeedbackSystem {
         } catch (error) {
             console.error('Email sending failed:', error);
             // Don't throw error to user, feedback is still saved locally
+        }
+    }
+    
+    showToast(message, type = 'info') {
+        // Remove existing toast if any
+        const existingToast = document.getElementById('feedback-toast');
+        if (existingToast) {
+            existingToast.remove();
+        }
+        
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.id = 'feedback-toast';
+        toast.className = `feedback-toast feedback-toast-${type}`;
+        
+        // Add icon based on type
+        const icons = {
+            success: '✅',
+            error: '❌', 
+            warning: '⚠️',
+            info: 'ℹ️'
+        };
+        
+        toast.innerHTML = `
+            <div class="feedback-toast-content">
+                <span class="feedback-toast-icon">${icons[type]}</span>
+                <span class="feedback-toast-message">${message}</span>
+            </div>
+        `;
+        
+        // Add to page
+        document.body.appendChild(toast);
+        
+        // Show with animation
+        setTimeout(() => {
+            toast.classList.add('feedback-toast-show');
+        }, 10);
+        
+        // Auto hide after 3 seconds
+        setTimeout(() => {
+            toast.classList.remove('feedback-toast-show');
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 300);
+        }, 3000);
+    }
+    
+    handleTextareaKeydown(event) {
+        // Tab + Space 또는 Tab + Enter로 전송
+        if (event.key === 'Tab') {
+            event.preventDefault();
+            
+            // 다음 키 입력을 기다림
+            const textarea = event.target;
+            const originalBorderColor = textarea.style.borderColor;
+            textarea.style.borderColor = '#007bff';
+            
+            const keyHandler = (nextEvent) => {
+                if (nextEvent.key === ' ' || nextEvent.key === 'Enter') {
+                    nextEvent.preventDefault();
+                    
+                    // 폼 제출
+                    const form = document.getElementById('feedback-form');
+                    if (form) {
+                        const submitEvent = new Event('submit');
+                        form.dispatchEvent(submitEvent);
+                    }
+                } else {
+                    // Tab 키 효과 취소
+                    textarea.style.borderColor = originalBorderColor;
+                }
+                
+                // 이벤트 리스너 제거
+                textarea.removeEventListener('keydown', keyHandler);
+            };
+            
+            // 임시 이벤트 리스너 추가
+            textarea.addEventListener('keydown', keyHandler);
+            
+            // 3초 후 자동으로 하이라이트 제거
+            setTimeout(() => {
+                textarea.style.borderColor = originalBorderColor;
+                textarea.removeEventListener('keydown', keyHandler);
+            }, 3000);
         }
     }
 }
