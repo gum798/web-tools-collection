@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파일 변환 도구 모음 - 무료 온라인 변환기 가이드</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="HWP to Word, Excel to PDF 등 다양한 파일 형식 변환을 위한 무료 온라인 도구 모음과 안전한 변환 가이드">
+    <meta name="keywords" content="HWP Word 변환, 파일 변환기, 무료 변환 도구, HWP to DOCX, Excel PDF 변환">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="파일 변환 도구 모음 - 무료 온라인 변환기 가이드">
+    <meta property="og:description" content="HWP, Word, Excel, PowerPoint 등 다양한 파일 형식을 안전하게 변환하는 방법과 도구 모음">
+    <meta property="og:type" content="website">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434360911371069"
+     crossorigin="anonymous"></script>
+    
+    <!-- Auto ads -->
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-9434360911371069",
+              enable_page_level_ads: true
+         });
+    </script>
+    
+    <!-- Feedback System -->
+    <script src="feedback.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .language-switcher select {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #333;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+        
+        .nav-bar {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-link {
+            color: #666;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .nav-link.active {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .main-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .sidebar {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .ad-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .ad-box {
+            background-color: #f8f9fa;
+            border: 2px dashed #ddd;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .ad-box h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            grid-column: 2;
+        }
+        
+        .converter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .converter-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .converter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #28a745);
+        }
+        
+        .converter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .converter-card h3 {
+            color: #333;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+        
+        .converter-tools {
+            margin: 15px 0;
+        }
+        
+        .tool-link {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            margin: 5px 10px 5px 0;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-link:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+        
+        .tool-link.recommended {
+            background: #28a745;
+        }
+        
+        .tool-link.recommended:hover {
+            background: #1e7e34;
+        }
+        
+        .security-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .security-warning h4 {
+            color: #856404;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .guide-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .guide-section h4 {
+            color: #495057;
+            margin-top: 0;
+        }
+        
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .step-list li {
+            counter-increment: step-counter;
+            margin: 10px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+            position: relative;
+        }
+        
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -20px;
+            top: 15px;
+            background: #007bff;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                order: -1;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .converter-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .popular-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="en">🇺🇸 English</option>
+        </select>
+    </div>
+
+    <div class="nav-bar">
+        <a href="index.html" class="nav-brand">🛠️ 웹 도구 모음</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">홈</a>
+            <a href="password.html" class="nav-link">비밀번호 생성기</a>
+            <a href="pdf-converter.html" class="nav-link">PDF 변환기</a>
+            <a href="file-converter.html" class="nav-link active">파일 변환 가이드</a>
+        </div>
+    </div>
+    
+    <div class="ad-banner">
+        <h2>📁 파일 변환 도구 모음</h2>
+        <p>안전하고 무료로 다양한 파일 형식을 변환하세요</p>
+    </div>
+    
+    <div class="main-layout">
+        <div class="sidebar">
+            <div class="ad-box">
+                <h3>🛡️ 보안 우선</h3>
+                <p>개인정보가 포함된 파일은<br>오프라인 도구 사용 권장</p>
+                <small>300x250 광고 영역</small>
+            </div>
+            <div class="ad-box">
+                <h3>⚡ 빠른 변환</h3>
+                <p>클라우드 기반<br>고속 파일 변환</p>
+                <small>300x250 광고 영역</small>
+            </div>
+        </div>
+        
+        <div class="container">
+            <h1>📁 파일 변환 도구 가이드</h1>
+            
+            <div class="security-warning">
+                <h4>🔒 보안 주의사항</h4>
+                <ul>
+                    <li><strong>개인정보 주의:</strong> 민감한 정보가 포함된 파일은 온라인 변환 피하기</li>
+                    <li><strong>파일 삭제:</strong> 변환 후 업로드된 파일이 자동 삭제되는지 확인</li>
+                    <li><strong>HTTPS 확인:</strong> 보안 연결(🔒)이 된 사이트만 이용</li>
+                    <li><strong>바이러스 검사:</strong> 변환된 파일 다운로드 후 검사 권장</li>
+                </ul>
+            </div>
+
+            <div class="converter-grid">
+                <div class="converter-card">
+                    <h3>📝 HWP ↔ Word 변환 <span class="popular-badge">인기</span></h3>
+                    <p>한글 문서를 Microsoft Word 형식으로, 또는 그 반대로 변환</p>
+                    <div class="converter-tools">
+                        <a href="https://www.ilovepdf.com/ko/office_to_pdf" class="tool-link recommended" target="_blank">ILovePDF</a>
+                        <a href="https://convertio.co/kr/hwp-docx/" class="tool-link" target="_blank">Convertio</a>
+                        <a href="https://www.zamzar.com/convert/hwp-to-docx/" class="tool-link" target="_blank">Zamzar</a>
+                    </div>
+                    <div class="guide-section">
+                        <h4>📋 변환 방법</h4>
+                        <ol class="step-list">
+                            <li>변환 사이트 접속 후 파일 업로드</li>
+                            <li>출력 형식을 DOCX/DOC로 선택</li>
+                            <li>변환 버튼 클릭 후 완료까지 대기</li>
+                            <li>변환된 파일 다운로드</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="converter-card">
+                    <h3>📊 Excel ↔ PDF 변환</h3>
+                    <p>Excel 스프레드시트를 PDF로, 또는 PDF 데이터를 Excel로 추출</p>
+                    <div class="converter-tools">
+                        <a href="https://www.ilovepdf.com/ko/excel_to_pdf" class="tool-link recommended" target="_blank">ILovePDF</a>
+                        <a href="https://smallpdf.com/kr/excel-to-pdf" class="tool-link" target="_blank">SmallPDF</a>
+                        <a href="https://www.sejda.com/excel-to-pdf" class="tool-link" target="_blank">Sejda</a>
+                    </div>
+                </div>
+
+                <div class="converter-card">
+                    <h3>🎯 PowerPoint ↔ PDF</h3>
+                    <p>프레젠테이션 파일을 PDF로 변환하거나 편집 가능한 형식으로 복원</p>
+                    <div class="converter-tools">
+                        <a href="https://www.ilovepdf.com/ko/powerpoint_to_pdf" class="tool-link recommended" target="_blank">ILovePDF</a>
+                        <a href="https://smallpdf.com/kr/ppt-to-pdf" class="tool-link" target="_blank">SmallPDF</a>
+                        <a href="https://www.pdf24.org/ko/ppt-to-pdf.html" class="tool-link" target="_blank">PDF24</a>
+                    </div>
+                </div>
+
+                <div class="converter-card">
+                    <h3>🖼️ 이미지 형식 변환</h3>
+                    <p>JPG, PNG, WEBP, SVG 등 다양한 이미지 형식 간 변환</p>
+                    <div class="converter-tools">
+                        <a href="https://convertio.co/kr/image-converter/" class="tool-link recommended" target="_blank">Convertio</a>
+                        <a href="https://www.freeconvert.com/image-converter" class="tool-link" target="_blank">FreeConvert</a>
+                        <a href="https://cloudconvert.com/formats/image" class="tool-link" target="_blank">CloudConvert</a>
+                    </div>
+                </div>
+
+                <div class="converter-card">
+                    <h3>🎵 오디오/비디오 변환</h3>
+                    <p>MP3, MP4, AVI, MOV 등 멀티미디어 파일 형식 변환</p>
+                    <div class="converter-tools">
+                        <a href="https://www.freeconvert.com/video-converter" class="tool-link recommended" target="_blank">FreeConvert</a>
+                        <a href="https://cloudconvert.com/formats/video" class="tool-link" target="_blank">CloudConvert</a>
+                        <a href="https://convertio.co/kr/video-converter/" class="tool-link" target="_blank">Convertio</a>
+                    </div>
+                </div>
+
+                <div class="converter-card">
+                    <h3>📦 압축 파일 변환</h3>
+                    <p>ZIP, RAR, 7Z 등 다양한 압축 형식 간 변환 및 해제</p>
+                    <div class="converter-tools">
+                        <a href="https://www.freeconvert.com/archive-converter" class="tool-link recommended" target="_blank">FreeConvert</a>
+                        <a href="https://convertio.co/kr/archive-converter/" class="tool-link" target="_blank">Convertio</a>
+                        <a href="https://archive.online-convert.com/" class="tool-link" target="_blank">Online Convert</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section">
+                <h4>💡 추천 변환 도구 특징</h4>
+                <ul>
+                    <li><strong>ILovePDF:</strong> 무료, 빠른 처리, 한국어 지원, 배치 변환 가능</li>
+                    <li><strong>SmallPDF:</strong> 직관적 UI, 클라우드 연동, 무료 제한 있음</li>
+                    <li><strong>Convertio:</strong> 200+ 형식 지원, API 제공, 무료 100MB 제한</li>
+                    <li><strong>Zamzar:</strong> 1200+ 형식, 이메일 알림, 무료 50MB 제한</li>
+                </ul>
+            </div>
+
+            <div class="guide-section">
+                <h4>🔧 오프라인 대안 (보안 중요 시)</h4>
+                <ul>
+                    <li><strong>LibreOffice:</strong> 무료 오픈소스, HWP/Office 파일 지원</li>
+                    <li><strong>한글과컴퓨터 뷰어:</strong> 공식 HWP 뷰어, 무료 사용</li>
+                    <li><strong>Microsoft Office:</strong> 유료, 최고 호환성</li>
+                    <li><strong>WPS Office:</strong> 무료, 한국어 지원 양호</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="ad-box">
+                <h3>📊 변환 통계</h3>
+                <p>매월 수백만 파일<br>안전하게 변환 중</p>
+                <small>300x250 광고 영역</small>
+            </div>
+            <div class="ad-box">
+                <h3>🎯 맞춤 도구</h3>
+                <p>업무용 대용량<br>변환 솔루션</p>
+                <small>300x250 광고 영역</small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language switching
+        function changeLanguage() {
+            const select = document.getElementById('languageSelect');
+            const selectedLang = select.value;
+            
+            // Mark that user manually chose language
+            sessionStorage.setItem('userLanguageChoice', 'manual');
+            
+            if (selectedLang === 'en') {
+                window.location.href = 'en/file-converter.html';
+            }
+        }
+        
+        // Track link clicks for analytics (optional)
+        document.querySelectorAll('.tool-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const toolName = this.textContent;
+                console.log(`Tool clicked: ${toolName}`);
+                // Add analytics tracking here if needed
+            });
+        });
+    </script>
+</body>
+</html>

@@ -48,4 +48,20 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/pdf-converter.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/pdf-converter.html"/>
   </url>
+  <url>
+    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html</loc>
+    <lastmod>2025-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/file-converter.html"/>
+  </url>
+  <url>
+    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/file-converter.html</loc>
+    <lastmod>2025-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/file-converter.html"/>
+  </url>
 </urlset>
