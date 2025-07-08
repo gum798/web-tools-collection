@@ -11,7 +11,7 @@
 1. https://www.google.com/adsense/ 방문
 2. '시작하기' 클릭
 3. 구글 계정으로 로그인
-4. 웹사이트 URL 입력 (예: https://yourdomain.com)
+4. 웹사이트 URL 입력: https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app
 5. 국가/지역 선택
 6. 결제 정보 입력
 
