@@ -93,7 +93,7 @@ class FeedbackSystem {
         script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
         script.onload = () => {
             // Initialize EmailJS with your public key
-            emailjs.init('YOUR_PUBLIC_KEY'); // 나중에 실제 키로 교체
+            emailjs.init('mzxEHp0PGd3uxFKLv'); // 나중에 실제 키로 교체
             this.emailjsInitialized = true;
         };
         document.head.appendChild(script);
@@ -554,7 +554,7 @@ class FeedbackSystem {
         };
         
         const emailParams = {
-            to_email: 'YOUR_EMAIL@example.com', // 실제 이메일로 교체
+            to_email: 'gum798@gmail.com', // 실제 이메일로 교체
             from_name: feedbackData.name,
             from_email: feedbackData.email,
             feedback_type: typeLabels[feedbackData.type],
@@ -567,8 +567,8 @@ class FeedbackSystem {
         
         try {
             const response = await emailjs.send(
-                'YOUR_SERVICE_ID',  // 실제 서비스 ID로 교체
-                'YOUR_TEMPLATE_ID', // 실제 템플릿 ID로 교체
+                'service_07p5y7f',  // 실제 서비스 ID로 교체
+                'template_4ypz16r', // 실제 템플릿 ID로 교체
                 emailParams
             );
             console.log('Email sent successfully:', response);
