@@ -19,6 +19,7 @@ const translations = {
         successMessage: "의견이 성공적으로 전송되었습니다! 감사합니다 🎉",
         errorMessage: "전송 중 오류가 발생했습니다. 다시 시도해주세요.",
         requiredMessage: "의견 내용을 입력해주세요.",
+        sendingMessage: "전송 중입니다...",
         types: {
             feature: "새로운 기능 제안",
             improvement: "기존 기능 개선",
@@ -43,6 +44,7 @@ const translations = {
         successMessage: "Feedback sent successfully! Thank you 🎉",
         errorMessage: "Error occurred while sending. Please try again.",
         requiredMessage: "Please enter your feedback.",
+        sendingMessage: "Sending...",
         types: {
             feature: "New Feature Request",
             improvement: "Existing Feature Improvement",
@@ -56,6 +58,7 @@ class FeedbackSystem {
     constructor() {
         this.language = this.detectLanguage();
         this.isOpen = false;
+        this.emailjsInitialized = false;
         this.init();
     }
     
@@ -78,9 +81,22 @@ class FeedbackSystem {
     }
     
     init() {
+        this.loadEmailJS();
         this.createFloatingButton();
         this.createModal();
         this.addStyles();
+    }
+    
+    loadEmailJS() {
+        // Load EmailJS SDK
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+        script.onload = () => {
+            // Initialize EmailJS with your public key
+            emailjs.init('YOUR_PUBLIC_KEY'); // 나중에 실제 키로 교체
+            this.emailjsInitialized = true;
+        };
+        document.head.appendChild(script);
     }
     
     createFloatingButton() {
@@ -480,11 +496,17 @@ class FeedbackSystem {
         const email = document.getElementById('feedback-email').value;
         const type = document.getElementById('feedback-type').value;
         const message = document.getElementById('feedback-message').value.trim();
+        const submitBtn = document.querySelector('.feedback-btn-submit');
         
         if (!message) {
             alert(this.getText('requiredMessage'));
             return;
         }
+        
+        // Show loading state
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = this.getText('sendingMessage');
+        submitBtn.disabled = true;
         
         const feedbackData = {
             name: name || 'Anonymous',
@@ -498,19 +520,17 @@ class FeedbackSystem {
         };
         
         try {
-            // For now, we'll use a simple method to collect feedback
-            // In the future, this can be connected to a backend service
-            
-            // Save to localStorage for demonstration
+            // Save to localStorage as backup
             const existingFeedback = JSON.parse(localStorage.getItem('feedback_data') || '[]');
             existingFeedback.push(feedbackData);
             localStorage.setItem('feedback_data', JSON.stringify(existingFeedback));
             
-            // You can also integrate with services like:
-            // - Google Forms
-            // - Netlify Forms  
-            // - Firebase
-            // - EmailJS
+            // Send email via EmailJS
+            if (this.emailjsInitialized && typeof emailjs !== 'undefined') {
+                await this.sendEmailNotification(feedbackData);
+            } else {
+                console.log('EmailJS not loaded, saved to localStorage only');
+            }
             
             alert(this.getText('successMessage'));
             this.closeModal();
@@ -518,6 +538,43 @@ class FeedbackSystem {
         } catch (error) {
             console.error('Feedback submission error:', error);
             alert(this.getText('errorMessage'));
+        } finally {
+            // Reset button state
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    }
+    
+    async sendEmailNotification(feedbackData) {
+        const typeLabels = {
+            feature: this.getText('types.feature'),
+            improvement: this.getText('types.improvement'),
+            bug: this.getText('types.bug'),
+            other: this.getText('types.other')
+        };
+        
+        const emailParams = {
+            to_email: 'YOUR_EMAIL@example.com', // 실제 이메일로 교체
+            from_name: feedbackData.name,
+            from_email: feedbackData.email,
+            feedback_type: typeLabels[feedbackData.type],
+            message: feedbackData.message,
+            page_url: feedbackData.page,
+            timestamp: new Date(feedbackData.timestamp).toLocaleString(),
+            language: feedbackData.language,
+            user_agent: feedbackData.userAgent
+        };
+        
+        try {
+            const response = await emailjs.send(
+                'YOUR_SERVICE_ID',  // 실제 서비스 ID로 교체
+                'YOUR_TEMPLATE_ID', // 실제 템플릿 ID로 교체
+                emailParams
+            );
+            console.log('Email sent successfully:', response);
+        } catch (error) {
+            console.error('Email sending failed:', error);
+            // Don't throw error to user, feedback is still saved locally
         }
     }
 }
