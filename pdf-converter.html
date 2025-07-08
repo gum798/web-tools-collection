@@ -242,9 +242,32 @@
         .copy-btn:hover {
             background-color: #1e7e34;
         }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .language-switcher select {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #333;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
+    <div class="language-switcher">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="en">🇺🇸 English</option>
+        </select>
+    </div>
+
     <div class="nav-bar">
         <a href="index.html" class="nav-brand">🛠️ 웹 도구 모음</a>
         <div class="nav-links">
@@ -326,6 +349,19 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
+        // Language switching
+        function changeLanguage() {
+            const select = document.getElementById('languageSelect');
+            const selectedLang = select.value;
+            
+            // Mark that user manually chose language
+            sessionStorage.setItem('userLanguageChoice', 'manual');
+            
+            if (selectedLang === 'en') {
+                window.location.href = 'en/pdf-converter.html';
+            }
+        }
+        
         // PDF.js 설정
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
         
