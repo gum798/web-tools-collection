@@ -5,63 +5,35 @@
     <lastmod>2025-01-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/"/>
-  </url>
-  <url>
-    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/</loc>
-    <lastmod>2025-01-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/"/>
   </url>
   <url>
     <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/password.html</loc>
     <lastmod>2025-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/password.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/password.html"/>
-  </url>
-  <url>
-    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/password.html</loc>
-    <lastmod>2025-01-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/password.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/password.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/password.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/password.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/password.html"/>
   </url>
   <url>
     <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/pdf-converter.html</loc>
     <lastmod>2025-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/pdf-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/pdf-converter.html"/>
-  </url>
-  <url>
-    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/pdf-converter.html</loc>
-    <lastmod>2025-01-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/pdf-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/pdf-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/pdf-converter.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/pdf-converter.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/pdf-converter.html"/>
   </url>
   <url>
     <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html</loc>
     <lastmod>2025-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/file-converter.html"/>
-  </url>
-  <url>
-    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/file-converter.html</loc>
-    <lastmod>2025-01-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/en/file-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html"/>
   </url>
 </urlset>
