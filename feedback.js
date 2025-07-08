@@ -10,6 +10,7 @@ const translations = {
         emailLabel: "이메일 (답변받고 싶으시면)",
         typeLabel: "유형",
         messageLabel: "의견 내용",
+        optionalFieldsButton: "📝 선택 입력 항목",
         namePlaceholder: "이름을 입력해주세요",
         emailPlaceholder: "이메일을 입력해주세요",
         messagePlaceholder: "어떤 기능이 필요하신가요? 또는 개선 사항이 있으신가요?",
@@ -33,6 +34,7 @@ const translations = {
         emailLabel: "Email (If you want a reply)",
         typeLabel: "Type",
         messageLabel: "Your Message",
+        optionalFieldsButton: "📝 Optional Fields",
         namePlaceholder: "Enter your name",
         emailPlaceholder: "Enter your email",
         messagePlaceholder: "What features do you need? Any suggestions for improvement?",
@@ -104,13 +106,20 @@ class FeedbackSystem {
                     <button class="feedback-close" onclick="feedbackSystem.closeModal()">✕</button>
                 </div>
                 <form id="feedback-form" onsubmit="feedbackSystem.submitFeedback(event)">
-                    <div class="feedback-form-group">
-                        <label>${this.getText('nameLabel')}</label>
-                        <input type="text" id="feedback-name" placeholder="${this.getText('namePlaceholder')}">
+                    <div class="feedback-optional-toggle">
+                        <button type="button" id="optional-fields-btn" onclick="feedbackSystem.toggleOptionalFields()">
+                            ${this.getText('optionalFieldsButton')}
+                        </button>
                     </div>
-                    <div class="feedback-form-group">
-                        <label>${this.getText('emailLabel')}</label>
-                        <input type="email" id="feedback-email" placeholder="${this.getText('emailPlaceholder')}">
+                    <div id="optional-fields" class="feedback-optional-fields" style="display: none;">
+                        <div class="feedback-form-group">
+                            <label>${this.getText('nameLabel')}</label>
+                            <input type="text" id="feedback-name" placeholder="${this.getText('namePlaceholder')}">
+                        </div>
+                        <div class="feedback-form-group">
+                            <label>${this.getText('emailLabel')}</label>
+                            <input type="email" id="feedback-email" placeholder="${this.getText('emailPlaceholder')}">
+                        </div>
                     </div>
                     <div class="feedback-form-group">
                         <label>${this.getText('typeLabel')}</label>
@@ -289,6 +298,57 @@ class FeedbackSystem {
                 padding: 25px;
             }
             
+            .feedback-optional-toggle {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            
+            #optional-fields-btn {
+                background: #f8f9fa;
+                border: 2px dashed #dee2e6;
+                color: #6c757d;
+                padding: 10px 20px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.3s ease;
+            }
+            
+            #optional-fields-btn:hover {
+                background: #e9ecef;
+                border-color: #6c757d;
+                color: #495057;
+            }
+            
+            #optional-fields-btn.active {
+                background: #667eea;
+                border-color: #667eea;
+                color: white;
+            }
+            
+            .feedback-optional-fields {
+                transition: all 0.3s ease;
+                overflow: hidden;
+            }
+            
+            .feedback-optional-fields.show {
+                display: block !important;
+                animation: slideDown 0.3s ease;
+            }
+            
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    max-height: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    max-height: 200px;
+                    transform: translateY(0);
+                }
+            }
+            
             .feedback-form-actions {
                 display: flex;
                 gap: 15px;
@@ -373,8 +433,44 @@ class FeedbackSystem {
         modal.classList.remove('show');
         this.isOpen = false;
         
-        // Reset form
+        // Reset form and optional fields
         document.getElementById('feedback-form').reset();
+        this.hideOptionalFields();
+    }
+    
+    toggleOptionalFields() {
+        const optionalFields = document.getElementById('optional-fields');
+        const toggleBtn = document.getElementById('optional-fields-btn');
+        
+        if (optionalFields.style.display === 'none') {
+            this.showOptionalFields();
+        } else {
+            this.hideOptionalFields();
+        }
+    }
+    
+    showOptionalFields() {
+        const optionalFields = document.getElementById('optional-fields');
+        const toggleBtn = document.getElementById('optional-fields-btn');
+        
+        optionalFields.style.display = 'block';
+        optionalFields.classList.add('show');
+        toggleBtn.classList.add('active');
+        toggleBtn.textContent = this.language === 'ko' ? '📝 선택 항목 숨기기' : '📝 Hide Optional Fields';
+    }
+    
+    hideOptionalFields() {
+        const optionalFields = document.getElementById('optional-fields');
+        const toggleBtn = document.getElementById('optional-fields-btn');
+        
+        optionalFields.style.display = 'none';
+        optionalFields.classList.remove('show');
+        toggleBtn.classList.remove('active');
+        toggleBtn.textContent = this.getText('optionalFieldsButton');
+        
+        // Clear optional field values
+        document.getElementById('feedback-name').value = '';
+        document.getElementById('feedback-email').value = '';
     }
     
     async submitFeedback(event) {
