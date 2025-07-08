@@ -10,11 +10,23 @@
 
 ## ⚙️ 2단계: 이메일 서비스 연결
 
-1. **EmailJS 대시보드** 로그인
-2. **"Email Services"** 탭 클릭
+### 🔧 Gmail API 권한 오류 해결법:
+
+**Option A: Gmail 재연결 (추천)**
+1. **EmailJS 대시보드** → **"Email Services"**
+2. 기존 Gmail 서비스 **"Delete"** (있다면)
 3. **"Add New Service"** 클릭
-4. **Gmail** 선택 (추천)
-5. **Service ID** 복사해두기 (예: `service_abc123`)
+4. **Gmail** 선택
+5. **"Connect Account"** 클릭
+6. **Google 로그인** 팝업에서 **모든 권한 허용** ✅
+   - ✅ "See, edit, create, and delete all of your Gmail email"
+   - ✅ "Send emails on your behalf"
+7. **Service ID** 복사해두기 (예: `service_abc123`)
+
+**Option B: 다른 이메일 서비스 사용**
+1. **"Add New Service"** 클릭
+2. **"Outlook"** 또는 **"Yahoo"** 선택 (더 간단함)
+3. 로그인 후 **Service ID** 복사
 
 ## 📝 3단계: 이메일 템플릿 생성
 
@@ -92,16 +104,30 @@ to_email: 'YOUR_EMAIL@example.com', // ← 실제 이메일 주소 입력
 
 ## 🔧 문제 해결
 
+### ❌ "Gmail_API: Request had insufficient authentication scopes" 오류
+**해결 방법:**
+1. **EmailJS 대시보드** → **Email Services**
+2. Gmail 서비스 **삭제** 후 **재연결**
+3. Google 권한 요청 시 **모든 권한 허용**
+4. 또는 **Outlook/Yahoo 사용** (더 간단)
+
 ### 이메일이 안 와요
 1. **스팸 폴더** 확인
 2. **Service ID, Template ID** 재확인
 3. **Public Key** 재확인
 4. Gmail 연결 상태 확인
+5. **EmailJS 대시보드**에서 전송 로그 확인
 
 ### 에러 메시지가 나와요
 1. **콘솔 로그** 확인 (F12)
 2. **네트워크 연결** 확인
 3. **EmailJS 대시보드**에서 전송 로그 확인
+
+### 💡 빠른 해결책
+**가장 쉬운 방법**: Gmail 대신 **Outlook** 사용
+- Gmail보다 권한 설정이 간단
+- 같은 기능 제공
+- 안정적인 이메일 전송
 
 ## 📞 지원
 
