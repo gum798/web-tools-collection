@@ -291,6 +291,9 @@
             const select = document.getElementById('languageSelect');
             const selectedLang = select.value;
             
+            // Mark that user manually chose language
+            sessionStorage.setItem('userLanguageChoice', 'manual');
+            
             if (selectedLang === 'en') {
                 window.location.href = 'en/index.html';
             }

@@ -274,9 +274,16 @@
     <script>
         // Language detection and switching
         function detectLanguage() {
+            // Only auto-redirect if user hasn't manually chosen language
+            const hasUserChosenLanguage = sessionStorage.getItem('userLanguageChoice');
+            if (hasUserChosenLanguage) {
+                return; // Don't auto-redirect if user manually chose language
+            }
+            
             const userLang = navigator.language || navigator.userLanguage;
             if (userLang.startsWith('ko')) {
-                // Redirect to Korean version
+                // Redirect to Korean version only on first visit
+                sessionStorage.setItem('userLanguageChoice', 'auto');
                 window.location.href = '../index.html';
             }
         }
@@ -284,6 +291,9 @@
         function changeLanguage() {
             const select = document.getElementById('languageSelect');
             const selectedLang = select.value;
+            
+            // Mark that user manually chose language
+            sessionStorage.setItem('userLanguageChoice', 'manual');
             
             if (selectedLang === 'ko') {
                 window.location.href = '../index.html';
