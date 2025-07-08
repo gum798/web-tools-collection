@@ -65,6 +65,7 @@
     "numbers": "Numbers (0-9)",
     "symbols": "Symbols (!@#$%^&*)",
     "generateButton": "🎲 Generate Password",
+    "regenerateButton": "🎲 Regenerate Password",
     "copyButton": "📋 Copy",
     "clickToGenerate": "Click generate button to create a password",
     "strength": "Strength",

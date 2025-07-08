@@ -12,6 +12,7 @@
 2. '시작하기' 클릭
 3. 구글 계정으로 로그인
 4. 웹사이트 URL 입력: https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app
+          단축 URL: https://buly.kr/FAdjeBv
 5. 국가/지역 선택
 6. 결제 정보 입력
 
