@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>웹 도구 모음</title>
+    <title>Web Tools Collection</title>
     
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434360911371069"
@@ -16,9 +16,6 @@
               enable_page_level_ads: true
          });
     </script>
-    
-    <!-- Cookie Consent Management -->
-    <script src="cookie-consent.js"></script>
     <style>
         * {
             margin: 0;
@@ -34,6 +31,27 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            color: white;
+        }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .language-switcher select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            color: white;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+        
+        .language-switcher option {
+            background: #333;
             color: white;
         }
         
@@ -185,27 +203,6 @@
             }
         }
         
-        .language-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        
-        .language-switcher select {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-            color: white;
-            padding: 8px 12px;
-            font-size: 14px;
-        }
-        
-        .language-switcher option {
-            background: #333;
-            color: white;
-        }
-        
         .badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
@@ -219,52 +216,52 @@
 <body>
     <div class="language-switcher">
         <select id="languageSelect" onchange="changeLanguage()">
-            <option value="ko">🇰🇷 한국어</option>
             <option value="en">🇺🇸 English</option>
+            <option value="ko">🇰🇷 한국어</option>
         </select>
     </div>
 
     <div class="container">
         <div class="header">
-            <h1>🛠️ 웹 도구 모음</h1>
-            <p>일상에서 유용한 온라인 도구들을 한 곳에서 만나보세요</p>
+            <h1>🛠️ Web Tools Collection</h1>
+            <p>Discover useful online tools in one place</p>
         </div>
         
         <div class="tools-grid">
             <a href="password.html" class="tool-card">
                 <div class="tool-icon">🔑</div>
-                <div class="tool-title">랜덤 비밀번호 생성기</div>
+                <div class="tool-title">Random Password Generator</div>
                 <div class="tool-description">
-                    안전하고 강력한 비밀번호를 생성하세요
+                    Generate secure and strong passwords
                 </div>
                 <ul class="feature-list">
-                    <li>사용자 정의 길이 설정</li>
-                    <li>문자 종류 선택 가능</li>
-                    <li>비밀번호 강도 표시</li>
-                    <li>원클릭 복사 기능</li>
+                    <li>Customizable length settings</li>
+                    <li>Character type selection</li>
+                    <li>Password strength indicator</li>
+                    <li>One-click copy function</li>
                 </ul>
-                <span class="badge">보안 도구</span>
+                <span class="badge">Security Tool</span>
             </a>
             
             <a href="pdf-converter.html" class="tool-card">
                 <div class="tool-icon">📄</div>
-                <div class="tool-title">PDF to PNG 변환기</div>
+                <div class="tool-title">PDF to PNG Converter</div>
                 <div class="tool-description">
-                    PDF 파일을 고품질 PNG 이미지로 변환하세요
+                    Convert PDF files to high-quality PNG images
                 </div>
                 <ul class="feature-list">
-                    <li>드래그 앤 드롭 업로드</li>
-                    <li>다중 페이지 처리</li>
-                    <li>품질 설정 가능</li>
-                    <li>일괄 다운로드</li>
+                    <li>Drag & drop upload</li>
+                    <li>Multi-page processing</li>
+                    <li>Quality settings</li>
+                    <li>Batch download</li>
                 </ul>
-                <span class="badge">변환 도구</span>
+                <span class="badge">Conversion Tool</span>
             </a>
         </div>
         
         <div class="footer">
-            <p>© 2025 웹 도구 모음. 모든 도구는 브라우저에서 안전하게 처리됩니다.</p>
-            <p>개인정보는 서버에 저장되지 않으며, 모든 작업은 로컬에서 수행됩니다.</p>
+            <p>© 2025 Web Tools Collection. All tools are safely processed in your browser.</p>
+            <p>No personal information is stored on servers, all operations are performed locally.</p>
             
             <div class="social-links">
                 <a href="#" class="social-link">📧</a>
@@ -275,7 +272,25 @@
     </div>
     
     <script>
-        // 카드 호버 효과 강화
+        // Language detection and switching
+        function detectLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang.startsWith('ko')) {
+                // Redirect to Korean version
+                window.location.href = '../index.html';
+            }
+        }
+        
+        function changeLanguage() {
+            const select = document.getElementById('languageSelect');
+            const selectedLang = select.value;
+            
+            if (selectedLang === 'ko') {
+                window.location.href = '../index.html';
+            }
+        }
+        
+        // Card hover effects
         document.querySelectorAll('.tool-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-10px) scale(1.02)';
@@ -286,17 +301,7 @@
             });
         });
         
-        // Language switching
-        function changeLanguage() {
-            const select = document.getElementById('languageSelect');
-            const selectedLang = select.value;
-            
-            if (selectedLang === 'en') {
-                window.location.href = 'en/index.html';
-            }
-        }
-        
-        // 페이지 로드 애니메이션
+        // Page load animations
         window.addEventListener('load', function() {
             const cards = document.querySelectorAll('.tool-card');
             cards.forEach((card, index) => {
@@ -309,6 +314,11 @@
                     card.style.transform = 'translateY(0)';
                 }, index * 200);
             });
+        });
+        
+        // Auto language detection on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            detectLanguage();
         });
     </script>
 </body>
