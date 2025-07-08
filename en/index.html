@@ -100,11 +100,45 @@
             color: white;
             padding: 8px 12px;
             font-size: 14px;
+            width: 90px;
+            text-align: center;
         }
         
         .language-switcher option {
             background: #333;
             color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 20px; 
+                right: 15px;
+            }
+            
+            .language-switcher select {
+                padding: 6px 8px;
+                font-size: 16px;
+                
+                width: 55px;
+                text-align: center;
+                text-align-last: center;
+                height: 32px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .language-switcher {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .language-switcher select {
+                padding: 4px 6px;
+                font-size: 16px;
+                
+                width: 50px;
+                height: 28px;
+            }
         }
         
         .container {
@@ -268,8 +302,8 @@
 <body>
     <div class="language-switcher">
         <select id="languageSelect" onchange="changeLanguage()">
-            <option value="en">🇺🇸 English</option>
-            <option value="ko">🇰🇷 한국어</option>
+            <option value="en">🇺🇸 EN</option>
+            <option value="ko">🇰🇷 KO</option>
         </select>
     </div>
 

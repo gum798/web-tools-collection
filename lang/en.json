@@ -1,0 +1,227 @@
+{
+  "common": {
+    "siteTitle": "🛠️ Web Tools Collection",
+    "home": "Home",
+    "passwordGenerator": "Password Generator",
+    "pdfConverter": "PDF Converter",
+    "fileConverter": "File Converter Guide",
+    "languageKo": "🇰🇷 KO",
+    "languageEn": "🇺🇸 EN"
+  },
+  "home": {
+    "title": "Web Tools Collection",
+    "description": "Access useful web tools in one place",
+    "keywords": "web tools, online tools, password generator, PDF converter, file converter",
+    "bannerTitle": "🚀 Convenient Web Tools",
+    "bannerSubtitle": "Use essential tools for free in your daily life",
+    "mainTitle": "🛠️ Web Tools Collection",
+    "mainDescription": "Access various web tools needed for daily life and work in one place. All tools are provided for free and processed directly in your browser to protect your privacy.",
+    "tools": {
+      "passwordGenerator": {
+        "title": "🔐 Password Generator",
+        "description": "Generate secure and strong passwords. You can set length and character types, and check the security strength of generated passwords in real time."
+      },
+      "pdfConverter": {
+        "title": "📄 PDF Converter",
+        "description": "Convert PDF files to high-quality PNG images. Processed directly in your browser for security, with various quality options available."
+      },
+      "fileConverter": {
+        "title": "📁 File Converter Guide",
+        "description": "Collection of free tools and safe conversion methods for various file format conversions like HWP to Word, Excel to PDF, and more."
+      }
+    },
+    "securityTitle": "🔒 Security & Privacy Protection",
+    "securityDescription": "All tools are processed on the client side, so personal information is not transmitted to servers.",
+    "adSpaces": {
+      "security": {
+        "title": "🛡️ Security Solutions",
+        "description": "Enterprise security tools<br>and solutions"
+      },
+      "productivity": {
+        "title": "⚡ Productivity Enhancement",
+        "description": "Various tools to improve<br>work efficiency"
+      },
+      "tools": {
+        "title": "🔧 Development Tools",
+        "description": "Professional tool<br>collection for developers"
+      },
+      "integration": {
+        "title": "🔗 Integration Solutions",
+        "description": "Enterprise system integration<br>and API provision"
+      }
+    }
+  },
+  "password": {
+    "title": "Random Password Generator",
+    "description": "Generate secure and strong passwords",
+    "keywords": "password generator, strong password, security, password creation",
+    "bannerTitle": "🔒 Security Solutions",
+    "bannerSubtitle": "Protect your accounts with strong passwords",
+    "mainTitle": "🔑 Random Password Generator",
+    "passwordLength": "Password Length",
+    "characterTypes": "Character Types to Include",
+    "lowercase": "Lowercase (a-z)",
+    "uppercase": "Uppercase (A-Z)",
+    "numbers": "Numbers (0-9)",
+    "symbols": "Symbols (!@#$%^&*)",
+    "generateButton": "🎲 Generate Password",
+    "copyButton": "📋 Copy",
+    "clickToGenerate": "Click generate button to create a password",
+    "strength": "Strength",
+    "strengthWeak": "Weak",
+    "strengthFair": "Fair",
+    "strengthGood": "Good",
+    "strengthStrong": "Strong",
+    "alerts": {
+      "selectCharacterType": "Please select at least one character type.",
+      "generateFirst": "Please generate a password first.",
+      "copied": "Password copied to clipboard!"
+    },
+    "adSpaces": {
+      "securityTips": {
+        "title": "🛡️ Security Tips",
+        "description": "Use a password manager<br>for best security"
+      },
+      "twoFactor": {
+        "title": "🔐 Two-Factor Auth",
+        "description": "Additional security<br>setup guide"
+      },
+      "devTools": {
+        "title": "💻 Developer Tools",
+        "description": "API key management<br>security solutions"
+      },
+      "securityCheck": {
+        "title": "🔍 Security Check",
+        "description": "Password breach<br>checker"
+      }
+    }
+  },
+  "pdfConverter": {
+    "title": "PDF to PNG Converter",
+    "description": "Convert PDF files to high-quality PNG images",
+    "keywords": "PDF to PNG converter, PDF image conversion, online PDF converter",
+    "bannerTitle": "🎯 Document Conversion Tool",
+    "bannerSubtitle": "Convert PDF files to high-quality PNG images",
+    "mainTitle": "📄 PDF to PNG Converter",
+    "uploadText": "📁 Drag and drop your PDF file here or click to upload",
+    "chooseFile": "Choose File",
+    "imageQuality": "Image Quality:",
+    "qualityStandard": "Standard (1x)",
+    "qualityHigh": "High Quality (2x)",
+    "qualityBest": "Best Quality (3x)",
+    "converting": "Converting...",
+    "loadingPdf": "Loading PDF...",
+    "convertingPages": "Converting {totalPages} pages...",
+    "pagesConverted": "{pageNumber}/{totalPages} pages converted",
+    "conversionResults": "Conversion Results",
+    "page": "Page",
+    "download": "Download",
+    "downloadAll": "🔽 Download All Images",
+    "clearResults": "🗑️ Clear Results",
+    "alerts": {
+      "selectPdf": "Please select a PDF file.",
+      "uploadPdf": "Please upload a PDF file.",
+      "conversionError": "An error occurred during PDF conversion.",
+      "noImages": "No converted images available."
+    },
+    "adSpaces": {
+      "conversionTips": {
+        "title": "📢 Conversion Tips",
+        "description": "Use high quality settings<br>for crisp images"
+      },
+      "privacy": {
+        "title": "🛡️ Privacy",
+        "description": "Files are processed<br>only in your browser"
+      },
+      "fileSecurity": {
+        "title": "🔐 File Security",
+        "description": "Uploaded files are not<br>stored on servers"
+      },
+      "otherTools": {
+        "title": "💻 Other Tools",
+        "description": "Image compressor<br>coming soon"
+      }
+    }
+  },
+  "fileConverter": {
+    "title": "File Conversion Tools Guide - Free Online Converters",
+    "description": "Complete guide to free online file conversion tools: HWP to Word, Excel to PDF, and more. Safe conversion methods and security tips.",
+    "keywords": "file converter, HWP to Word, free conversion tools, online file converter, document conversion",
+    "bannerTitle": "📁 File Conversion Tools",
+    "bannerSubtitle": "Convert various file formats safely and for free",
+    "mainTitle": "📁 File Conversion Guide",
+    "securityTitle": "🔒 Security Guidelines",
+    "securityItems": [
+      "Privacy First: Avoid uploading files with sensitive information",
+      "Auto-Delete: Ensure uploaded files are automatically deleted after conversion",
+      "HTTPS Only: Use only secure sites with SSL encryption (🔒)",
+      "Scan Downloads: Run antivirus scans on converted files"
+    ],
+    "converters": {
+      "hwpWord": {
+        "title": "📝 HWP ↔ Word Conversion",
+        "popular": "Popular",
+        "description": "Convert Korean HWP documents to Microsoft Word format and vice versa",
+        "steps": [
+          "Visit conversion site and upload your file",
+          "Select DOCX/DOC as output format",
+          "Click convert and wait for completion",
+          "Download the converted file"
+        ]
+      },
+      "excelPdf": {
+        "title": "📊 Excel ↔ PDF Conversion",
+        "description": "Convert Excel spreadsheets to PDF or extract data from PDF to Excel"
+      },
+      "powerpointPdf": {
+        "title": "🎯 PowerPoint ↔ PDF",
+        "description": "Convert presentations to PDF or restore editable PowerPoint format"
+      },
+      "image": {
+        "title": "🖼️ Image Format Conversion",
+        "description": "Convert between JPG, PNG, WEBP, SVG and other image formats"
+      },
+      "audioVideo": {
+        "title": "🎵 Audio/Video Conversion",
+        "description": "Convert MP3, MP4, AVI, MOV and other multimedia file formats"
+      },
+      "archive": {
+        "title": "📦 Archive Conversion",
+        "description": "Convert between ZIP, RAR, 7Z and other compression formats"
+      }
+    },
+    "conversionMethod": "📋 Conversion Steps",
+    "recommendedTools": "💡 Recommended Tool Features",
+    "toolFeatures": [
+      "ILovePDF: Free, fast processing, batch conversion support",
+      "SmallPDF: Intuitive UI, cloud integration, free limitations apply",
+      "Convertio: 200+ format support, API available, 100MB free limit",
+      "Zamzar: 1200+ formats, email notifications, 50MB free limit"
+    ],
+    "offlineAlternatives": "🔧 Offline Alternatives (For Security)",
+    "offlineTools": [
+      "LibreOffice: Free open-source, HWP/Office file support",
+      "HWP Viewer: Official HWP viewer, free to use",
+      "Microsoft Office: Paid, best compatibility",
+      "WPS Office: Free, good international support"
+    ],
+    "adSpaces": {
+      "securityFirst": {
+        "title": "🛡️ Security First",
+        "description": "Use offline tools for<br>sensitive documents"
+      },
+      "fastConversion": {
+        "title": "⚡ Fast Conversion",
+        "description": "Cloud-based<br>high-speed processing"
+      },
+      "conversionStats": {
+        "title": "📊 Conversion Stats",
+        "description": "Millions of files<br>safely converted monthly"
+      },
+      "customTools": {
+        "title": "🎯 Enterprise Tools",
+        "description": "Business-grade<br>bulk conversion"
+      }
+    }
+  }
+}

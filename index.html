@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>웹 도구 모음 - 무료 온라인 도구 | 비밀번호 생성기, PDF 변환기, 파일 변환 가이드</title>
+    <title data-i18n="home.title">웹 도구 모음</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="무료 온라인 웹 도구 모음. 안전한 랜덤 비밀번호 생성기, PDF to PNG 변환기, HWP to Word 변환 가이드를 제공합니다. 브라우저에서 안전하게 처리되며 개인정보는 저장되지 않습니다.">
@@ -71,6 +71,10 @@
     
     <!-- Feedback System -->
     <script src="feedback.js"></script>
+    
+    <!-- i18n System -->
+    <script src="i18n.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -308,11 +312,45 @@
             color: white;
             padding: 8px 12px;
             font-size: 14px;
+            width: 90px;
+            text-align: center;
         }
         
         .language-switcher option {
             background: #333;
             color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 20px; 
+                right: 15px;
+            }
+            
+            .language-switcher select {
+                padding: 6px 8px;
+                font-size: 16px;
+                
+                width: 55px;
+                text-align: center;
+                text-align-last: center;
+                height: 32px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .language-switcher {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .language-switcher select {
+                padding: 4px 6px;
+                font-size: 16px;
+                
+                width: 50px;
+                height: 28px;
+            }
         }
         
         .badge {
@@ -327,24 +365,24 @@
 </head>
 <body>
     <div class="language-switcher">
-        <select id="languageSelect" onchange="changeLanguage()">
-            <option value="ko">🇰🇷 한국어</option>
-            <option value="en">🇺🇸 English</option>
+        <select id="languageSelect">
+            <option value="ko" data-i18n="common.languageKo">🇰🇷 KO</option>
+            <option value="en" data-i18n="common.languageEn">🇺🇸 EN</option>
         </select>
     </div>
 
     <div class="container">
         <div class="header">
-            <h1>🛠️ 웹 도구 모음</h1>
-            <p>일상에서 유용한 온라인 도구들을 한 곳에서 만나보세요</p>
+            <h1 data-i18n="home.mainTitle">🛠️ 웹 도구 모음</h1>
+            <p data-i18n="home.mainDescription">일상과 업무에 필요한 다양한 웹 도구들을 한 곳에서 이용하세요. 모든 도구는 무료로 제공되며, 개인정보 보호를 위해 브라우저에서 직접 처리됩니다.</p>
         </div>
         
         <div class="tools-grid">
             <a href="password.html" class="tool-card">
                 <div class="tool-icon">🔑</div>
-                <div class="tool-title">랜덤 비밀번호 생성기</div>
-                <div class="tool-description">
-                    안전하고 강력한 비밀번호를 생성하세요
+                <div class="tool-title" data-i18n="home.tools.passwordGenerator.title">🔐 비밀번호 생성기</div>
+                <div class="tool-description" data-i18n="home.tools.passwordGenerator.description">
+                    안전하고 강력한 비밀번호를 생성하세요. 길이, 문자 유형을 설정할 수 있으며, 생성된 비밀번호의 보안 강도를 실시간으로 확인할 수 있습니다.
                 </div>
                 <ul class="feature-list">
                     <li>사용자 정의 길이 설정</li>
@@ -357,9 +395,9 @@
             
             <a href="pdf-converter.html" class="tool-card">
                 <div class="tool-icon">📄</div>
-                <div class="tool-title">PDF to PNG 변환기</div>
-                <div class="tool-description">
-                    PDF 파일을 고품질 PNG 이미지로 변환하세요
+                <div class="tool-title" data-i18n="home.tools.pdfConverter.title">📄 PDF 변환기</div>
+                <div class="tool-description" data-i18n="home.tools.pdfConverter.description">
+                    PDF 파일을 고품질 PNG 이미지로 변환하세요. 브라우저에서 직접 처리되어 안전하며, 다양한 품질 옵션을 제공합니다.
                 </div>
                 <ul class="feature-list">
                     <li>드래그 앤 드롭 업로드</li>
@@ -372,9 +410,9 @@
             
             <a href="file-converter.html" class="tool-card">
                 <div class="tool-icon">📁</div>
-                <div class="tool-title">파일 변환 가이드</div>
-                <div class="tool-description">
-                    HWP to Word 등 다양한 파일 변환 방법 안내
+                <div class="tool-title" data-i18n="home.tools.fileConverter.title">📁 파일 변환 가이드</div>
+                <div class="tool-description" data-i18n="home.tools.fileConverter.description">
+                    HWP to Word, Excel to PDF 등 다양한 파일 형식 변환을 위한 무료 도구 모음과 안전한 변환 방법을 안내합니다.
                 </div>
                 <ul class="feature-list">
                     <li>HWP ↔ Word 변환</li>
@@ -411,8 +449,8 @@
         </div>
         
         <div class="footer">
-            <p>© 2025 웹 도구 모음. 모든 도구는 브라우저에서 안전하게 처리됩니다.</p>
-            <p>개인정보는 서버에 저장되지 않으며, 모든 작업은 로컬에서 수행됩니다.</p>
+            <p data-i18n="home.securityTitle">🔒 보안 및 개인정보 보호</p>
+            <p data-i18n="home.securityDescription">모든 도구는 클라이언트 사이드에서 처리되어 개인정보가 서버로 전송되지 않습니다.</p>
             
             <div class="social-links">
                 <a href="#" class="social-link">📧</a>
@@ -434,19 +472,6 @@
             });
         });
         
-        // Language switching
-        function changeLanguage() {
-            const select = document.getElementById('languageSelect');
-            const selectedLang = select.value;
-            
-            // Mark that user manually chose language
-            sessionStorage.setItem('userLanguageChoice', 'manual');
-            
-            if (selectedLang === 'en') {
-                window.location.href = 'en/index.html';
-            }
-        }
-        
         // 페이지 로드 애니메이션
         window.addEventListener('load', function() {
             const cards = document.querySelectorAll('.tool-card');
@@ -464,40 +489,59 @@
         
         // Social sharing functions
         const siteUrl = 'https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app';
-        const siteTitle = '웹 도구 모음 - 무료 온라인 도구';
-        const siteDescription = '안전한 랜덤 비밀번호 생성기와 PDF to PNG 변환기. 브라우저에서 안전하게 처리되는 무료 온라인 도구 모음입니다.';
+        let siteTitle = '웹 도구 모음 - 무료 온라인 도구';
+        let siteDescription = '안전한 랜덤 비밀번호 생성기와 PDF to PNG 변환기. 브라우저에서 안전하게 처리되는 무료 온라인 도구 모음입니다.';
+        
+        // Update sharing text based on language
+        function updateSharingText() {
+            if (window.i18n && window.i18n.getCurrentLanguage() === 'en') {
+                siteTitle = 'Web Tools Collection - Free Online Tools';
+                siteDescription = 'Secure random password generator and PDF to PNG converter. Free online tools safely processed in your browser.';
+            }
+        }
         
         function shareOnFacebook() {
+            updateSharingText();
             const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl)}`;
             window.open(url, '_blank', 'width=600,height=400');
         }
         
         function shareOnTwitter() {
+            updateSharingText();
             const text = `${siteTitle} - ${siteDescription}`;
             const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(siteUrl)}`;
             window.open(url, '_blank', 'width=600,height=400');
         }
         
         function shareOnLinkedIn() {
+            updateSharingText();
             const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteUrl)}`;
             window.open(url, '_blank', 'width=600,height=400');
         }
         
         function shareOnTelegram() {
+            updateSharingText();
             const text = `${siteTitle} - ${siteDescription}`;
             const url = `https://t.me/share/url?url=${encodeURIComponent(siteUrl)}&text=${encodeURIComponent(text)}`;
             window.open(url, '_blank', 'width=600,height=400');
         }
         
         function shareOnWhatsApp() {
+            updateSharingText();
             const text = `${siteTitle} - ${siteDescription} ${siteUrl}`;
             const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
             window.open(url, '_blank');
         }
         
         function copyLink() {
+            const copyText = window.i18n && window.i18n.getCurrentLanguage() === 'en' ? 'Link copied to clipboard!' : '링크가 클립보드에 복사되었습니다!';
+            
             navigator.clipboard.writeText(siteUrl).then(function() {
-                alert('링크가 클립보드에 복사되었습니다!');
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast(copyText, 'success');
+                } else {
+                    alert(copyText);
+                }
             }).catch(function(err) {
                 // Fallback for older browsers
                 const textArea = document.createElement('textarea');
@@ -506,7 +550,11 @@
                 textArea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
-                alert('링크가 클립보드에 복사되었습니다!');
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast(copyText, 'success');
+                } else {
+                    alert(copyText);
+                }
             });
         }
     </script>

@@ -42,6 +42,40 @@
             color: #333;
             padding: 8px 12px;
             font-size: 14px;
+            width: 90px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 12px; 
+                right: 15px;
+            }
+            
+            .language-switcher select {
+                padding: 6px 8px; 
+                font-size: 16px;
+                
+                width: 55px;
+                text-align: center;
+                text-align-last: center;
+                height: 32px; 
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .language-switcher {
+                top: 15px; 
+                right: 15px;
+            }
+            
+            .language-switcher select {
+                padding: 4px 6px;
+                font-size: 16px; 
+                
+                width: 50px;
+                height: 28px;
+            }
         }
         
         .nav-bar {
@@ -53,6 +87,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            min-height: 60px;
         }
         
         .nav-brand {
@@ -60,19 +95,25 @@
             font-weight: bold;
             color: #333;
             text-decoration: none;
+            white-space: nowrap;
         }
         
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
         
         .nav-link {
             color: #666;
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 10px 16px;
             border-radius: 5px;
             transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 500;
         }
         
         .nav-link:hover {
@@ -128,9 +169,44 @@
             .sidebar {
                 order: -1;
             }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-bar {
+                padding: 12px 15px;
+                min-height: 50px;
+            }
+            
+            .nav-brand {
+                font-size: 1.3em;
+            }
+            
             .nav-links {
-                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .nav-link {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-bar {
+                flex-direction: column;
                 gap: 10px;
+                padding: 15px;
+                text-align: center;
+            }
+            
+            .nav-links {
+                justify-content: center;
+                gap: 5px;
+            }
+            
+            .nav-link {
+                padding: 6px 10px;
+                font-size: 12px;
             }
         }
         .container {
@@ -260,8 +336,8 @@
 <body>
     <div class="language-switcher">
         <select id="languageSelect" onchange="changeLanguage()">
-            <option value="en">🇺🇸 English</option>
-            <option value="ko">🇰🇷 한국어</option>
+            <option value="en">🇺🇸 EN</option>
+            <option value="ko">🇰🇷 KO</option>
         </select>
     </div>
 
