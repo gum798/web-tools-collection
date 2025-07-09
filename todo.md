@@ -2,7 +2,7 @@
 2. PDF 변환기
     PDF to PNG 변환기
     PDF to HWP 변환기
-    ePub to PDF 변환기 (todo)
+    ePub to PDF 변환기
     PDF 워터마크 추가하기 (todo)
 3. 이미지 변환기
     WEBP to PNG 변환기

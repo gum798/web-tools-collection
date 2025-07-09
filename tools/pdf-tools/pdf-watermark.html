@@ -530,6 +530,100 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+        
+        /* 미리보기 스타일 */
+        .preview-section {
+            background: #f0f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid #e1e8ed;
+        }
+        
+        .preview-section h4 {
+            margin: 0 0 15px 0;
+            color: #333;
+            font-size: 1.1em;
+        }
+        
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            background: #fff;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .preview-page {
+            width: 280px;
+            height: 180px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .preview-content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .preview-text {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .preview-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .preview-watermark span {
+            font-family: Arial, sans-serif;
+            font-size: 36px;
+            color: #ff0000;
+            opacity: 0.5;
+            white-space: nowrap;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .preview-watermark img {
+            max-width: 100px;
+            max-height: 100px;
+            opacity: 0.5;
+        }
+        
+        @media (max-width: 768px) {
+            .preview-page {
+                width: 240px;
+                height: 150px;
+            }
+            
+            .preview-watermark span {
+                font-size: 24px;
+            }
+            
+            .preview-watermark img {
+                max-width: 60px;
+                max-height: 60px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -576,6 +670,22 @@
             
             <div class="watermark-options">
                 <h3 data-i18n="pdfWatermark.watermarkOptions">워터마크 옵션</h3>
+                
+                <!-- 미리보기 섹션 -->
+                <div class="preview-section">
+                    <h4 data-i18n="pdfWatermark.preview">미리보기</h4>
+                    <div class="preview-container">
+                        <div class="preview-page" id="previewPage">
+                            <div class="preview-content">
+                                <div class="preview-text">Sample PDF Page</div>
+                                <div class="preview-watermark" id="previewWatermark">
+                                    <span id="previewText">WATERMARK</span>
+                                    <img id="previewImage" style="display: none;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="watermark-type">
                     <div class="type-option">
@@ -692,6 +802,7 @@
                 this.initializeElements();
                 this.bindEvents();
                 this.updateRangeValues();
+                this.updatePreview(); // 초기 미리보기 설정
             }
             
             initializeElements() {
@@ -722,6 +833,11 @@
                 
                 // Position buttons
                 this.positionButtons = document.querySelectorAll('.position-btn');
+                
+                // Preview elements
+                this.previewWatermark = document.getElementById('previewWatermark');
+                this.previewText = document.getElementById('previewText');
+                this.previewImage = document.getElementById('previewImage');
             }
             
             bindEvents() {
@@ -735,17 +851,40 @@
                 this.uploadArea.addEventListener('drop', (e) => this.handleDrop(e));
                 
                 // Watermark type change
-                this.textWatermark.addEventListener('change', () => this.toggleWatermarkType());
-                this.imageWatermark.addEventListener('change', () => this.toggleWatermarkType());
+                this.textWatermark.addEventListener('change', () => {
+                    this.toggleWatermarkType();
+                    this.updatePreview();
+                });
+                this.imageWatermark.addEventListener('change', () => {
+                    this.toggleWatermarkType();
+                    this.updatePreview();
+                });
+                
+                // Text input changes
+                this.watermarkText.addEventListener('input', () => this.updatePreview());
+                this.textColor.addEventListener('input', () => this.updatePreview());
+                this.watermarkImage.addEventListener('change', () => this.updatePreview());
                 
                 // Range inputs
-                this.textSize.addEventListener('input', () => this.updateRangeValues());
-                this.imageSize.addEventListener('input', () => this.updateRangeValues());
-                this.opacity.addEventListener('input', () => this.updateRangeValues());
+                this.textSize.addEventListener('input', () => {
+                    this.updateRangeValues();
+                    this.updatePreview();
+                });
+                this.imageSize.addEventListener('input', () => {
+                    this.updateRangeValues();
+                    this.updatePreview();
+                });
+                this.opacity.addEventListener('input', () => {
+                    this.updateRangeValues();
+                    this.updatePreview();
+                });
                 
                 // Position buttons
                 this.positionButtons.forEach(btn => {
-                    btn.addEventListener('click', () => this.selectPosition(btn));
+                    btn.addEventListener('click', () => {
+                        this.selectPosition(btn);
+                        this.updatePreview();
+                    });
                 });
                 
                 // Process button
@@ -756,6 +895,104 @@
                 document.getElementById('textSizeValue').textContent = this.textSize.value + 'px';
                 document.getElementById('imageSizeValue').textContent = this.imageSize.value + 'px';
                 document.getElementById('opacityValue').textContent = this.opacity.value + '%';
+            }
+            
+            updatePreview() {
+                const isTextWatermark = this.textWatermark.checked;
+                
+                if (isTextWatermark) {
+                    this.updateTextPreview();
+                } else {
+                    this.updateImagePreview();
+                }
+                
+                this.updateWatermarkPosition();
+            }
+            
+            updateTextPreview() {
+                const text = this.watermarkText.value || 'WATERMARK';
+                const fontSize = parseInt(this.textSize.value);
+                const color = this.textColor.value;
+                const opacity = parseInt(this.opacity.value) / 100;
+                
+                this.previewText.textContent = text;
+                this.previewText.style.fontSize = fontSize + 'px';
+                this.previewText.style.color = color;
+                this.previewText.style.opacity = opacity;
+                this.previewText.style.display = 'block';
+                this.previewImage.style.display = 'none';
+            }
+            
+            updateImagePreview() {
+                const imageFile = this.watermarkImage.files[0];
+                const imageSize = parseInt(this.imageSize.value);
+                const opacity = parseInt(this.opacity.value) / 100;
+                
+                if (imageFile) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.previewImage.src = e.target.result;
+                        this.previewImage.style.width = imageSize + 'px';
+                        this.previewImage.style.height = imageSize + 'px';
+                        this.previewImage.style.opacity = opacity;
+                        this.previewImage.style.display = 'block';
+                        this.previewText.style.display = 'none';
+                    };
+                    reader.readAsDataURL(imageFile);
+                } else {
+                    this.previewImage.style.display = 'none';
+                    this.previewText.style.display = 'none';
+                }
+            }
+            
+            updateWatermarkPosition() {
+                const position = this.selectedPosition;
+                const container = this.previewWatermark;
+                
+                // 기본값 초기화
+                container.style.top = '50%';
+                container.style.left = '50%';
+                container.style.transform = 'translate(-50%, -50%) rotate(-45deg)';
+                
+                // 위치별 조정
+                switch (position) {
+                    case 'top-left':
+                        container.style.top = '25%';
+                        container.style.left = '25%';
+                        break;
+                    case 'top-center':
+                        container.style.top = '25%';
+                        container.style.left = '50%';
+                        break;
+                    case 'top-right':
+                        container.style.top = '25%';
+                        container.style.left = '75%';
+                        break;
+                    case 'center-left':
+                        container.style.top = '50%';
+                        container.style.left = '25%';
+                        break;
+                    case 'center':
+                        container.style.top = '50%';
+                        container.style.left = '50%';
+                        break;
+                    case 'center-right':
+                        container.style.top = '50%';
+                        container.style.left = '75%';
+                        break;
+                    case 'bottom-left':
+                        container.style.top = '75%';
+                        container.style.left = '25%';
+                        break;
+                    case 'bottom-center':
+                        container.style.top = '75%';
+                        container.style.left = '50%';
+                        break;
+                    case 'bottom-right':
+                        container.style.top = '75%';
+                        container.style.left = '75%';
+                        break;
+                }
             }
             
             toggleWatermarkType() {

@@ -336,6 +336,7 @@
     "uploadText": "Select or drag your PDF file here",
     "uploadSubtext": "Supported formats: .pdf (max 50MB)",
     "watermarkOptions": "Watermark Options",
+    "preview": "Preview",
     "textWatermark": "Text Watermark",
     "imageWatermark": "Image Watermark",
     "watermarkText": "Watermark Text:",

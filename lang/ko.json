@@ -337,6 +337,7 @@
     "uploadText": "PDF 파일을 선택하거나 드래그하세요",
     "uploadSubtext": "지원 형식: .pdf (최대 50MB)",
     "watermarkOptions": "워터마크 옵션",
+    "preview": "미리보기",
     "textWatermark": "텍스트 워터마크",
     "imageWatermark": "이미지 워터마크",
     "watermarkText": "워터마크 텍스트:",
