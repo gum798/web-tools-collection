@@ -26,9 +26,9 @@
         "title": "📄 PDF to PNG 변환기",
         "description": "PDF 파일을 고품질 PNG 이미지로 변환하세요. 브라우저에서 직접 처리되어 안전하며, 다양한 품질 옵션을 제공합니다."
       },
-      "pdfToHwp": {
-        "title": "📑 PDF to HWP 변환기",
-        "description": "PDF 파일을 HWP 파일로 변환하는 도구를 제공합니다."
+      "hwpToPdf": {
+        "title": "📑 HWP to PDF 변환기",
+        "description": "한글(HWP) 파일을 PDF 파일로 변환하세요. 브라우저에서 안전하게 처리됩니다."
       },
       "webpToJpg": {
         "title": "🖼️ WEBP to JPG 변환기",

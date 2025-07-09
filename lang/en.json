@@ -26,9 +26,9 @@
         "title": "📄 PDF to PNG Converter",
         "description": "Convert PDF files to high-quality PNG images. Processed directly in your browser for security, with various quality options available."
       },
-      "pdfToHwp": {
-        "title": "📑 PDF to HWP Converter",
-        "description": "Tools for converting PDF files to HWP files."
+      "hwpToPdf": {
+        "title": "📑 HWP to PDF Converter",
+        "description": "Convert Hangul (HWP) files to PDF. Processed securely in your browser."
       },
       "webpToJpg": {
         "title": "🖼️ WEBP to JPG Converter",

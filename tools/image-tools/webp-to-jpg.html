@@ -33,12 +33,131 @@
     <script src="../../i18n.js"></script>
     
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .nav-bar {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-bar {
+                padding: 12px 15px;
+                min-height: 50px;
+                position: relative;
+            }
+            
+            .nav-brand {
+                font-size: 1.3em;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+                flex-direction: column;
+                gap: 0;
+                padding: 15px 0;
+                z-index: 1000;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-top: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-link {
+                padding: 12px 20px;
+                font-size: 16px;
+                border-radius: 0;
+                display: block;
+                width: 100%;
+                text-align: left;
+                transition: background-color 0.3s ease;
+            }
         }
         
         .language-switcher {
@@ -49,14 +168,13 @@
         }
         
         .language-switcher select {
-            background: white;
-            border: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 5px;
             color: #333;
             padding: 8px 12px;
             font-size: 14px;
             width: 90px;
-            text-align: center;
         }
         
         @media (max-width: 768px) {
@@ -91,126 +209,11 @@
             }
         }
         
-        .nav-bar {
-            background-color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 60px;
-        }
-        
-        .nav-brand {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #333;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-        
-        .nav-link {
-            color: #666;
-            text-decoration: none;
-            padding: 10px 16px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
-        .nav-link:hover {
-            background-color: #f0f0f0;
-            color: #333;
-        }
-        
-        .nav-link.active {
-            background-color: #007bff;
-            color: white;
-        }
-        
         .main-layout {
             margin-top: 20px;
-        }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #333;
-            padding: 5px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-        
-        .menu-toggle:hover {
-            background-color: #f0f0f0;
-        }
-        
-        @media (max-width: 768px) {
-            .nav-bar {
-                padding: 12px 15px;
-                min-height: 50px;
-                position: relative;
-            }
-            
-            .nav-brand {
-                font-size: 1.3em;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                border-radius: 0 0 10px 10px;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-                flex-direction: column;
-                gap: 0;
-                padding: 15px 0;
-                z-index: 1000;
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-link {
-                padding: 12px 20px;
-                font-size: 16px;
-                border-radius: 0;
-                display: block;
-                width: 100%;
-                text-align: left;
-                transition: background-color 0.3s ease;
-            }
-            
-            .nav-link:hover {
-                background-color: #f8f9fa;
-            }
-            
-            .nav-link.active {
-                background-color: #007bff;
-                color: white;
-            }
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
         
         @media (max-width: 480px) {
