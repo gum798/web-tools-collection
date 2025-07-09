@@ -803,6 +803,7 @@
             }
             
             initializeElements() {
+                // 기본 요소들
                 this.uploadArea = document.getElementById('uploadArea');
                 this.fileInput = document.getElementById('fileInput');
                 this.fileInfo = document.getElementById('fileInfo');
@@ -835,6 +836,15 @@
                 this.previewWatermark = document.getElementById('previewWatermark');
                 this.previewText = document.getElementById('previewText');
                 this.previewImage = document.getElementById('previewImage');
+                
+                // 초기화 확인
+                console.log('Elements initialized:', {
+                    textSize: !!this.textSize,
+                    imageSize: !!this.imageSize,
+                    opacity: !!this.opacity,
+                    previewText: !!this.previewText,
+                    previewImage: !!this.previewImage
+                });
             }
             
             bindEvents() {
@@ -862,22 +872,28 @@
                 this.textColor.addEventListener('input', () => this.updatePreview());
                 this.watermarkImage.addEventListener('change', () => this.updatePreview());
                 
-                // Range inputs
-                this.textSize.addEventListener('input', (e) => {
-                    console.log('Text size changed:', e.target.value);
-                    this.updateRangeValues();
-                    this.updatePreview();
-                });
-                this.imageSize.addEventListener('input', (e) => {
-                    console.log('Image size changed:', e.target.value);
-                    this.updateRangeValues();
-                    this.updatePreview();
-                });
-                this.opacity.addEventListener('input', (e) => {
-                    console.log('Opacity changed:', e.target.value);
-                    this.updateRangeValues();
-                    this.updatePreview();
-                });
+                // Range inputs - 안전하게 이벤트 리스너 추가
+                if (this.textSize) {
+                    this.textSize.addEventListener('input', (e) => {
+                        console.log('Text size changed:', e.target.value);
+                        this.updateRangeValues();
+                        this.updatePreview();
+                    });
+                }
+                if (this.imageSize) {
+                    this.imageSize.addEventListener('input', (e) => {
+                        console.log('Image size changed:', e.target.value);
+                        this.updateRangeValues();
+                        this.updatePreview();
+                    });
+                }
+                if (this.opacity) {
+                    this.opacity.addEventListener('input', (e) => {
+                        console.log('Opacity changed:', e.target.value);
+                        this.updateRangeValues();
+                        this.updatePreview();
+                    });
+                }
                 
                 // Position buttons
                 this.positionButtons.forEach(btn => {
@@ -892,9 +908,20 @@
             }
             
             updateRangeValues() {
-                document.getElementById('textSizeValue').textContent = this.textSize.value + 'px';
-                document.getElementById('imageSizeValue').textContent = this.imageSize.value + 'px';
-                document.getElementById('opacityValue').textContent = this.opacity.value + '%';
+                // 안전하게 요소를 찾고 업데이트
+                const textSizeValue = document.getElementById('textSizeValue');
+                const imageSizeValue = document.getElementById('imageSizeValue');
+                const opacityValue = document.getElementById('opacityValue');
+                
+                if (textSizeValue && this.textSize) {
+                    textSizeValue.textContent = this.textSize.value + 'px';
+                }
+                if (imageSizeValue && this.imageSize) {
+                    imageSizeValue.textContent = this.imageSize.value + 'px';
+                }
+                if (opacityValue && this.opacity) {
+                    opacityValue.textContent = this.opacity.value + '%';
+                }
             }
             
             updatePreview() {
