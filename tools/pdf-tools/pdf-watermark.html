@@ -596,17 +596,11 @@
         }
         
         .preview-watermark span {
-            font-family: Arial, sans-serif;
-            white-space: nowrap;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-            font-weight: bold;
-            /* font-size, color, opacity는 JavaScript에서 동적으로 설정 */
+            /* 모든 스타일은 JavaScript에서 동적으로 설정 */
         }
         
         .preview-watermark img {
-            max-width: 100px;
-            max-height: 100px;
-            opacity: 0.5;
+            /* 모든 스타일은 JavaScript에서 동적으로 설정 */
         }
         
         @media (max-width: 768px) {
@@ -869,15 +863,18 @@
                 this.watermarkImage.addEventListener('change', () => this.updatePreview());
                 
                 // Range inputs
-                this.textSize.addEventListener('input', () => {
+                this.textSize.addEventListener('input', (e) => {
+                    console.log('Text size changed:', e.target.value);
                     this.updateRangeValues();
                     this.updatePreview();
                 });
-                this.imageSize.addEventListener('input', () => {
+                this.imageSize.addEventListener('input', (e) => {
+                    console.log('Image size changed:', e.target.value);
                     this.updateRangeValues();
                     this.updatePreview();
                 });
-                this.opacity.addEventListener('input', () => {
+                this.opacity.addEventListener('input', (e) => {
+                    console.log('Opacity changed:', e.target.value);
                     this.updateRangeValues();
                     this.updatePreview();
                 });
@@ -921,12 +918,33 @@
                 // 미리보기용 크기 조정 (실제 크기의 60% 정도로 스케일링)
                 const previewFontSize = Math.max(fontSize * 0.6, 12);
                 
+                console.log('UpdateTextPreview called:', { text, fontSize, previewFontSize, color, opacity });
+                
+                // 기존 스타일 완전히 제거
+                this.previewText.removeAttribute('style');
+                
+                // 새로운 스타일 적용
                 this.previewText.textContent = text;
-                this.previewText.style.setProperty('font-size', previewFontSize + 'px', 'important');
-                this.previewText.style.setProperty('color', color, 'important');
-                this.previewText.style.setProperty('opacity', opacity.toString(), 'important');
-                this.previewText.style.display = 'block';
+                this.previewText.style.cssText = `
+                    font-family: Arial, sans-serif !important;
+                    font-size: ${previewFontSize}px !important;
+                    color: ${color} !important;
+                    opacity: ${opacity} !important;
+                    white-space: nowrap !important;
+                    text-shadow: 1px 1px 3px rgba(0,0,0,0.3) !important;
+                    font-weight: bold !important;
+                    display: block !important;
+                `;
+                
                 this.previewImage.style.display = 'none';
+                
+                // 적용 확인
+                console.log('Applied styles:', {
+                    fontSize: this.previewText.style.fontSize,
+                    color: this.previewText.style.color,
+                    opacity: this.previewText.style.opacity,
+                    cssText: this.previewText.style.cssText
+                });
             }
             
             updateImagePreview() {
@@ -934,18 +952,34 @@
                 const imageSize = parseInt(this.imageSize.value);
                 const opacity = parseInt(this.opacity.value) / 100;
                 
+                console.log('UpdateImagePreview called:', { imageFile: !!imageFile, imageSize, opacity });
+                
                 if (imageFile) {
                     const reader = new FileReader();
                     reader.onload = (e) => {
                         // 미리보기용 크기 조정 (실제 크기의 50% 정도로 스케일링)
                         const previewSize = Math.max(imageSize * 0.5, 30);
                         
+                        console.log('Image preview size:', previewSize);
+                        
+                        // 기존 스타일 완전히 제거
+                        this.previewImage.removeAttribute('style');
+                        
                         this.previewImage.src = e.target.result;
-                        this.previewImage.style.setProperty('width', previewSize + 'px', 'important');
-                        this.previewImage.style.setProperty('height', previewSize + 'px', 'important');
-                        this.previewImage.style.setProperty('opacity', opacity.toString(), 'important');
-                        this.previewImage.style.display = 'block';
+                        this.previewImage.style.cssText = `
+                            width: ${previewSize}px !important;
+                            height: ${previewSize}px !important;
+                            opacity: ${opacity} !important;
+                            display: block !important;
+                        `;
+                        
                         this.previewText.style.display = 'none';
+                        
+                        console.log('Image styles applied:', {
+                            width: this.previewImage.style.width,
+                            height: this.previewImage.style.height,
+                            opacity: this.previewImage.style.opacity
+                        });
                     };
                     reader.readAsDataURL(imageFile);
                 } else {
