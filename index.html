@@ -361,6 +361,149 @@
             font-size: 0.8em;
             margin-top: 10px;
         }
+        
+        .nav-bar {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-bar {
+                padding: 12px 15px;
+                min-height: 50px;
+                position: relative;
+            }
+            
+            .nav-brand {
+                font-size: 1.3em;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+                flex-direction: column;
+                gap: 0;
+                padding: 15px 0;
+                z-index: 1000;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-top: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-link {
+                padding: 12px 20px;
+                font-size: 16px;
+                border-radius: 0;
+                display: block;
+                width: 100%;
+                text-align: left;
+                transition: background-color 0.3s ease;
+            }
+            
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .nav-link.active {
+                background-color: rgba(255, 255, 255, 0.2);
+                color: white;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-bar {
+                padding: 10px 15px;
+                min-height: 45px;
+            }
+            
+            .nav-brand {
+                font-size: 1.2em;
+            }
+            
+            .nav-link {
+                padding: 14px 20px;
+                font-size: 16px;
+            }
+            
+            .menu-toggle {
+                font-size: 22px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -369,6 +512,17 @@
             <option value="ko" data-i18n="common.languageKo">🇰🇷 KO</option>
             <option value="en" data-i18n="common.languageEn">🇺🇸 EN</option>
         </select>
+    </div>
+
+    <div class="nav-bar">
+        <a href="index.html" class="nav-brand" data-i18n="common.siteTitle">🛠️ 웹 도구 모음</a>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link active" data-i18n="common.home">홈</a>
+            <a href="password.html" class="nav-link" data-i18n="common.passwordGenerator">비밀번호 생성기</a>
+            <a href="pdf-converter.html" class="nav-link" data-i18n="common.pdfConverter">PDF 변환기</a>
+            <a href="file-converter.html" class="nav-link" data-i18n="common.fileConverter">파일 변환 가이드</a>
+        </div>
     </div>
 
     <div class="container">
@@ -461,6 +615,29 @@
     </div>
     
     <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navBar = document.querySelector('.nav-bar');
+            const navLinks = document.getElementById('navLinks');
+            if (!navBar.contains(e.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+        
+        // Close menu when window is resized to desktop
+        window.addEventListener('resize', function() {
+            const navLinks = document.getElementById('navLinks');
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+            }
+        });
+        
         // 카드 호버 효과 강화
         document.querySelectorAll('.tool-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
