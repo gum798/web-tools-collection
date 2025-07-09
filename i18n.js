@@ -47,9 +47,19 @@ class I18n {
         return this.fallbackLanguage;
     }
 
+    getBasePath() {
+        // Determine the base path based on current location
+        const path = window.location.pathname;
+        if (path.includes('/tools/')) {
+            return '../../';
+        }
+        return '';
+    }
+
     async loadTranslations(language) {
         try {
-            const response = await fetch(`lang/${language}.json`);
+            const basePath = this.getBasePath();
+            const response = await fetch(`${basePath}lang/${language}.json`);
             if (!response.ok) {
                 throw new Error(`Failed to load ${language} translations`);
             }
@@ -62,7 +72,8 @@ class I18n {
             if (language !== this.fallbackLanguage) {
                 console.log(`Falling back to ${this.fallbackLanguage}`);
                 try {
-                    const fallbackResponse = await fetch(`lang/${this.fallbackLanguage}.json`);
+                    const basePath = this.getBasePath();
+                    const fallbackResponse = await fetch(`${basePath}lang/${this.fallbackLanguage}.json`);
                     this.translations = await fallbackResponse.json();
                     this.currentLanguage = this.fallbackLanguage;
                 } catch (fallbackError) {
