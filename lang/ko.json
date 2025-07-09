@@ -171,6 +171,10 @@
           "변환된 파일 다운로드"
         ]
       },
+      "pdfHwp": {
+        "title": "📄 PDF → HWP 변환",
+        "description": "PDF 문서를 한글(HWP) 파일로 변환합니다."
+      },
       "excelPdf": {
         "title": "📊 Excel ↔ PDF 변환",
         "description": "Excel 스프레드시트를 PDF로, 또는 PDF 데이터를 Excel로 추출"

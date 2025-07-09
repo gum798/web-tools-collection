@@ -171,6 +171,10 @@
           "Download the converted file"
         ]
       },
+      "pdfHwp": {
+        "title": "📄 PDF → HWP Conversion",
+        "description": "Convert PDF documents to Hangul (HWP) files."
+      },
       "excelPdf": {
         "title": "📊 Excel ↔ PDF Conversion",
         "description": "Convert Excel spreadsheets to PDF or extract data from PDF to Excel"
