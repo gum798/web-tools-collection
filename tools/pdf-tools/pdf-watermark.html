@@ -314,6 +314,7 @@
             padding: 15px;
             border-radius: 8px;
             border: 1px solid #e9ecef;
+            position: relative;
         }
         
         .color-preview {
@@ -338,6 +339,9 @@
             cursor: pointer;
             background: none;
             padding: 0;
+            position: absolute;
+            opacity: 0;
+            z-index: 1;
         }
         
         .color-presets {
@@ -720,7 +724,7 @@
             }
             
             .preview-watermark span {
-                font-size: 24px;
+                /* 모든 스타일은 JavaScript에서 동적으로 설정 */
             }
             
             .preview-watermark img {
@@ -1083,10 +1087,10 @@
                 const text = this.watermarkText.value || 'WATERMARK';
                 const fontSize = parseInt(this.textSize.value);
                 const color = this.textColor.value;
-                const opacity = parseInt(this.opacity.value) / 100;
+                const opacity = (110 - parseInt(this.opacity.value)) / 100;
                 
                 // 미리보기용 크기 조정 (실제 크기의 60% 정도로 스케일링)
-                const previewFontSize = Math.max(fontSize * 0.6, 12);
+                const previewFontSize = Math.max(fontSize * 0.5, 12);
                 
                 console.log('UpdateTextPreview called:', { text, fontSize, previewFontSize, color, opacity });
                 
@@ -1096,24 +1100,22 @@
                 newSpan.textContent = text;
                 
                 // 직접 스타일 적용 (CSS 우선순위 무시)
-                newSpan.setAttribute('style', `
-                    font-family: Arial, sans-serif;
-                    font-size: ${previewFontSize}px;
-                    color: ${color};
-                    opacity: ${opacity};
-                    white-space: nowrap;
-                    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-                    font-weight: bold;
-                    display: block;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                `);
+                newSpan.style.fontFamily = 'Arial, sans-serif';
+                newSpan.style.fontSize = `${previewFontSize}px`;
+                newSpan.style.color = color;
+                newSpan.style.opacity = opacity;
+                newSpan.style.whiteSpace = 'nowrap';
+                newSpan.style.textShadow = '1px 1px 3px rgba(0,0,0,0.3)';
+                newSpan.style.fontWeight = 'bold';
+                newSpan.style.display = 'block';
+                newSpan.style.position = 'absolute';
+                newSpan.style.top = '0';
+                newSpan.style.left = '0';
+                newSpan.style.width = '100%';
+                newSpan.style.height = '100%';
+                newSpan.style.display = 'flex';
+                newSpan.style.alignItems = 'center';
+                newSpan.style.justifyContent = 'center';
                 
                 // 기존 요소 제거하고 새 요소 추가
                 this.previewText.parentNode.replaceChild(newSpan, this.previewText);
@@ -1127,7 +1129,7 @@
             updateImagePreview() {
                 const imageFile = this.watermarkImage.files[0];
                 const imageSize = parseInt(this.imageSize.value);
-                const opacity = parseInt(this.opacity.value) / 100;
+                const opacity = (110 - parseInt(this.opacity.value)) / 100;
                 
                 console.log('UpdateImagePreview called:', { imageFile: !!imageFile, imageSize, opacity });
                 
@@ -1412,7 +1414,7 @@
                 const pages = pdfDoc.getPages();
                 const text = this.watermarkText.value || 'WATERMARK';
                 const fontSize = parseInt(this.textSize.value);
-                const opacity = parseInt(this.opacity.value) / 100;
+                const opacity = (110 - parseInt(this.opacity.value)) / 100;
                 
                 // Parse color
                 const color = this.hexToRgb(this.textColor.value);
@@ -1443,11 +1445,11 @@
                     page.drawText(text, {
                         x: position.x,
                         y: position.y,
-                        size: fontSize,
+                        size: fontSize * 5,
                         font: font,
                         color: PDFLib.rgb(color.r / 255, color.g / 255, color.b / 255),
                         opacity: opacity,
-                        rotate: PDFLib.degrees(-45)
+                        rotate: PDFLib.degrees(45)
                     });
                 }
             }
@@ -1458,7 +1460,7 @@
                 const ctx = canvas.getContext('2d');
                 
                 // Set up canvas size and font
-                ctx.font = `${fontSize}px Arial, sans-serif`;
+                ctx.font = `${fontSize * 5}px Arial, sans-serif`;
                 const textMetrics = ctx.measureText(text);
                 const textWidth = textMetrics.width;
                 const textHeight = fontSize;
@@ -1469,7 +1471,7 @@
                 
                 // Clear canvas and set font again (canvas size change resets context)
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.font = `${fontSize}px Arial, sans-serif`;
+                ctx.font = `${fontSize * 5}px Arial, sans-serif`;
                 ctx.fillStyle = `rgb(${color.r}, ${color.g}, ${color.b})`;
                 ctx.textBaseline = 'middle';
                 ctx.textAlign = 'center';
@@ -1497,7 +1499,7 @@
                         width: canvas.width,
                         height: canvas.height,
                         opacity: opacity,
-                        rotate: PDFLib.degrees(-45)
+                        rotate: PDFLib.degrees(45)
                     });
                 }
             }
@@ -1521,7 +1523,7 @@
                 
                 const pages = pdfDoc.getPages();
                 const imageSize = parseInt(this.imageSize.value);
-                const opacity = parseInt(this.opacity.value) / 100;
+                const opacity = (110 - parseInt(this.opacity.value)) / 100;
                 
                 for (const page of pages) {
                     const { width, height } = page.getSize();

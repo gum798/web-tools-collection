@@ -153,14 +153,14 @@
         "description": "Image compressor<br>coming soon"}
     }
   },
-  "pdfToHwp": {
-    "title": "PDF to HWP Converter",
-    "description": "Guide on how to convert PDF files to HWP files",
-    "keywords": "PDF to HWP converter, PDF HWP conversion, online PDF converter",
-    "mainTitle": "📑 PDF to HWP Converter",
-    "subtitle": "Guide on how to convert PDF files to Hangul (HWP) format",
+  "hwpToPdf": {
+    "title": "HWP to PDF Converter",
+    "description": "Convert Hangul (HWP) files to PDF files",
+    "keywords": "HWP to PDF converter, HWP PDF conversion, online HWP converter",
+    "mainTitle": "📑 HWP to PDF Converter",
+    "subtitle": "Convert Hangul (HWP) files to PDF files",
     "warningTitle": "⚠️ Important Notice",
-    "warningText": "PDF to HWP conversion may not be perfect. Layout and formatting may change, so please verify after conversion.",
+    "warningText": "HWP to PDF conversion may not be perfect. Layout and formatting may change, so please verify after conversion.",
     "methodsTitle": "🔧 Conversion Methods",
     "onlineMethod": "Online Conversion Tools",
     "offlineMethod": "Offline Conversion Tools",
@@ -174,10 +174,10 @@
     ],
     "steps": "📋 Conversion Steps",
     "stepsList": [
-      "Prepare PDF file",
+      "Prepare HWP file",
       "Select conversion tool",
       "Upload file",
-      "Convert to HWP format",
+      "Convert to PDF format",
       "Download result file"
     ]
   },

@@ -122,6 +122,19 @@ class FeedbackSystem {
                     <button class="feedback-close" onclick="feedbackSystem.closeModal()">✕</button>
                 </div>
                 <form id="feedback-form" onsubmit="feedbackSystem.submitFeedback(event)">
+                    <div class="feedback-form-group">
+                        <label>${this.getText('typeLabel')}</label>
+                        <select id="feedback-type">
+                            <option value="feature">${this.getText('types.feature')}</option>
+                            <option value="improvement">${this.getText('types.improvement')}</option>
+                            <option value="bug">${this.getText('types.bug')}</option>
+                            <option value="other">${this.getText('types.other')}</option>
+                        </select>
+                    </div>
+                    <div class="feedback-form-group">
+                        <label>${this.getText('messageLabel')} *</label>
+                        <textarea id="feedback-message" placeholder="${this.getText('messagePlaceholder')}" required onkeydown="feedbackSystem.handleTextareaKeydown(event)"></textarea>
+                    </div>
                     <div class="feedback-optional-toggle">
                         <button type="button" id="optional-fields-btn" onclick="feedbackSystem.toggleOptionalFields()">
                             ${this.getText('optionalFieldsButton')}
@@ -136,19 +149,6 @@ class FeedbackSystem {
                             <label>${this.getText('emailLabel')}</label>
                             <input type="email" id="feedback-email" placeholder="${this.getText('emailPlaceholder')}">
                         </div>
-                    </div>
-                    <div class="feedback-form-group">
-                        <label>${this.getText('typeLabel')}</label>
-                        <select id="feedback-type">
-                            <option value="feature">${this.getText('types.feature')}</option>
-                            <option value="improvement">${this.getText('types.improvement')}</option>
-                            <option value="bug">${this.getText('types.bug')}</option>
-                            <option value="other">${this.getText('types.other')}</option>
-                        </select>
-                    </div>
-                    <div class="feedback-form-group">
-                        <label>${this.getText('messageLabel')} *</label>
-                        <textarea id="feedback-message" placeholder="${this.getText('messagePlaceholder')}" required onkeydown="feedbackSystem.handleTextareaKeydown(event)"></textarea>
                     </div>
                     <div class="feedback-form-actions">
                         <button type="button" class="feedback-btn-cancel" onclick="feedbackSystem.closeModal()">

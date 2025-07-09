@@ -408,16 +408,17 @@
             
             <div class="results" id="results" style="display: none;">
                 <h3 data-i18n="pdfConverter.conversionResults">변환 결과</h3>
-                <div id="imageResults"></div>
                 <div class="buttons">
                     <button onclick="downloadAll()" data-i18n="pdfConverter.downloadAll">🔽 모든 이미지 다운로드</button>
                     <button onclick="clearResults()" data-i18n="pdfConverter.clearResults">🗑️ 결과 지우기</button>
                 </div>
+                <div id="imageResults"></div>
             </div>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
     <script>
         // Mobile menu toggle
         function toggleMenu() {
@@ -603,7 +604,7 @@
             link.click();
         }
         
-        function downloadAll() {
+        async function downloadAll() {
             if (convertedImages.length === 0) {
                 const alertMsg = window.i18n ? window.i18n.t('pdfConverter.alerts.noImages') : 'No converted images available.';
                 if (window.feedbackSystem) {
@@ -613,12 +614,25 @@
                 }
                 return;
             }
-            
+
+            const zip = new JSZip();
             convertedImages.forEach(image => {
-                setTimeout(() => {
-                    downloadImage(image.dataUrl, image.fileName);
-                }, 100);
+                // Extract base64 data from data URL
+                const base64Data = image.dataUrl.split(',')[1];
+                zip.file(image.fileName, base64Data, {base64: true});
             });
+
+            // Generate the zip file
+            const zipBlob = await zip.generateAsync({type:"blob"});
+
+            // Create a download link and trigger click
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(zipBlob);
+            link.download = 'converted_images.zip'; // Name of the zip file
+            document.body.appendChild(link); // Append to body to make it clickable
+            link.click();
+            document.body.removeChild(link); // Clean up the link
+            URL.revokeObjectURL(link.href); // Release the object URL
         }
         
         function clearResults() {
