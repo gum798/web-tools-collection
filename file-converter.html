@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>파일 변환 도구 모음 - 무료 온라인 변환기 가이드</title>
+    <title data-i18n="fileConverter.title">파일 변환 도구 모음 - 무료 온라인 변환기 가이드</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="HWP to Word, Excel to PDF 등 다양한 파일 형식 변환을 위한 무료 온라인 도구 모음과 안전한 변환 가이드">
@@ -28,6 +28,9 @@
     
     <!-- Feedback System -->
     <script src="feedback.js"></script>
+    
+    <!-- i18n System -->
+    <script src="i18n.js"></script>
     
     <style>
         body {
@@ -347,29 +350,29 @@
 </head>
 <body>
     <div class="language-switcher">
-        <select id="languageSelect" onchange="changeLanguage()">
-            <option value="ko">🇰🇷 KO</option>
-            <option value="en">🇺🇸 EN</option>
+        <select id="languageSelect">
+            <option value="ko" data-i18n="common.languageKo">🇰🇷 KO</option>
+            <option value="en" data-i18n="common.languageEn">🇺🇸 EN</option>
         </select>
     </div>
 
     <div class="nav-bar">
-        <a href="index.html" class="nav-brand">🛠️ 웹 도구 모음</a>
+        <a href="index.html" class="nav-brand" data-i18n="common.siteTitle">🛠️ 웹 도구 모음</a>
         <div class="nav-links">
-            <a href="index.html" class="nav-link">홈</a>
-            <a href="password.html" class="nav-link">비밀번호 생성기</a>
-            <a href="pdf-converter.html" class="nav-link">PDF 변환기</a>
-            <a href="file-converter.html" class="nav-link active">파일 변환 가이드</a>
+            <a href="index.html" class="nav-link" data-i18n="common.home">홈</a>
+            <a href="password.html" class="nav-link" data-i18n="common.passwordGenerator">비밀번호 생성기</a>
+            <a href="pdf-converter.html" class="nav-link" data-i18n="common.pdfConverter">PDF 변환기</a>
+            <a href="file-converter.html" class="nav-link active" data-i18n="common.fileConverter">파일 변환 가이드</a>
         </div>
     </div>
     
     
     <div class="main-layout">
         <div class="container">
-            <h1>📁 파일 변환 도구 가이드</h1>
+            <h1 data-i18n="fileConverter.mainTitle">📁 파일 변환 도구 가이드</h1>
             
             <div class="security-warning">
-                <h4>🔒 보안 주의사항</h4>
+                <h4 data-i18n="fileConverter.securityTitle">🔒 보안 주의사항</h4>
                 <ul>
                     <li><strong>개인정보 주의:</strong> 민감한 정보가 포함된 파일은 온라인 변환 피하기</li>
                     <li><strong>파일 삭제:</strong> 변환 후 업로드된 파일이 자동 삭제되는지 확인</li>
@@ -380,15 +383,15 @@
 
             <div class="converter-grid">
                 <div class="converter-card">
-                    <h3>📝 HWP ↔ Word 변환 <span class="popular-badge">인기</span></h3>
-                    <p>한글 문서를 Microsoft Word 형식으로, 또는 그 반대로 변환</p>
+                    <h3 data-i18n="fileConverter.converters.hwpWord.title">📝 HWP ↔ Word 변환 <span class="popular-badge" data-i18n="fileConverter.converters.hwpWord.popular">인기</span></h3>
+                    <p data-i18n="fileConverter.converters.hwpWord.description">한글 문서를 Microsoft Word 형식으로, 또는 그 반대로 변환</p>
                     <div class="converter-tools">
                         <a href="https://www.ilovepdf.com/ko/office_to_pdf" class="tool-link recommended" target="_blank">ILovePDF</a>
                         <a href="https://convertio.co/kr/hwp-docx/" class="tool-link" target="_blank">Convertio</a>
                         <a href="https://www.zamzar.com/convert/hwp-to-docx/" class="tool-link" target="_blank">Zamzar</a>
                     </div>
                     <div class="guide-section">
-                        <h4>📋 변환 방법</h4>
+                        <h4 data-i18n="fileConverter.conversionMethod">📋 변환 방법</h4>
                         <ol class="step-list">
                             <li>변환 사이트 접속 후 파일 업로드</li>
                             <li>출력 형식을 DOCX/DOC로 선택</li>
@@ -399,8 +402,8 @@
                 </div>
 
                 <div class="converter-card">
-                    <h3>📊 Excel ↔ PDF 변환</h3>
-                    <p>Excel 스프레드시트를 PDF로, 또는 PDF 데이터를 Excel로 추출</p>
+                    <h3 data-i18n="fileConverter.converters.excelPdf.title">📊 Excel ↔ PDF 변환</h3>
+                    <p data-i18n="fileConverter.converters.excelPdf.description">Excel 스프레드시트를 PDF로, 또는 PDF 데이터를 Excel로 추출</p>
                     <div class="converter-tools">
                         <a href="https://www.ilovepdf.com/ko/excel_to_pdf" class="tool-link recommended" target="_blank">ILovePDF</a>
                         <a href="https://smallpdf.com/kr/excel-to-pdf" class="tool-link" target="_blank">SmallPDF</a>
@@ -409,8 +412,8 @@
                 </div>
 
                 <div class="converter-card">
-                    <h3>🎯 PowerPoint ↔ PDF</h3>
-                    <p>프레젠테이션 파일을 PDF로 변환하거나 편집 가능한 형식으로 복원</p>
+                    <h3 data-i18n="fileConverter.converters.powerpointPdf.title">🎯 PowerPoint ↔ PDF</h3>
+                    <p data-i18n="fileConverter.converters.powerpointPdf.description">프레젠테이션 파일을 PDF로 변환하거나 편집 가능한 형식으로 복원</p>
                     <div class="converter-tools">
                         <a href="https://www.ilovepdf.com/ko/powerpoint_to_pdf" class="tool-link recommended" target="_blank">ILovePDF</a>
                         <a href="https://smallpdf.com/kr/ppt-to-pdf" class="tool-link" target="_blank">SmallPDF</a>
@@ -419,8 +422,8 @@
                 </div>
 
                 <div class="converter-card">
-                    <h3>🖼️ 이미지 형식 변환</h3>
-                    <p>JPG, PNG, WEBP, SVG 등 다양한 이미지 형식 간 변환</p>
+                    <h3 data-i18n="fileConverter.converters.image.title">🖼️ 이미지 형식 변환</h3>
+                    <p data-i18n="fileConverter.converters.image.description">JPG, PNG, WEBP, SVG 등 다양한 이미지 형식 간 변환</p>
                     <div class="converter-tools">
                         <a href="https://convertio.co/kr/image-converter/" class="tool-link recommended" target="_blank">Convertio</a>
                         <a href="https://www.freeconvert.com/image-converter" class="tool-link" target="_blank">FreeConvert</a>
@@ -429,8 +432,8 @@
                 </div>
 
                 <div class="converter-card">
-                    <h3>🎵 오디오/비디오 변환</h3>
-                    <p>MP3, MP4, AVI, MOV 등 멀티미디어 파일 형식 변환</p>
+                    <h3 data-i18n="fileConverter.converters.audioVideo.title">🎵 오디오/비디오 변환</h3>
+                    <p data-i18n="fileConverter.converters.audioVideo.description">MP3, MP4, AVI, MOV 등 멀티미디어 파일 형식 변환</p>
                     <div class="converter-tools">
                         <a href="https://www.freeconvert.com/video-converter" class="tool-link recommended" target="_blank">FreeConvert</a>
                         <a href="https://cloudconvert.com/formats/video" class="tool-link" target="_blank">CloudConvert</a>
@@ -439,8 +442,8 @@
                 </div>
 
                 <div class="converter-card">
-                    <h3>📦 압축 파일 변환</h3>
-                    <p>ZIP, RAR, 7Z 등 다양한 압축 형식 간 변환 및 해제</p>
+                    <h3 data-i18n="fileConverter.converters.archive.title">📦 압축 파일 변환</h3>
+                    <p data-i18n="fileConverter.converters.archive.description">ZIP, RAR, 7Z 등 다양한 압축 형식 간 변환 및 해제</p>
                     <div class="converter-tools">
                         <a href="https://www.freeconvert.com/archive-converter" class="tool-link recommended" target="_blank">FreeConvert</a>
                         <a href="https://convertio.co/kr/archive-converter/" class="tool-link" target="_blank">Convertio</a>
@@ -450,7 +453,7 @@
             </div>
 
             <div class="guide-section">
-                <h4>💡 추천 변환 도구 특징</h4>
+                <h4 data-i18n="fileConverter.recommendedTools">💡 추천 변환 도구 특징</h4>
                 <ul>
                     <li><strong>ILovePDF:</strong> 무료, 빠른 처리, 한국어 지원, 배치 변환 가능</li>
                     <li><strong>SmallPDF:</strong> 직관적 UI, 클라우드 연동, 무료 제한 있음</li>
@@ -460,7 +463,7 @@
             </div>
 
             <div class="guide-section">
-                <h4>🔧 오프라인 대안 (보안 중요 시)</h4>
+                <h4 data-i18n="fileConverter.offlineAlternatives">🔧 오프라인 대안 (보안 중요 시)</h4>
                 <ul>
                     <li><strong>LibreOffice:</strong> 무료 오픈소스, HWP/Office 파일 지원</li>
                     <li><strong>한글과컴퓨터 뷰어:</strong> 공식 HWP 뷰어, 무료 사용</li>
@@ -472,19 +475,6 @@
     </div>
 
     <script>
-        // Language switching
-        function changeLanguage() {
-            const select = document.getElementById('languageSelect');
-            const selectedLang = select.value;
-            
-            // Mark that user manually chose language
-            sessionStorage.setItem('userLanguageChoice', 'manual');
-            
-            if (selectedLang === 'en') {
-                window.location.href = 'en/file-converter.html';
-            }
-        }
-        
         // Track link clicks for analytics (optional)
         document.querySelectorAll('.tool-link').forEach(link => {
             link.addEventListener('click', function() {
