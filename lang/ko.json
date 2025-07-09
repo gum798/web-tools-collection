@@ -59,6 +59,7 @@
     "bannerSubtitle": "강력한 비밀번호로 계정을 보호하세요",
     "mainTitle": "🔑 랜덤 비밀번호 생성기",
     "passwordLength": "비밀번호 길이",
+    "charactersLabel": "문자",
     "characterTypes": "포함할 문자 유형",
     "lowercase": "소문자 (a-z)",
     "uppercase": "대문자 (A-Z)",

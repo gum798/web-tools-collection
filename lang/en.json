@@ -59,6 +59,7 @@
     "bannerSubtitle": "Protect your accounts with strong passwords",
     "mainTitle": "🔑 Random Password Generator",
     "passwordLength": "Password Length",
+    "charactersLabel": "characters",
     "characterTypes": "Character Types to Include",
     "lowercase": "Lowercase (a-z)",
     "uppercase": "Uppercase (A-Z)",
