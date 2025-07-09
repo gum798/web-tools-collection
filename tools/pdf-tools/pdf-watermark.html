@@ -920,31 +920,38 @@
                 
                 console.log('UpdateTextPreview called:', { text, fontSize, previewFontSize, color, opacity });
                 
-                // 기존 스타일 완전히 제거
-                this.previewText.removeAttribute('style');
+                // 완전히 새로운 span 요소 생성
+                const newSpan = document.createElement('span');
+                newSpan.id = 'previewText';
+                newSpan.textContent = text;
                 
-                // 새로운 스타일 적용
-                this.previewText.textContent = text;
-                this.previewText.style.cssText = `
-                    font-family: Arial, sans-serif !important;
-                    font-size: ${previewFontSize}px !important;
-                    color: ${color} !important;
-                    opacity: ${opacity} !important;
-                    white-space: nowrap !important;
-                    text-shadow: 1px 1px 3px rgba(0,0,0,0.3) !important;
-                    font-weight: bold !important;
-                    display: block !important;
-                `;
+                // 직접 스타일 적용 (CSS 우선순위 무시)
+                newSpan.setAttribute('style', `
+                    font-family: Arial, sans-serif;
+                    font-size: ${previewFontSize}px;
+                    color: ${color};
+                    opacity: ${opacity};
+                    white-space: nowrap;
+                    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+                    font-weight: bold;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                `);
+                
+                // 기존 요소 제거하고 새 요소 추가
+                this.previewText.parentNode.replaceChild(newSpan, this.previewText);
+                this.previewText = newSpan;
                 
                 this.previewImage.style.display = 'none';
                 
-                // 적용 확인
-                console.log('Applied styles:', {
-                    fontSize: this.previewText.style.fontSize,
-                    color: this.previewText.style.color,
-                    opacity: this.previewText.style.opacity,
-                    cssText: this.previewText.style.cssText
-                });
+                console.log('Text preview updated with new element');
             }
             
             updateImagePreview() {
@@ -962,24 +969,30 @@
                         
                         console.log('Image preview size:', previewSize);
                         
-                        // 기존 스타일 완전히 제거
-                        this.previewImage.removeAttribute('style');
+                        // 완전히 새로운 img 요소 생성
+                        const newImg = document.createElement('img');
+                        newImg.id = 'previewImage';
+                        newImg.src = e.target.result;
                         
-                        this.previewImage.src = e.target.result;
-                        this.previewImage.style.cssText = `
-                            width: ${previewSize}px !important;
-                            height: ${previewSize}px !important;
-                            opacity: ${opacity} !important;
-                            display: block !important;
-                        `;
+                        // 직접 스타일 적용
+                        newImg.setAttribute('style', `
+                            width: ${previewSize}px;
+                            height: ${previewSize}px;
+                            opacity: ${opacity};
+                            display: block;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                        `);
+                        
+                        // 기존 요소 제거하고 새 요소 추가
+                        this.previewImage.parentNode.replaceChild(newImg, this.previewImage);
+                        this.previewImage = newImg;
                         
                         this.previewText.style.display = 'none';
                         
-                        console.log('Image styles applied:', {
-                            width: this.previewImage.style.width,
-                            height: this.previewImage.style.height,
-                            opacity: this.previewImage.style.opacity
-                        });
+                        console.log('Image preview updated with new element');
                     };
                     reader.readAsDataURL(imageFile);
                 } else {
