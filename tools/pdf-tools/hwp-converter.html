@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF to HWP 변환기</title>
+    <title data-i18n="pdfToHwp.title">PDF to HWP 변환기</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="PDF 파일을 HWP 파일로 변환하세요">
@@ -336,34 +336,34 @@
 <body>
     <div class="language-switcher">
         <select id="languageSelect">
-            <option value="ko">🇰🇷 KO</option>
-            <option value="en">🇺🇸 EN</option>
+            <option value="ko" data-i18n="common.languageKo">🇰🇷 KO</option>
+            <option value="en" data-i18n="common.languageEn">🇺🇸 EN</option>
         </select>
     </div>
 
     <div class="nav-bar">
-        <a href="../../index.html" class="nav-brand">🛠️ 웹 도구 모음</a>
+        <a href="../../index.html" class="nav-brand" data-i18n="common.siteTitle">🛠️ 웹 도구 모음</a>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="../password-generator/password.html" class="nav-link">비밀번호 생성기</a>
-            <a href="png-converter.html" class="nav-link">PDF 변환기</a>
+            <a href="../password-generator/password.html" class="nav-link" data-i18n="common.passwordGenerator">비밀번호 생성기</a>
+            <a href="png-converter.html" class="nav-link" data-i18n="common.pdfConverter">PDF 변환기</a>
             <a href="hwp-converter.html" class="nav-link active">PDF to HWP</a>
             <a href="epub-to-pdf.html" class="nav-link">ePub to PDF</a>
             <a href="../image-tools/webp-to-jpg.html" class="nav-link">WEBP to JPG</a>
-            <a href="../file-conversion/file-conversion.html" class="nav-link">파일 변환 가이드</a>
+            <a href="../file-conversion/file-conversion.html" class="nav-link" data-i18n="common.fileConverter">파일 변환 가이드</a>
         </div>
     </div>
     
     
     <div class="main-layout">
         <div class="container">
-            <h1>📄 PDF to HWP 변환기</h1>
+            <h1 data-i18n="pdfToHwp.mainTitle">📑 PDF to HWP 변환기</h1>
             
             <div class="upload-area" id="uploadArea">
                 <div class="upload-text">
-                    <p>📄 PDF 파일을 여기에 드래그하거나 클릭하여 HWP로 변환하세요</p>
+                    <p data-i18n="pdfToHwp.subtitle">PDF 파일을 한글(HWP) 파일로 변환하는 방법을 안내합니다</p>
                     <input type="file" id="fileInput" accept=".pdf" style="display: none;">
-                    <button onclick="document.getElementById('fileInput').click()">파일 선택</button>
+                    <button onclick="document.getElementById('fileInput').click()" data-i18n="pdfConverter.chooseFile">파일 선택</button>
                 </div>
             </div>
             
@@ -371,13 +371,13 @@
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <div class="progress-text" id="progressText">변환 중...</div>
+                <div class="progress-text" id="progressText" data-i18n="pdfConverter.converting">변환 중...</div>
             </div>
             
             <div class="results" id="results" style="display: none;">
-                <h3>변환 결과</h3>
+                <h3 data-i18n="pdfConverter.conversionResults">변환 결과</h3>
                 <div class="download-section">
-                    <a href="#" id="downloadLink" class="download-btn" download>HWP 파일 다운로드</a>
+                    <a href="#" id="downloadLink" class="download-btn" download data-i18n="pdfConverter.download">HWP 파일 다운로드</a>
                 </div>
             </div>
 
