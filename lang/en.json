@@ -104,7 +104,7 @@
     "bannerTitle": "🎯 Document Conversion Tool",
     "bannerSubtitle": "Convert PDF files to high-quality PNG images",
     "mainTitle": "📄 PDF to PNG Converter",
-    "uploadText": "📁 Drag and drop your PDF file here or click to upload",
+    "uploadText": "📄 Drag and drop your PDF file here or click to upload",
     "chooseFile": "Choose File",
     "imageQuality": "Image Quality:",
     "qualityStandard": "Standard (1x)",
