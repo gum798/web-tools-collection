@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBP to JPG 변환기</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="WEBP 파일을 JPG 파일로 변환하세요">
+    <meta name="keywords" content="WEBP JPG 변환, WEBP 이미지 변환, 온라인 WEBP 변환기">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="WEBP to JPG 변환기">
+    <meta property="og:description" content="WEBP 파일을 JPG 파일로 변환하세요">
+    <meta property="og:type" content="website">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434360911371069"
+     crossorigin="anonymous"></script>
+    
+    <!-- Auto ads -->
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-9434360911371069",
+              enable_page_level_ads: true
+         });
+    </script>
+    
+    <!-- Feedback System -->
+    <script src="feedback.js"></script>
+    
+    <!-- i18n System -->
+    <script src="i18n.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .language-switcher select {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #333;
+            padding: 8px 12px;
+            font-size: 14px;
+            width: 90px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 12px; 
+                right: 15px;
+            }
+            
+            .language-switcher select {
+                padding: 6px 8px; 
+                font-size: 16px;
+                
+                width: 55px;
+                text-align: center;
+                text-align-last: center;
+                height: 32px; 
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .language-switcher {
+                top: 15px; 
+                right: 15px;
+            }
+            
+            .language-switcher select {
+                padding: 4px 6px;
+                font-size: 16px; 
+                
+                width: 50px;
+                height: 28px;
+            }
+        }
+        
+        .nav-bar {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 60px;
+        }
+        
+        .nav-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        
+        .nav-link {
+            color: #666;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .nav-link.active {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .main-layout {
+            margin-top: 20px;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            background-color: #f0f0f0;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-bar {
+                padding: 12px 15px;
+                min-height: 50px;
+                position: relative;
+            }
+            
+            .nav-brand {
+                font-size: 1.3em;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                flex-direction: column;
+                gap: 0;
+                padding: 15px 0;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-link {
+                padding: 12px 20px;
+                font-size: 16px;
+                border-radius: 0;
+                display: block;
+                width: 100%;
+                text-align: left;
+                transition: background-color 0.3s ease;
+            }
+            
+            .nav-link:hover {
+                background-color: #f8f9fa;
+            }
+            
+            .nav-link.active {
+                background-color: #007bff;
+                color: white;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-bar {
+                padding: 10px 15px;
+                min-height: 45px;
+            }
+            
+            .nav-brand {
+                font-size: 1.2em;
+            }
+            
+            .nav-link {
+                padding: 14px 20px;
+                font-size: 16px;
+            }
+            
+            .menu-toggle {
+                font-size: 22px;
+            }
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .upload-area {
+            background-color: #f8f9fa;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .upload-area:hover {
+            border-color: #007bff;
+            background-color: #e3f2fd;
+        }
+        .upload-area.drag-over {
+            border-color: #007bff;
+            background-color: #e3f2fd;
+        }
+        .upload-text p {
+            margin: 0 0 20px 0;
+            font-size: 16px;
+            color: #666;
+        }
+        .progress-container {
+            margin: 20px 0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #007bff;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+        .progress-text {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .download-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .download-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .download-btn:hover {
+            background-color: #1e7e34;
+        }
+        .limit-message {
+            text-align: center;
+            margin-top: 20px;
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .buttons {
+            text-align: center;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <select id="languageSelect">
+            <option value="ko">🇰🇷 KO</option>
+            <option value="en">🇺🇸 EN</option>
+        </select>
+    </div>
+
+    <div class="nav-bar">
+        <a href="index.html" class="nav-brand">🛠️ 웹 도구 모음</a>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="password.html" class="nav-link">비밀번호 생성기</a>
+            <a href="pdf-converter.html" class="nav-link">PDF 변환기</a>
+            <a href="pdf-to-hwp.html" class="nav-link">PDF to HWP</a>
+            <a href="file-converter.html" class="nav-link">파일 변환 가이드</a>
+            <a href="webp-to-jpg.html" class="nav-link active">WEBP to JPG</a>
+        </div>
+    </div>
+    
+    
+    <div class="main-layout">
+        <div class="container">
+            <h1>🖼️ WEBP to JPG 변환기</h1>
+            
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-text">
+                    <p>🖼️ WEBP 파일을 여기에 드래그하거나 클릭하여 JPG로 변환하세요</p>
+                    <input type="file" id="fileInput" accept=".webp" style="display: none;">
+                    <button onclick="document.getElementById('fileInput').click()">파일 선택</button>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <label for="quality">JPG 품질 (1-100):</label>
+                <input type="range" id="quality" min="1" max="100" value="90">
+                <span id="qualityValue">90</span>
+            </div>
+
+            <div class="progress-container" id="progressContainer" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">변환 중...</div>
+            </div>
+            
+            <div class="results" id="results" style="display: none;">
+                <h3>변환 결과</h3>
+                <div class="download-section">
+                    <a href="#" id="downloadLink" class="download-btn" download>JPG 파일 다운로드</a>
+                </div>
+            </div>
+
+            <div class="limit-message" id="limitMessage" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navBar = document.querySelector('.nav-bar');
+            const navLinks = document.getElementById('navLinks');
+            if (navBar && !navBar.contains(e.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+        
+        // Close menu when window is resized to desktop
+        window.addEventListener('resize', function() {
+            const navLinks = document.getElementById('navLinks');
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // File upload event setup
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('fileInput');
+            const uploadArea = document.getElementById('uploadArea');
+            const qualitySlider = document.getElementById('quality');
+            const qualityValueSpan = document.getElementById('qualityValue');
+            
+            fileInput.addEventListener('change', handleFileSelect);
+            qualitySlider.addEventListener('input', (event) => {
+                qualityValueSpan.textContent = event.target.value;
+            });
+            
+            // Drag and drop events
+            uploadArea.addEventListener('dragover', handleDragOver);
+            uploadArea.addEventListener('dragleave', handleDragLeave);
+            uploadArea.addEventListener('drop', handleDrop);
+        });
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file && file.type === 'image/webp') {
+                convertWebpToJpg(file);
+            } else {
+                alert('WEBP 파일만 선택 가능합니다.');
+            }
+        }
+
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(event) {
+            event.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            event.currentTarget.classList.remove('drag-over');
+            
+            const files = event.dataTransfer.files;
+            if (files.length > 0 && files[0].type === 'image/webp') {
+                convertWebpToJpg(files[0]);
+            } else {
+                alert('WEBP 파일만 업로드 가능합니다.');
+            }
+        }
+
+        async function convertWebpToJpg(file) {
+            const progressContainer = document.getElementById('progressContainer');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const results = document.getElementById('results');
+            const downloadLink = document.getElementById('downloadLink');
+            const quality = parseFloat(document.getElementById('quality').value) / 100;
+
+            progressContainer.style.display = 'block';
+            progressFill.style.width = '0%';
+            progressText.textContent = '변환 중...';
+            results.style.display = 'none';
+
+            try {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
+
+                        const jpgDataUrl = canvas.toDataURL('image/jpeg', quality);
+                        const fileName = file.name.replace('.webp', '.jpg');
+
+                        downloadLink.href = jpgDataUrl;
+                        downloadLink.download = fileName;
+                        results.style.display = 'block';
+                        progressContainer.style.display = 'none';
+                        progressFill.style.width = '100%';
+                        progressText.textContent = '변환 완료!';
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+
+            } catch (error) {
+                console.error('Error during WEBP to JPG conversion:', error);
+                alert('오류가 발생했습니다. 다시 시도해주세요.');
+                progressContainer.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
