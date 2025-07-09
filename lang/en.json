@@ -340,6 +340,7 @@
     "imageWatermark": "Image Watermark",
     "watermarkText": "Watermark Text:",
     "textPlaceholder": "Enter watermark text",
+    "textNote": "ℹ️ Non-ASCII characters will be converted to image format",
     "textSize": "Text Size:",
     "textColor": "Text Color:",
     "watermarkImage": "Watermark Image:",

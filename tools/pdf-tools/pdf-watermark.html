@@ -592,6 +592,9 @@
                     <div class="option-group">
                         <label for="watermarkText" data-i18n="pdfWatermark.watermarkText">워터마크 텍스트:</label>
                         <input type="text" id="watermarkText" placeholder="워터마크 텍스트를 입력하세요" data-i18n-placeholder="pdfWatermark.textPlaceholder">
+                        <small style="color: #666; font-size: 0.9em; margin-top: 5px; display: block;" data-i18n="pdfWatermark.textNote">
+                            ℹ️ 한글/특수문자는 이미지로 변환되어 처리됩니다
+                        </small>
                     </div>
                     
                     <div class="option-group">
@@ -911,6 +914,25 @@
                 // Parse color
                 const color = this.hexToRgb(this.textColor.value);
                 
+                // Check if text contains non-ASCII characters (like Korean)
+                const hasNonAscii = /[^\x00-\x7F]/.test(text);
+                
+                let font;
+                try {
+                    if (hasNonAscii) {
+                        // For non-ASCII text, try to use a Unicode-compatible approach
+                        // Since we can't easily embed custom fonts, we'll use a different method
+                        await this.addTextAsImageWatermark(pdfDoc, text, fontSize, color, opacity);
+                        return;
+                    } else {
+                        // For ASCII text, use standard font
+                        font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
+                    }
+                } catch (error) {
+                    console.warn('Font embedding failed, using default font:', error);
+                    font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
+                }
+                
                 for (const page of pages) {
                     const { width, height } = page.getSize();
                     const position = this.calculatePosition(width, height, fontSize, text.length);
@@ -919,7 +941,58 @@
                         x: position.x,
                         y: position.y,
                         size: fontSize,
+                        font: font,
                         color: PDFLib.rgb(color.r / 255, color.g / 255, color.b / 255),
+                        opacity: opacity,
+                        rotate: PDFLib.degrees(-45)
+                    });
+                }
+            }
+            
+            async addTextAsImageWatermark(pdfDoc, text, fontSize, color, opacity) {
+                // Create a canvas to render text as image for non-ASCII characters
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Set up canvas size and font
+                ctx.font = `${fontSize}px Arial, sans-serif`;
+                const textMetrics = ctx.measureText(text);
+                const textWidth = textMetrics.width;
+                const textHeight = fontSize;
+                
+                // Set canvas size with some padding
+                canvas.width = textWidth + 40;
+                canvas.height = textHeight + 40;
+                
+                // Clear canvas and set font again (canvas size change resets context)
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.font = `${fontSize}px Arial, sans-serif`;
+                ctx.fillStyle = `rgb(${color.r}, ${color.g}, ${color.b})`;
+                ctx.textBaseline = 'middle';
+                ctx.textAlign = 'center';
+                
+                // Draw text on canvas
+                ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+                
+                // Convert canvas to PNG data
+                const pngDataUrl = canvas.toDataURL('image/png');
+                const pngData = pngDataUrl.split(',')[1];
+                const pngBytes = Uint8Array.from(atob(pngData), c => c.charCodeAt(0));
+                
+                // Embed the PNG image
+                const image = await pdfDoc.embedPng(pngBytes);
+                
+                // Add image to all pages
+                const pages = pdfDoc.getPages();
+                for (const page of pages) {
+                    const { width, height } = page.getSize();
+                    const position = this.calculatePosition(width, height, canvas.width, canvas.height);
+                    
+                    page.drawImage(image, {
+                        x: position.x,
+                        y: position.y,
+                        width: canvas.width,
+                        height: canvas.height,
                         opacity: opacity,
                         rotate: PDFLib.degrees(-45)
                     });
