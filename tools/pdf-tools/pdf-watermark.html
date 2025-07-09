@@ -577,10 +577,11 @@
         }
         
         .preview-text {
-            color: #333;
-            font-size: 14px;
+            color: #999;
+            font-size: 12px;
             line-height: 1.6;
             margin-bottom: 10px;
+            opacity: 0.7;
         }
         
         .preview-watermark {
@@ -596,11 +597,10 @@
         
         .preview-watermark span {
             font-family: Arial, sans-serif;
-            font-size: 36px;
-            color: #ff0000;
-            opacity: 0.5;
             white-space: nowrap;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            font-weight: bold;
+            /* font-size, color, opacity는 JavaScript에서 동적으로 설정 */
         }
         
         .preview-watermark img {
@@ -677,7 +677,10 @@
                     <div class="preview-container">
                         <div class="preview-page" id="previewPage">
                             <div class="preview-content">
-                                <div class="preview-text">Sample PDF Page</div>
+                                <div class="preview-text">Sample PDF Document</div>
+                                <div class="preview-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                <div class="preview-text">Sed do eiusmod tempor incididunt ut labore et dolore magna.</div>
+                                <div class="preview-text">Ut enim ad minim veniam, quis nostrud exercitation.</div>
                                 <div class="preview-watermark" id="previewWatermark">
                                     <span id="previewText">WATERMARK</span>
                                     <img id="previewImage" style="display: none;" />
@@ -714,7 +717,7 @@
                     
                     <div class="option-group">
                         <label for="textColor" data-i18n="pdfWatermark.textColor">텍스트 색상:</label>
-                        <input type="color" id="textColor" value="#ff0000" />
+                        <input type="color" id="textColor" value="#e74c3c" />
                     </div>
                 </div>
                 
@@ -915,10 +918,13 @@
                 const color = this.textColor.value;
                 const opacity = parseInt(this.opacity.value) / 100;
                 
+                // 미리보기용 크기 조정 (실제 크기의 60% 정도로 스케일링)
+                const previewFontSize = Math.max(fontSize * 0.6, 12);
+                
                 this.previewText.textContent = text;
-                this.previewText.style.fontSize = fontSize + 'px';
-                this.previewText.style.color = color;
-                this.previewText.style.opacity = opacity;
+                this.previewText.style.setProperty('font-size', previewFontSize + 'px', 'important');
+                this.previewText.style.setProperty('color', color, 'important');
+                this.previewText.style.setProperty('opacity', opacity.toString(), 'important');
                 this.previewText.style.display = 'block';
                 this.previewImage.style.display = 'none';
             }
@@ -931,10 +937,13 @@
                 if (imageFile) {
                     const reader = new FileReader();
                     reader.onload = (e) => {
+                        // 미리보기용 크기 조정 (실제 크기의 50% 정도로 스케일링)
+                        const previewSize = Math.max(imageSize * 0.5, 30);
+                        
                         this.previewImage.src = e.target.result;
-                        this.previewImage.style.width = imageSize + 'px';
-                        this.previewImage.style.height = imageSize + 'px';
-                        this.previewImage.style.opacity = opacity;
+                        this.previewImage.style.setProperty('width', previewSize + 'px', 'important');
+                        this.previewImage.style.setProperty('height', previewSize + 'px', 'important');
+                        this.previewImage.style.setProperty('opacity', opacity.toString(), 'important');
                         this.previewImage.style.display = 'block';
                         this.previewText.style.display = 'none';
                     };
