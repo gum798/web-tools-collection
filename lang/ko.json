@@ -328,5 +328,56 @@
         "description": "업무용 대용량<br>변환 솔루션"
       }
     }
+  },
+  "pdfWatermark": {
+    "title": "PDF 워터마크 추가기 - 무료 온라인 도구",
+    "description": "PDF 파일에 워터마크를 추가하세요. 텍스트 또는 이미지 워터마크를 지원하며 브라우저에서 안전하게 처리됩니다.",
+    "keywords": "PDF 워터마크, PDF 텍스트 추가, PDF 이미지 추가, 온라인 PDF 편집",
+    "mainTitle": "📄 PDF 워터마크 추가기",
+    "uploadText": "PDF 파일을 선택하거나 드래그하세요",
+    "uploadSubtext": "지원 형식: .pdf (최대 50MB)",
+    "watermarkOptions": "워터마크 옵션",
+    "textWatermark": "텍스트 워터마크",
+    "imageWatermark": "이미지 워터마크",
+    "watermarkText": "워터마크 텍스트:",
+    "textPlaceholder": "워터마크 텍스트를 입력하세요",
+    "textSize": "텍스트 크기:",
+    "textColor": "텍스트 색상:",
+    "watermarkImage": "워터마크 이미지:",
+    "imageSize": "이미지 크기:",
+    "opacity": "투명도:",
+    "position": "위치:",
+    "topLeft": "왼쪽 상단",
+    "topCenter": "중앙 상단",
+    "topRight": "오른쪽 상단",
+    "centerLeft": "왼쪽 중앙",
+    "center": "중앙",
+    "centerRight": "오른쪽 중앙",
+    "bottomLeft": "왼쪽 하단",
+    "bottomCenter": "중앙 하단",
+    "bottomRight": "오른쪽 하단",
+    "addWatermark": "워터마크 추가하기",
+    "processing": "처리 중...",
+    "complete": "✅ 완료!",
+    "completeDesc": "PDF 파일에 워터마크가 성공적으로 추가되었습니다.",
+    "downloadBtn": "📥 PDF 다운로드",
+    "features": {
+      "privacy": {
+        "title": "개인정보 보호",
+        "description": "모든 처리는 브라우저에서 직접 수행되어 파일이 서버로 전송되지 않습니다."
+      },
+      "fast": {
+        "title": "빠른 처리",
+        "description": "최적화된 알고리즘으로 빠르고 정확한 워터마크 추가를 제공합니다."
+      },
+      "customizable": {
+        "title": "다양한 옵션",
+        "description": "텍스트와 이미지 워터마크, 위치, 크기, 투명도 등을 자유롭게 설정할 수 있습니다."
+      },
+      "responsive": {
+        "title": "모든 기기 지원",
+        "description": "PC, 태블릿, 모바일 등 모든 기기에서 사용할 수 있습니다."
+      }
+    }
   }
 }

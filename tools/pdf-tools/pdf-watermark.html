@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="epubToPdf.title">ePub to PDF 변환기 - 무료 온라인 변환 도구</title>
+    <title data-i18n="pdfWatermark.title">PDF 워터마크 추가기 - 무료 온라인 도구</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="ePub 파일을 PDF로 무료 변환. 브라우저에서 안전하게 처리되며 개인정보가 서버로 전송되지 않습니다." data-i18n-content="epubToPdf.description">
-    <meta name="keywords" content="ePub PDF 변환, 전자책 변환, 무료 변환기, ePub to PDF, 온라인 변환 도구" data-i18n-content="epubToPdf.keywords">
+    <meta name="description" content="PDF 파일에 워터마크를 추가하세요. 텍스트 또는 이미지 워터마크를 지원하며 브라우저에서 안전하게 처리됩니다." data-i18n-content="pdfWatermark.description">
+    <meta name="keywords" content="PDF 워터마크, PDF 텍스트 추가, PDF 이미지 추가, 온라인 PDF 편집" data-i18n-content="pdfWatermark.keywords">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="ePub to PDF 변환기 - 무료 온라인 변환 도구">
-    <meta property="og:description" content="ePub 파일을 PDF로 안전하게 변환하세요. 브라우저에서 직접 처리되어 개인정보 보호가 보장됩니다.">
+    <meta property="og:title" content="PDF 워터마크 추가기 - 무료 온라인 도구">
+    <meta property="og:description" content="PDF 파일에 워터마크를 추가하세요. 브라우저에서 안전하게 처리되어 개인정보 보호가 보장됩니다.">
     <meta property="og:type" content="website">
     
     <!-- Google AdSense -->
@@ -27,11 +27,8 @@
     <!-- i18n System -->
     <script src="../../i18n.js"></script>
     
-    <!-- PDF Generation Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
-    <!-- ePub Parser Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- PDF-lib Library -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     
     <style>
         * {
@@ -185,6 +182,10 @@
             font-size: 2.5em;
         }
         
+        .upload-section {
+            margin-bottom: 30px;
+        }
+        
         .upload-area {
             border: 3px dashed #667eea;
             border-radius: 15px;
@@ -256,11 +257,28 @@
             font-size: 0.9em;
         }
         
-        .options-section {
+        .watermark-options {
             background: #f8f9fa;
             padding: 25px;
             border-radius: 10px;
             margin: 20px 0;
+        }
+        
+        .watermark-type {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .type-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .type-option input[type="radio"] {
+            margin: 0;
         }
         
         .option-group {
@@ -274,13 +292,17 @@
             color: #333;
         }
         
-        .option-group select,
-        .option-group input[type="range"] {
+        .option-group input,
+        .option-group select {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 14px;
+        }
+        
+        .option-group input[type="range"] {
+            width: 100%;
         }
         
         .range-value {
@@ -290,7 +312,45 @@
             color: #667eea;
         }
         
-        .convert-btn {
+        .text-watermark-options,
+        .image-watermark-options {
+            display: none;
+        }
+        
+        .text-watermark-options.active,
+        .image-watermark-options.active {
+            display: block;
+        }
+        
+        .position-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .position-btn {
+            padding: 15px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .position-btn:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+        
+        .position-btn.active {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+        
+        .process-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
@@ -305,12 +365,12 @@
             min-width: 200px;
         }
         
-        .convert-btn:hover {
+        .process-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
         }
         
-        .convert-btn:disabled {
+        .process-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
             transform: none;
@@ -460,6 +520,15 @@
                 top: 15px;
                 right: 15px;
             }
+            
+            .watermark-type {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .position-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -478,8 +547,8 @@
             <a href="../password-generator/password.html" class="nav-link" data-i18n="common.passwordGenerator">비밀번호 생성기</a>
             <a href="png-converter.html" class="nav-link" data-i18n="common.pdfConverter">PDF 변환기</a>
             <a href="hwp-converter.html" class="nav-link">PDF to HWP</a>
-            <a href="epub-to-pdf.html" class="nav-link active">ePub to PDF</a>
-            <a href="pdf-watermark.html" class="nav-link">PDF 워터마크</a>
+            <a href="epub-to-pdf.html" class="nav-link">ePub to PDF</a>
+            <a href="pdf-watermark.html" class="nav-link active">PDF 워터마크</a>
             <a href="../image-tools/webp-to-jpg.html" class="nav-link">WEBP to JPG</a>
             <a href="../file-conversion/file-conversion.html" class="nav-link" data-i18n="common.fileConverter">파일 변환 가이드</a>
         </div>
@@ -487,98 +556,136 @@
     
     <div class="main-layout">
         <div class="container">
-            <h1 data-i18n="epubToPdf.mainTitle">📚 ePub to PDF 변환기</h1>
+            <h1 data-i18n="pdfWatermark.mainTitle">📄 PDF 워터마크 추가기</h1>
             
-            <div class="upload-area" id="uploadArea">
-                <div class="upload-icon">📚</div>
-                <div class="upload-text" data-i18n="epubToPdf.uploadText">ePub 파일을 선택하거나 드래그하세요</div>
-                <div class="upload-subtext" data-i18n="epubToPdf.uploadSubtext">지원 형식: .epub (최대 50MB)</div>
-                <input type="file" id="fileInput" accept=".epub" />
-            </div>
-            
-            <div class="file-info" id="fileInfo">
-                <div class="file-name" id="fileName"></div>
-                <div class="file-size" id="fileSize"></div>
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📄</div>
+                    <div class="upload-text" data-i18n="pdfWatermark.uploadText">PDF 파일을 선택하거나 드래그하세요</div>
+                    <div class="upload-subtext" data-i18n="pdfWatermark.uploadSubtext">지원 형식: .pdf (최대 50MB)</div>
+                    <input type="file" id="fileInput" accept=".pdf" />
+                </div>
+                
+                <div class="file-info" id="fileInfo">
+                    <div class="file-name" id="fileName"></div>
+                    <div class="file-size" id="fileSize"></div>
+                </div>
             </div>
             
             <div class="error-message" id="errorMessage"></div>
             
-            <div class="options-section">
-                <h3 data-i18n="epubToPdf.options">변환 옵션</h3>
+            <div class="watermark-options">
+                <h3 data-i18n="pdfWatermark.watermarkOptions">워터마크 옵션</h3>
                 
-                <div class="option-group">
-                    <label for="pageSize">페이지 크기:</label>
-                    <select id="pageSize">
-                        <option value="a4">A4 (210 × 297 mm)</option>
-                        <option value="letter">Letter (8.5 × 11 inch)</option>
-                        <option value="legal">Legal (8.5 × 14 inch)</option>
-                        <option value="a3">A3 (297 × 420 mm)</option>
-                    </select>
+                <div class="watermark-type">
+                    <div class="type-option">
+                        <input type="radio" name="watermarkType" id="textWatermark" value="text" checked>
+                        <label for="textWatermark" data-i18n="pdfWatermark.textWatermark">텍스트 워터마크</label>
+                    </div>
+                    <div class="type-option">
+                        <input type="radio" name="watermarkType" id="imageWatermark" value="image">
+                        <label for="imageWatermark" data-i18n="pdfWatermark.imageWatermark">이미지 워터마크</label>
+                    </div>
+                </div>
+                
+                <div class="text-watermark-options active" id="textOptions">
+                    <div class="option-group">
+                        <label for="watermarkText" data-i18n="pdfWatermark.watermarkText">워터마크 텍스트:</label>
+                        <input type="text" id="watermarkText" placeholder="워터마크 텍스트를 입력하세요" data-i18n-placeholder="pdfWatermark.textPlaceholder">
+                    </div>
+                    
+                    <div class="option-group">
+                        <label for="textSize" data-i18n="pdfWatermark.textSize">텍스트 크기: <span class="range-value" id="textSizeValue">36px</span></label>
+                        <input type="range" id="textSize" min="12" max="72" value="36" />
+                    </div>
+                    
+                    <div class="option-group">
+                        <label for="textColor" data-i18n="pdfWatermark.textColor">텍스트 색상:</label>
+                        <input type="color" id="textColor" value="#ff0000" />
+                    </div>
+                </div>
+                
+                <div class="image-watermark-options" id="imageOptions">
+                    <div class="option-group">
+                        <label for="watermarkImage" data-i18n="pdfWatermark.watermarkImage">워터마크 이미지:</label>
+                        <input type="file" id="watermarkImage" accept="image/*" />
+                    </div>
+                    
+                    <div class="option-group">
+                        <label for="imageSize" data-i18n="pdfWatermark.imageSize">이미지 크기: <span class="range-value" id="imageSizeValue">100px</span></label>
+                        <input type="range" id="imageSize" min="50" max="300" value="100" />
+                    </div>
                 </div>
                 
                 <div class="option-group">
-                    <label for="fontSize">글꼴 크기: <span class="range-value" id="fontSizeValue">12px</span></label>
-                    <input type="range" id="fontSize" min="8" max="24" value="12" />
+                    <label for="opacity" data-i18n="pdfWatermark.opacity">투명도: <span class="range-value" id="opacityValue">50%</span></label>
+                    <input type="range" id="opacity" min="10" max="100" value="50" />
                 </div>
                 
                 <div class="option-group">
-                    <label for="lineHeight">줄 간격: <span class="range-value" id="lineHeightValue">1.5</span></label>
-                    <input type="range" id="lineHeight" min="1" max="3" step="0.1" value="1.5" />
-                </div>
-                
-                <div class="option-group">
-                    <label for="margin">여백: <span class="range-value" id="marginValue">20mm</span></label>
-                    <input type="range" id="margin" min="10" max="50" value="20" />
+                    <label data-i18n="pdfWatermark.position">위치:</label>
+                    <div class="position-grid">
+                        <button class="position-btn" data-position="top-left" data-i18n="pdfWatermark.topLeft">왼쪽 상단</button>
+                        <button class="position-btn" data-position="top-center" data-i18n="pdfWatermark.topCenter">중앙 상단</button>
+                        <button class="position-btn" data-position="top-right" data-i18n="pdfWatermark.topRight">오른쪽 상단</button>
+                        <button class="position-btn" data-position="center-left" data-i18n="pdfWatermark.centerLeft">왼쪽 중앙</button>
+                        <button class="position-btn active" data-position="center" data-i18n="pdfWatermark.center">중앙</button>
+                        <button class="position-btn" data-position="center-right" data-i18n="pdfWatermark.centerRight">오른쪽 중앙</button>
+                        <button class="position-btn" data-position="bottom-left" data-i18n="pdfWatermark.bottomLeft">왼쪽 하단</button>
+                        <button class="position-btn" data-position="bottom-center" data-i18n="pdfWatermark.bottomCenter">중앙 하단</button>
+                        <button class="position-btn" data-position="bottom-right" data-i18n="pdfWatermark.bottomRight">오른쪽 하단</button>
+                    </div>
                 </div>
             </div>
             
-            <button class="convert-btn" id="convertBtn" disabled>변환하기</button>
+            <button class="process-btn" id="processBtn" disabled data-i18n="pdfWatermark.addWatermark">워터마크 추가하기</button>
             
             <div class="progress-section" id="progressSection">
-                <div class="progress-text" id="progressText">변환 중...</div>
+                <div class="progress-text" id="progressText" data-i18n="pdfWatermark.processing">처리 중...</div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
             </div>
             
             <div class="download-section" id="downloadSection">
-                <h3>✅ 변환 완료!</h3>
-                <p>ePub 파일이 성공적으로 PDF로 변환되었습니다.</p>
-                <a href="#" class="download-btn" id="downloadBtn">📥 PDF 다운로드</a>
+                <h3 data-i18n="pdfWatermark.complete">✅ 완료!</h3>
+                <p data-i18n="pdfWatermark.completeDesc">PDF 파일에 워터마크가 성공적으로 추가되었습니다.</p>
+                <a href="#" class="download-btn" id="downloadBtn" data-i18n="pdfWatermark.downloadBtn">📥 PDF 다운로드</a>
             </div>
             
             <div class="features-section">
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
-                    <div class="feature-title">개인정보 보호</div>
-                    <div class="feature-description">모든 변환 작업은 브라우저에서 직접 처리되어 파일이 서버로 전송되지 않습니다.</div>
+                    <div class="feature-title" data-i18n="pdfWatermark.features.privacy.title">개인정보 보호</div>
+                    <div class="feature-description" data-i18n="pdfWatermark.features.privacy.description">모든 처리는 브라우저에서 직접 수행되어 파일이 서버로 전송되지 않습니다.</div>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <div class="feature-title">빠른 변환</div>
-                    <div class="feature-description">최적화된 알고리즘으로 빠르고 정확한 ePub to PDF 변환을 제공합니다.</div>
+                    <div class="feature-title" data-i18n="pdfWatermark.features.fast.title">빠른 처리</div>
+                    <div class="feature-description" data-i18n="pdfWatermark.features.fast.description">최적화된 알고리즘으로 빠르고 정확한 워터마크 추가를 제공합니다.</div>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">🎨</div>
-                    <div class="feature-title">커스터마이징</div>
-                    <div class="feature-description">페이지 크기, 글꼴, 여백 등을 자유롭게 조정할 수 있습니다.</div>
+                    <div class="feature-title" data-i18n="pdfWatermark.features.customizable.title">다양한 옵션</div>
+                    <div class="feature-description" data-i18n="pdfWatermark.features.customizable.description">텍스트와 이미지 워터마크, 위치, 크기, 투명도 등을 자유롭게 설정할 수 있습니다.</div>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
-                    <div class="feature-title">모든 기기 지원</div>
-                    <div class="feature-description">PC, 태블릿, 모바일 등 모든 기기에서 사용할 수 있습니다.</div>
+                    <div class="feature-title" data-i18n="pdfWatermark.features.responsive.title">모든 기기 지원</div>
+                    <div class="feature-description" data-i18n="pdfWatermark.features.responsive.description">PC, 태블릿, 모바일 등 모든 기기에서 사용할 수 있습니다.</div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        class EpubToPdfConverter {
+        class PDFWatermarkTool {
             constructor() {
                 this.currentFile = null;
+                this.selectedPosition = 'center';
                 this.initializeElements();
                 this.bindEvents();
                 this.updateRangeValues();
@@ -590,7 +697,7 @@
                 this.fileInfo = document.getElementById('fileInfo');
                 this.fileName = document.getElementById('fileName');
                 this.fileSize = document.getElementById('fileSize');
-                this.convertBtn = document.getElementById('convertBtn');
+                this.processBtn = document.getElementById('processBtn');
                 this.progressSection = document.getElementById('progressSection');
                 this.progressText = document.getElementById('progressText');
                 this.progressFill = document.getElementById('progressFill');
@@ -598,11 +705,20 @@
                 this.downloadBtn = document.getElementById('downloadBtn');
                 this.errorMessage = document.getElementById('errorMessage');
                 
-                // Option elements
-                this.pageSize = document.getElementById('pageSize');
-                this.fontSize = document.getElementById('fontSize');
-                this.lineHeight = document.getElementById('lineHeight');
-                this.margin = document.getElementById('margin');
+                // Watermark option elements
+                this.textWatermark = document.getElementById('textWatermark');
+                this.imageWatermark = document.getElementById('imageWatermark');
+                this.textOptions = document.getElementById('textOptions');
+                this.imageOptions = document.getElementById('imageOptions');
+                this.watermarkText = document.getElementById('watermarkText');
+                this.textSize = document.getElementById('textSize');
+                this.textColor = document.getElementById('textColor');
+                this.watermarkImage = document.getElementById('watermarkImage');
+                this.imageSize = document.getElementById('imageSize');
+                this.opacity = document.getElementById('opacity');
+                
+                // Position buttons
+                this.positionButtons = document.querySelectorAll('.position-btn');
             }
             
             bindEvents() {
@@ -615,19 +731,44 @@
                 this.uploadArea.addEventListener('dragleave', (e) => this.handleDragLeave(e));
                 this.uploadArea.addEventListener('drop', (e) => this.handleDrop(e));
                 
-                // Convert button
-                this.convertBtn.addEventListener('click', () => this.convertToPdf());
+                // Watermark type change
+                this.textWatermark.addEventListener('change', () => this.toggleWatermarkType());
+                this.imageWatermark.addEventListener('change', () => this.toggleWatermarkType());
                 
                 // Range inputs
-                this.fontSize.addEventListener('input', () => this.updateRangeValues());
-                this.lineHeight.addEventListener('input', () => this.updateRangeValues());
-                this.margin.addEventListener('input', () => this.updateRangeValues());
+                this.textSize.addEventListener('input', () => this.updateRangeValues());
+                this.imageSize.addEventListener('input', () => this.updateRangeValues());
+                this.opacity.addEventListener('input', () => this.updateRangeValues());
+                
+                // Position buttons
+                this.positionButtons.forEach(btn => {
+                    btn.addEventListener('click', () => this.selectPosition(btn));
+                });
+                
+                // Process button
+                this.processBtn.addEventListener('click', () => this.processWatermark());
             }
             
             updateRangeValues() {
-                document.getElementById('fontSizeValue').textContent = this.fontSize.value + 'px';
-                document.getElementById('lineHeightValue').textContent = this.lineHeight.value;
-                document.getElementById('marginValue').textContent = this.margin.value + 'mm';
+                document.getElementById('textSizeValue').textContent = this.textSize.value + 'px';
+                document.getElementById('imageSizeValue').textContent = this.imageSize.value + 'px';
+                document.getElementById('opacityValue').textContent = this.opacity.value + '%';
+            }
+            
+            toggleWatermarkType() {
+                if (this.textWatermark.checked) {
+                    this.textOptions.classList.add('active');
+                    this.imageOptions.classList.remove('active');
+                } else {
+                    this.textOptions.classList.remove('active');
+                    this.imageOptions.classList.add('active');
+                }
+            }
+            
+            selectPosition(btn) {
+                this.positionButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                this.selectedPosition = btn.dataset.position;
             }
             
             handleDragOver(e) {
@@ -661,8 +802,8 @@
                 this.hideError();
                 
                 // Validate file type
-                if (!file.name.toLowerCase().endsWith('.epub')) {
-                    this.showError('ePub 파일만 업로드할 수 있습니다.');
+                if (!file.type.includes('pdf')) {
+                    this.showError('PDF 파일만 업로드할 수 있습니다.');
                     return;
                 }
                 
@@ -674,7 +815,7 @@
                 
                 this.currentFile = file;
                 this.displayFileInfo(file);
-                this.convertBtn.disabled = false;
+                this.processBtn.disabled = false;
             }
             
             displayFileInfo(file) {
@@ -705,175 +846,150 @@
                 this.progressText.textContent = text;
             }
             
-            async convertToPdf() {
+            async processWatermark() {
                 if (!this.currentFile) return;
                 
-                this.convertBtn.disabled = true;
+                this.processBtn.disabled = true;
                 this.progressSection.style.display = 'block';
                 this.downloadSection.style.display = 'none';
                 this.hideError();
                 
                 try {
-                    this.updateProgress(10, 'ePub 파일 읽는 중...');
+                    this.updateProgress(10, 'PDF 파일 로딩 중...');
                     
-                    // Read ePub file
-                    const epubContent = await this.readEpubFile(this.currentFile);
+                    // Read PDF file
+                    const pdfBytes = await this.readFile(this.currentFile);
                     
-                    this.updateProgress(40, 'ePub 내용 파싱 중...');
+                    this.updateProgress(30, 'PDF 문서 파싱 중...');
                     
-                    // Parse ePub content
-                    const parsedContent = await this.parseEpubContent(epubContent);
+                    // Load PDF document
+                    const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
                     
-                    this.updateProgress(70, 'PDF 생성 중...');
+                    this.updateProgress(50, '워터마크 추가 중...');
                     
-                    // Generate PDF
-                    const pdfBlob = await this.generatePdf(parsedContent);
+                    // Add watermark to all pages
+                    if (this.textWatermark.checked) {
+                        await this.addTextWatermark(pdfDoc);
+                    } else {
+                        await this.addImageWatermark(pdfDoc);
+                    }
                     
-                    this.updateProgress(100, '변환 완료!');
+                    this.updateProgress(80, 'PDF 생성 중...');
+                    
+                    // Save PDF
+                    const pdfBytesWithWatermark = await pdfDoc.save();
+                    
+                    this.updateProgress(100, '완료!');
                     
                     // Show download section
-                    this.showDownloadSection(pdfBlob);
+                    this.showDownloadSection(pdfBytesWithWatermark);
                     
                 } catch (error) {
-                    console.error('변환 중 오류:', error);
-                    this.showError('변환 중 오류가 발생했습니다: ' + error.message);
+                    console.error('워터마크 처리 중 오류:', error);
+                    this.showError('워터마크 처리 중 오류가 발생했습니다: ' + error.message);
                 } finally {
-                    this.convertBtn.disabled = false;
+                    this.processBtn.disabled = false;
                     this.progressSection.style.display = 'none';
                 }
             }
             
-            async readEpubFile(file) {
+            async readFile(file) {
                 return new Promise((resolve, reject) => {
                     const reader = new FileReader();
-                    reader.onload = (e) => resolve(e.target.result);
+                    reader.onload = (e) => resolve(new Uint8Array(e.target.result));
                     reader.onerror = () => reject(new Error('파일 읽기 실패'));
                     reader.readAsArrayBuffer(file);
                 });
             }
             
-            async parseEpubContent(arrayBuffer) {
-                try {
-                    const zip = await JSZip.loadAsync(arrayBuffer);
+            async addTextWatermark(pdfDoc) {
+                const pages = pdfDoc.getPages();
+                const text = this.watermarkText.value || 'WATERMARK';
+                const fontSize = parseInt(this.textSize.value);
+                const opacity = parseInt(this.opacity.value) / 100;
+                
+                // Parse color
+                const color = this.hexToRgb(this.textColor.value);
+                
+                for (const page of pages) {
+                    const { width, height } = page.getSize();
+                    const position = this.calculatePosition(width, height, fontSize, text.length);
                     
-                    // Read container.xml to find the content.opf file
-                    const containerXml = await zip.file('META-INF/container.xml').async('text');
-                    const containerDoc = new DOMParser().parseFromString(containerXml, 'text/xml');
-                    const rootFilePath = containerDoc.querySelector('rootfile').getAttribute('full-path');
-                    
-                    // Read content.opf
-                    const contentOpf = await zip.file(rootFilePath).async('text');
-                    const contentDoc = new DOMParser().parseFromString(contentOpf, 'text/xml');
-                    
-                    // Get spine order
-                    const spineItems = Array.from(contentDoc.querySelectorAll('spine itemref'));
-                    const manifestItems = Array.from(contentDoc.querySelectorAll('manifest item'));
-                    
-                    // Extract text content from HTML files
-                    const textContent = [];
-                    const basePath = rootFilePath.substring(0, rootFilePath.lastIndexOf('/') + 1);
-                    
-                    for (const spineItem of spineItems) {
-                        const idref = spineItem.getAttribute('idref');
-                        const manifestItem = manifestItems.find(item => item.getAttribute('id') === idref);
-                        
-                        if (manifestItem) {
-                            const href = manifestItem.getAttribute('href');
-                            const fullPath = basePath + href;
-                            
-                            try {
-                                const htmlContent = await zip.file(fullPath).async('text');
-                                const htmlDoc = new DOMParser().parseFromString(htmlContent, 'text/html');
-                                
-                                // Extract text from HTML
-                                const textElements = htmlDoc.querySelectorAll('p, h1, h2, h3, h4, h5, h6, div');
-                                for (const element of textElements) {
-                                    const text = element.textContent.trim();
-                                    if (text) {
-                                        textContent.push({
-                                            text: text,
-                                            tag: element.tagName.toLowerCase()
-                                        });
-                                    }
-                                }
-                            } catch (error) {
-                                console.warn('파일 읽기 실패:', fullPath);
-                            }
-                        }
-                    }
-                    
-                    return textContent;
-                } catch (error) {
-                    throw new Error('ePub 파일 파싱 실패: ' + error.message);
+                    page.drawText(text, {
+                        x: position.x,
+                        y: position.y,
+                        size: fontSize,
+                        color: PDFLib.rgb(color.r / 255, color.g / 255, color.b / 255),
+                        opacity: opacity,
+                        rotate: PDFLib.degrees(-45)
+                    });
                 }
             }
             
-            async generatePdf(content) {
-                const { jsPDF } = window.jspdf;
-                
-                // Get options
-                const pageSize = this.pageSize.value;
-                const fontSize = parseInt(this.fontSize.value);
-                const lineHeight = parseFloat(this.lineHeight.value);
-                const margin = parseInt(this.margin.value);
-                
-                // Create PDF
-                const pdf = new jsPDF({
-                    orientation: 'portrait',
-                    unit: 'mm',
-                    format: pageSize
-                });
-                
-                // Get page dimensions
-                const pageWidth = pdf.internal.pageSize.getWidth();
-                const pageHeight = pdf.internal.pageSize.getHeight();
-                const contentWidth = pageWidth - (margin * 2);
-                const contentHeight = pageHeight - (margin * 2);
-                
-                let yPosition = margin;
-                
-                // Add content
-                for (const item of content) {
-                    // Set font size based on element type
-                    let currentFontSize = fontSize;
-                    if (item.tag.startsWith('h')) {
-                        const headingLevel = parseInt(item.tag.substring(1));
-                        currentFontSize = fontSize + (6 - headingLevel) * 2;
-                    }
-                    
-                    pdf.setFontSize(currentFontSize);
-                    
-                    // Split text to fit width
-                    const lines = pdf.splitTextToSize(item.text, contentWidth);
-                    
-                    // Check if we need a new page
-                    const lineHeight_mm = (currentFontSize * lineHeight) / 3.5; // Convert to mm
-                    const requiredHeight = lines.length * lineHeight_mm;
-                    
-                    if (yPosition + requiredHeight > contentHeight + margin) {
-                        pdf.addPage();
-                        yPosition = margin;
-                    }
-                    
-                    // Add text
-                    for (const line of lines) {
-                        pdf.text(line, margin, yPosition);
-                        yPosition += lineHeight_mm;
-                    }
-                    
-                    // Add some space after paragraphs
-                    if (item.tag === 'p') {
-                        yPosition += lineHeight_mm * 0.5;
-                    }
+            async addImageWatermark(pdfDoc) {
+                const imageFile = this.watermarkImage.files[0];
+                if (!imageFile) {
+                    throw new Error('이미지 파일을 선택해주세요.');
                 }
                 
-                // Return PDF as blob
-                return pdf.output('blob');
+                const imageBytes = await this.readFile(imageFile);
+                let image;
+                
+                if (imageFile.type.includes('png')) {
+                    image = await pdfDoc.embedPng(imageBytes);
+                } else if (imageFile.type.includes('jpeg') || imageFile.type.includes('jpg')) {
+                    image = await pdfDoc.embedJpg(imageBytes);
+                } else {
+                    throw new Error('PNG 또는 JPG 이미지만 지원됩니다.');
+                }
+                
+                const pages = pdfDoc.getPages();
+                const imageSize = parseInt(this.imageSize.value);
+                const opacity = parseInt(this.opacity.value) / 100;
+                
+                for (const page of pages) {
+                    const { width, height } = page.getSize();
+                    const position = this.calculatePosition(width, height, imageSize, imageSize);
+                    
+                    page.drawImage(image, {
+                        x: position.x,
+                        y: position.y,
+                        width: imageSize,
+                        height: imageSize,
+                        opacity: opacity
+                    });
+                }
             }
             
-            showDownloadSection(pdfBlob) {
-                const url = URL.createObjectURL(pdfBlob);
-                const fileName = this.currentFile.name.replace(/\.epub$/i, '.pdf');
+            calculatePosition(pageWidth, pageHeight, elementWidth, elementHeight) {
+                const positions = {
+                    'top-left': { x: 50, y: pageHeight - elementHeight - 50 },
+                    'top-center': { x: (pageWidth - elementWidth) / 2, y: pageHeight - elementHeight - 50 },
+                    'top-right': { x: pageWidth - elementWidth - 50, y: pageHeight - elementHeight - 50 },
+                    'center-left': { x: 50, y: (pageHeight - elementHeight) / 2 },
+                    'center': { x: (pageWidth - elementWidth) / 2, y: (pageHeight - elementHeight) / 2 },
+                    'center-right': { x: pageWidth - elementWidth - 50, y: (pageHeight - elementHeight) / 2 },
+                    'bottom-left': { x: 50, y: 50 },
+                    'bottom-center': { x: (pageWidth - elementWidth) / 2, y: 50 },
+                    'bottom-right': { x: pageWidth - elementWidth - 50, y: 50 }
+                };
+                
+                return positions[this.selectedPosition] || positions['center'];
+            }
+            
+            hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : { r: 255, g: 0, b: 0 };
+            }
+            
+            showDownloadSection(pdfBytes) {
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const fileName = this.currentFile.name.replace(/\.pdf$/i, '_watermarked.pdf');
                 
                 this.downloadBtn.href = url;
                 this.downloadBtn.download = fileName;
@@ -886,9 +1002,9 @@
             }
         }
         
-        // Initialize converter
+        // Initialize tool
         document.addEventListener('DOMContentLoaded', () => {
-            new EpubToPdfConverter();
+            new PDFWatermarkTool();
         });
         
         // Mobile menu toggle

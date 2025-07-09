@@ -327,5 +327,56 @@
         "description": "Business-grade<br>bulk conversion"
       }
     }
+  },
+  "pdfWatermark": {
+    "title": "PDF Watermark Tool - Free Online Editor",
+    "description": "Add watermarks to PDF files. Supports text and image watermarks, processed securely in your browser.",
+    "keywords": "PDF watermark, PDF text overlay, PDF image overlay, online PDF editor",
+    "mainTitle": "📄 PDF Watermark Tool",
+    "uploadText": "Select or drag your PDF file here",
+    "uploadSubtext": "Supported formats: .pdf (max 50MB)",
+    "watermarkOptions": "Watermark Options",
+    "textWatermark": "Text Watermark",
+    "imageWatermark": "Image Watermark",
+    "watermarkText": "Watermark Text:",
+    "textPlaceholder": "Enter watermark text",
+    "textSize": "Text Size:",
+    "textColor": "Text Color:",
+    "watermarkImage": "Watermark Image:",
+    "imageSize": "Image Size:",
+    "opacity": "Opacity:",
+    "position": "Position:",
+    "topLeft": "Top Left",
+    "topCenter": "Top Center",
+    "topRight": "Top Right",
+    "centerLeft": "Center Left",
+    "center": "Center",
+    "centerRight": "Center Right",
+    "bottomLeft": "Bottom Left",
+    "bottomCenter": "Bottom Center",
+    "bottomRight": "Bottom Right",
+    "addWatermark": "Add Watermark",
+    "processing": "Processing...",
+    "complete": "✅ Complete!",
+    "completeDesc": "Watermark has been successfully added to your PDF file.",
+    "downloadBtn": "📥 Download PDF",
+    "features": {
+      "privacy": {
+        "title": "Privacy Protection",
+        "description": "All processing is done directly in your browser so files are not sent to servers."
+      },
+      "fast": {
+        "title": "Fast Processing",
+        "description": "Optimized algorithms provide fast and accurate watermark addition."
+      },
+      "customizable": {
+        "title": "Customizable Options",
+        "description": "You can freely set text and image watermarks, position, size, opacity, and more."
+      },
+      "responsive": {
+        "title": "All Device Support",
+        "description": "Works on PC, tablets, mobile devices, and more."
+      }
+    }
   }
 }
