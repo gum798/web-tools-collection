@@ -6,8 +6,8 @@
     <title data-i18n="epubToPdf.title">ePub to PDF 변환기 - 무료 온라인 변환 도구</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="ePub 파일을 PDF로 무료 변환. 브라우저에서 안전하게 처리되며 개인정보가 서버로 전송되지 않습니다.">
-    <meta name="keywords" content="ePub PDF 변환, 전자책 변환, 무료 변환기, ePub to PDF, 온라인 변환 도구">
+    <meta name="description" content="ePub 파일을 PDF로 무료 변환. 브라우저에서 안전하게 처리되며 개인정보가 서버로 전송되지 않습니다." data-i18n-content="epubToPdf.description">
+    <meta name="keywords" content="ePub PDF 변환, 전자책 변환, 무료 변환기, ePub to PDF, 온라인 변환 도구" data-i18n-content="epubToPdf.keywords">
     
     <!-- Open Graph -->
     <meta property="og:title" content="ePub to PDF 변환기 - 무료 온라인 변환 도구">
@@ -466,32 +466,32 @@
 <body>
     <div class="language-switcher">
         <select id="languageSelect">
-            <option value="ko">🇰🇷 KO</option>
-            <option value="en">🇺🇸 EN</option>
+            <option value="ko" data-i18n="common.languageKo">🇰🇷 KO</option>
+            <option value="en" data-i18n="common.languageEn">🇺🇸 EN</option>
         </select>
     </div>
 
     <div class="nav-bar">
-        <a href="../../index.html" class="nav-brand">🛠️ 웹 도구 모음</a>
+        <a href="../../index.html" class="nav-brand" data-i18n="common.siteTitle">🛠️ 웹 도구 모음</a>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="../password-generator/password.html" class="nav-link">비밀번호 생성기</a>
-            <a href="png-converter.html" class="nav-link">PDF 변환기</a>
+            <a href="../password-generator/password.html" class="nav-link" data-i18n="common.passwordGenerator">비밀번호 생성기</a>
+            <a href="png-converter.html" class="nav-link" data-i18n="common.pdfConverter">PDF 변환기</a>
             <a href="hwp-converter.html" class="nav-link">PDF to HWP</a>
             <a href="epub-to-pdf.html" class="nav-link active">ePub to PDF</a>
             <a href="../image-tools/webp-to-jpg.html" class="nav-link">WEBP to JPG</a>
-            <a href="../file-conversion/file-conversion.html" class="nav-link">파일 변환 가이드</a>
+            <a href="../file-conversion/file-conversion.html" class="nav-link" data-i18n="common.fileConverter">파일 변환 가이드</a>
         </div>
     </div>
     
     <div class="main-layout">
         <div class="container">
-            <h1>📚 ePub to PDF 변환기</h1>
+            <h1 data-i18n="epubToPdf.mainTitle">📚 ePub to PDF 변환기</h1>
             
             <div class="upload-area" id="uploadArea">
                 <div class="upload-icon">📚</div>
-                <div class="upload-text">ePub 파일을 선택하거나 드래그하세요</div>
-                <div class="upload-subtext">지원 형식: .epub (최대 50MB)</div>
+                <div class="upload-text" data-i18n="epubToPdf.uploadText">ePub 파일을 선택하거나 드래그하세요</div>
+                <div class="upload-subtext" data-i18n="epubToPdf.uploadSubtext">지원 형식: .epub (최대 50MB)</div>
                 <input type="file" id="fileInput" accept=".epub" />
             </div>
             
@@ -503,7 +503,7 @@
             <div class="error-message" id="errorMessage"></div>
             
             <div class="options-section">
-                <h3>변환 옵션</h3>
+                <h3 data-i18n="epubToPdf.options">변환 옵션</h3>
                 
                 <div class="option-group">
                     <label for="pageSize">페이지 크기:</label>

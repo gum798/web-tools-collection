@@ -181,6 +181,68 @@
       "Download result file"
     ]
   },
+  "webpToJpg": {
+    "title": "WEBP to JPG Converter",
+    "description": "Convert WEBP images to JPG format. Processed securely in your browser.",
+    "keywords": "WEBP to JPG converter, image conversion, online converter",
+    "mainTitle": "🖼️ WEBP to JPG Converter",
+    "uploadText": "Drag and drop your WEBP file here or click to upload",
+    "chooseFile": "Choose File",
+    "qualitySettings": "Quality Settings",
+    "quality": "Quality:",
+    "qualityHigh": "High (90%)",
+    "qualityMedium": "Medium (80%)",
+    "qualityLow": "Low (70%)",
+    "converting": "Converting...",
+    "conversionComplete": "Conversion Complete!",
+    "downloadBtn": "Download JPG",
+    "newConversion": "New Conversion",
+    "supportedFormats": "Supported formats: .webp",
+    "maxFileSize": "Max file size: 10MB",
+    "alerts": {
+      "selectFile": "Please select a WEBP file.",
+      "invalidFormat": "Only WEBP files can be uploaded.",
+      "fileTooLarge": "File size exceeds 10MB.",
+      "conversionError": "An error occurred during conversion."
+    }
+  },
+  "epubToPdf": {
+    "title": "ePub to PDF Converter - Free Online Conversion Tool",
+    "description": "Convert ePub files to PDF for free. Processed safely in your browser with no data sent to servers.",
+    "keywords": "ePub to PDF converter, ebook conversion, free converter, ePub to PDF, online conversion tool",
+    "mainTitle": "📚 ePub to PDF Converter",
+    "uploadText": "Select or drag your ePub file here",
+    "uploadSubtext": "Supported formats: .epub (max 50MB)",
+    "chooseFile": "Choose File",
+    "options": "Conversion Options",
+    "pageSize": "Page Size:",
+    "fontSize": "Font Size:",
+    "lineHeight": "Line Height:",
+    "margin": "Margin:",
+    "convertBtn": "Convert",
+    "converting": "Converting...",
+    "conversionComplete": "Conversion Complete!",
+    "conversionCompleteDesc": "ePub file has been successfully converted to PDF.",
+    "downloadBtn": "Download PDF",
+    "features": {
+      "privacy": {
+        "title": "Privacy Protection",
+        "description": "All conversion work is processed directly in your browser so files are not sent to servers."
+      },
+      "fast": {
+        "title": "Fast Conversion",
+        "description": "Optimized algorithms provide fast and accurate ePub to PDF conversion."
+      },
+      "customizable": {
+        "title": "Customizable",
+        "description": "You can freely adjust page size, fonts, margins, and more."
+      },
+      "responsive": {
+        "title": "All Device Support",
+        "description": "Works on PC, tablets, mobile devices, and more."
+      }
+    }
+  },
   "fileConverter": {
     "title": "File Conversion Tools Guide - Free Online Converters",
     "description": "Complete guide to free online file conversion tools: HWP to Word, Excel to PDF, and more. Safe conversion methods and security tips.",

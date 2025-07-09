@@ -182,6 +182,68 @@
       "결과 파일 다운로드"
     ]
   },
+  "webpToJpg": {
+    "title": "WEBP to JPG 변환기",
+    "description": "WEBP 이미지를 JPG 형식으로 변환합니다. 브라우저에서 안전하게 처리됩니다.",
+    "keywords": "WEBP JPG 변환, 이미지 변환, 온라인 변환기",
+    "mainTitle": "🖼️ WEBP to JPG 변환기",
+    "uploadText": "WEBP 파일을 여기에 드래그하거나 클릭하여 업로드하세요",
+    "chooseFile": "파일 선택",
+    "qualitySettings": "품질 설정",
+    "quality": "품질:",
+    "qualityHigh": "높음 (90%)",
+    "qualityMedium": "보통 (80%)",
+    "qualityLow": "낮음 (70%)",
+    "converting": "변환 중...",
+    "conversionComplete": "변환 완료!",
+    "downloadBtn": "JPG 다운로드",
+    "newConversion": "새 변환",
+    "supportedFormats": "지원 형식: .webp",
+    "maxFileSize": "최대 파일 크기: 10MB",
+    "alerts": {
+      "selectFile": "WEBP 파일을 선택해주세요.",
+      "invalidFormat": "WEBP 파일만 업로드할 수 있습니다.",
+      "fileTooLarge": "파일 크기가 10MB를 초과합니다.",
+      "conversionError": "변환 중 오류가 발생했습니다."
+    }
+  },
+  "epubToPdf": {
+    "title": "ePub to PDF 변환기 - 무료 온라인 변환 도구",
+    "description": "ePub 파일을 PDF로 무료 변환. 브라우저에서 안전하게 처리되며 개인정보가 서버로 전송되지 않습니다.",
+    "keywords": "ePub PDF 변환, 전자책 변환, 무료 변환기, ePub to PDF, 온라인 변환 도구",
+    "mainTitle": "📚 ePub to PDF 변환기",
+    "uploadText": "ePub 파일을 선택하거나 드래그하세요",
+    "uploadSubtext": "지원 형식: .epub (최대 50MB)",
+    "chooseFile": "파일 선택",
+    "options": "변환 옵션",
+    "pageSize": "페이지 크기:",
+    "fontSize": "글꼴 크기:",
+    "lineHeight": "줄 간격:",
+    "margin": "여백:",
+    "convertBtn": "변환하기",
+    "converting": "변환 중...",
+    "conversionComplete": "변환 완료!",
+    "conversionCompleteDesc": "ePub 파일이 성공적으로 PDF로 변환되었습니다.",
+    "downloadBtn": "PDF 다운로드",
+    "features": {
+      "privacy": {
+        "title": "개인정보 보호",
+        "description": "모든 변환 작업은 브라우저에서 직접 처리되어 파일이 서버로 전송되지 않습니다."
+      },
+      "fast": {
+        "title": "빠른 변환",
+        "description": "최적화된 알고리즘으로 빠르고 정확한 ePub to PDF 변환을 제공합니다."
+      },
+      "customizable": {
+        "title": "커스터마이징",
+        "description": "페이지 크기, 글꼴, 여백 등을 자유롭게 조정할 수 있습니다."
+      },
+      "responsive": {
+        "title": "모든 기기 지원",
+        "description": "PC, 태블릿, 모바일 등 모든 기기에서 사용할 수 있습니다."
+      }
+    }
+  },
   "fileConverter": {
     "title": "파일 변환 도구 모음 - 무료 온라인 변환기 가이드",
     "description": "HWP to Word, Excel to PDF 등 다양한 파일 형식 변환을 위한 무료 온라인 도구 모음과 안전한 변환 가이드",
