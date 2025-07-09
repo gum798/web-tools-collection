@@ -578,13 +578,19 @@
         }
         
         .language-switcher select {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 5px;
-            color: #333;
+            color: white;
             padding: 8px 12px;
             font-size: 14px;
             width: 90px;
+            text-align: center;
+        }
+        
+        .language-switcher option {
+            background: #333;
+            color: white;
         }
         
         @media (max-width: 768px) {
@@ -748,10 +754,10 @@
         <div class="nav-links" id="navLinks">
             <a href="../password-generator/password.html" class="nav-link" data-i18n="common.passwordGenerator">비밀번호 생성기</a>
             <a href="png-converter.html" class="nav-link" data-i18n="common.pdfConverter">PDF 변환기</a>
-            <a href="hwp-converter.html" class="nav-link">PDF to HWP</a>
-            <a href="epub-to-pdf.html" class="nav-link">ePub to PDF</a>
-            <a href="pdf-watermark.html" class="nav-link active">PDF 워터마크</a>
-            <a href="../image-tools/webp-to-jpg.html" class="nav-link">WEBP to JPG</a>
+            <a href="hwp-converter.html" class="nav-link" data-i18n="common.hwpConverter">PDF to HWP</a>
+            <a href="epub-to-pdf.html" class="nav-link" data-i18n="common.epubToPdf">ePub to PDF</a>
+            <a href="pdf-watermark.html" class="nav-link active" data-i18n="common.pdfWatermark">PDF 워터마크</a>
+            <a href="../image-tools/webp-to-jpg.html" class="nav-link" data-i18n="common.webpToJpg">WEBP to JPG</a>
             <a href="../file-conversion/file-conversion.html" class="nav-link" data-i18n="common.fileConverter">파일 변환 가이드</a>
         </div>
     </div>

@@ -6,6 +6,10 @@
     "pdfConverter": "PDF Converter",
     "fileConverter": "File Converter Guide",
     "imageConverter": "Image Converter",
+    "hwpConverter": "PDF to HWP",
+    "epubToPdf": "ePub to PDF",
+    "pdfWatermark": "PDF Watermark",
+    "webpToJpg": "WEBP to JPG",
     "languageKo": "🇰🇷 KO",
     "languageEn": "🇺🇸 EN"
   },

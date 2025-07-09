@@ -6,6 +6,10 @@
     "pdfConverter": "PDF 변환기",
     "fileConverter": "파일 변환 가이드",
     "imageConverter": "이미지 변환기",
+    "hwpConverter": "PDF to HWP",
+    "epubToPdf": "ePub to PDF",
+    "pdfWatermark": "PDF 워터마크",
+    "webpToJpg": "WEBP to JPG",
     "languageKo": "🇰🇷 KO",
     "languageEn": "🇺🇸 EN"
   },
