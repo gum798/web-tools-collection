@@ -297,6 +297,12 @@
                 font-size: 1.5em;
             }
         }
+
+        @media (max-width: 768px) {
+            .tool-description, .feature-list {
+                display: none;
+            }
+        }
         
         .language-switcher {
             position: fixed;
@@ -514,17 +520,7 @@
         </select>
     </div>
 
-    <div class="nav-bar">
-        <a href="index.html" class="nav-brand">🛠️ 웹 도구 모음</a>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <div class="nav-links" id="navLinks">
-            <a href="password.html" class="nav-link">비밀번호 생성기</a>
-            <a href="pdf-converter.html" class="nav-link">PDF 변환기</a>
-            <a href="pdf-to-hwp.html" class="nav-link">PDF to HWP</a>
-            <a href="webp-to-jpg.html" class="nav-link">WEBP to JPG</a>
-            <a href="file-converter.html" class="nav-link">파일 변환 가이드</a>
-        </div>
-    </div>
+    
 
     
 
@@ -537,7 +533,7 @@
         </div>
         
         <div class="tools-grid">
-            <a href="password.html" class="tool-card">
+            <a href="password-generator/password.html" class="tool-card">
                 <div class="tool-icon">🔑</div>
                 <div class="tool-title" data-i18n="home.tools.passwordGenerator.title">🔐 비밀번호 생성기</div>
                 <div class="tool-description" data-i18n="home.tools.passwordGenerator.description">
@@ -552,10 +548,10 @@
                 <span class="badge">보안 도구</span>
             </a>
             
-            <a href="pdf-converter.html" class="tool-card">
+            <a href="pdf-tools/png-converter.html" class="tool-card">
                 <div class="tool-icon">📄</div>
-                <div class="tool-title" data-i18n="home.tools.pdfConverter.title">📄 PDF 변환기</div>
-                <div class="tool-description" data-i18n="home.tools.pdfConverter.description">
+                <div class="tool-title" data-i18n="home.tools.pdfToPng.title">📄 PDF to PNG 변환기</div>
+                <div class="tool-description" data-i18n="home.tools.pdfToPng.description">
                     PDF 파일을 고품질 PNG 이미지로 변환하세요. 브라우저에서 직접 처리되어 안전하며, 다양한 품질 옵션을 제공합니다.
                 </div>
                 <ul class="feature-list">
@@ -566,8 +562,36 @@
                 </ul>
                 <span class="badge">변환 도구</span>
             </a>
+
+            <a href="pdf-tools/hwp-converter.html" class="tool-card">
+                <div class="tool-icon">📑</div>
+                <div class="tool-title" data-i18n="home.tools.pdfToHwp.title">📑 PDF to HWP 변환기</div>
+                <div class="tool-description" data-i18n="home.tools.pdfToHwp.description">
+                    PDF 파일을 HWP 파일로 변환하는 방법을 안내합니다.
+                </div>
+                <ul class="feature-list">
+                    <li>PDF to HWP 변환 가이드</li>
+                    <li>무료 도구 추천</li>
+                    <li>보안 가이드 제공</li>
+                </ul>
+                <span class="badge">변환 가이드</span>
+            </a>
+
+            <a href="image-tools/webp-to-jpg.html" class="tool-card">
+                <div class="tool-icon">🖼️</div>
+                <div class="tool-title" data-i18n="home.tools.webpToJpg.title">🖼️ WEBP to JPG 변환기</div>
+                <div class="tool-description" data-i18n="home.tools.webpToJpg.description">
+                    WEBP 이미지를 JPG 형식으로 변환합니다. 브라우저에서 안전하게 처리됩니다.
+                </div>
+                <ul class="feature-list">
+                    <li>WEBP to JPG 변환</li>
+                    <li>드래그 앤 드롭 업로드</li>
+                    <li>품질 설정 가능</li>
+                </ul>
+                <span class="badge">이미지 도구</span>
+            </a>
             
-            <a href="file-converter.html" class="tool-card">
+            <a href="file-conversion-guide/file-conversion.html" class="tool-card">
                 <div class="tool-icon">📁</div>
                 <div class="tool-title" data-i18n="home.tools.fileConverter.title">📁 파일 변환 가이드</div>
                 <div class="tool-description" data-i18n="home.tools.fileConverter.description">

@@ -5,6 +5,7 @@
     "passwordGenerator": "Password Generator",
     "pdfConverter": "PDF Converter",
     "fileConverter": "File Converter Guide",
+    "imageConverter": "Image Converter",
     "languageKo": "🇰🇷 KO",
     "languageEn": "🇺🇸 EN"
   },
@@ -21,9 +22,17 @@
         "title": "🔐 Password Generator",
         "description": "Generate secure and strong passwords. You can set length and character types, and check the security strength of generated passwords in real time."
       },
-      "pdfConverter": {
-        "title": "📄 PDF Converter",
+      "pdfToPng": {
+        "title": "📄 PDF to PNG Converter",
         "description": "Convert PDF files to high-quality PNG images. Processed directly in your browser for security, with various quality options available."
+      },
+      "pdfToHwp": {
+        "title": "📑 PDF to HWP Converter",
+        "description": "Guide on how to convert PDF files to HWP files."
+      },
+      "webpToJpg": {
+        "title": "🖼️ WEBP to JPG Converter",
+        "description": "Convert WEBP images to JPG format. Processed securely in your browser."
       },
       "fileConverter": {
         "title": "📁 File Converter Guide",
@@ -141,8 +150,7 @@
       },
       "otherTools": {
         "title": "💻 Other Tools",
-        "description": "Image compressor<br>coming soon"
-      }
+        "description": "Image compressor<br>coming soon"}
     }
   },
   "fileConverter": {

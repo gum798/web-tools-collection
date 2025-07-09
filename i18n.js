@@ -196,7 +196,13 @@ class I18n {
                 return 'password';
             case 'pdf-converter':
                 return 'pdfConverter';
-            case 'file-converter':
+            case 'png-converter':
+                return 'pdfConverter';
+            case 'hwp-converter':
+                return 'fileConverter';
+            case 'webp-to-jpg':
+                return 'imageConverter';
+            case 'file-conversion':
                 return 'fileConverter';
             default:
                 return 'home';
