@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEBP to JPG 변환기</title>
+    <title data-i18n="pdfConverter.title">PDF to PNG 변환기</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="WEBP 파일을 JPG 파일로 변환하세요">
-    <meta name="keywords" content="WEBP JPG 변환, WEBP 이미지 변환, 온라인 WEBP 변환기">
+    <meta name="description" content="PDF 파일을 고품질 PNG 이미지로 변환하세요">
+    <meta name="keywords" content="PDF PNG 변환, PDF 이미지 변환, 온라인 PDF 변환기">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="WEBP to JPG 변환기">
-    <meta property="og:description" content="WEBP 파일을 JPG 파일로 변환하세요">
+    <meta property="og:title" content="PDF to PNG 변환기">
+    <meta property="og:description" content="PDF 파일을 고품질 PNG 이미지로 변환하세요">
     <meta property="og:type" content="website">
     
     <!-- Google AdSense -->
@@ -291,29 +291,51 @@
         .results {
             margin-top: 20px;
         }
-        .download-section {
-            text-align: center;
-            margin-top: 20px;
+        .image-result {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f8f9fa;
         }
-        .download-btn {
+        .image-result img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .image-result .image-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .image-result .download-btn {
             background-color: #28a745;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 5px;
+            padding: 8px 16px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
-            text-decoration: none;
-            display: inline-block;
+            font-size: 14px;
         }
-        .download-btn:hover {
+        .image-result .download-btn:hover {
             background-color: #1e7e34;
         }
-        .limit-message {
-            text-align: center;
-            margin-top: 20px;
-            color: #dc3545;
+        .controls {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
             font-weight: bold;
+        }
+        select {
+            width: 200px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
         }
         .buttons {
             text-align: center;
@@ -336,60 +358,65 @@
 <body>
     <div class="language-switcher">
         <select id="languageSelect">
-            <option value="ko">🇰🇷 KO</option>
-            <option value="en">🇺🇸 EN</option>
+            <option value="ko" data-i18n="common.languageKo">🇰🇷 KO</option>
+            <option value="en" data-i18n="common.languageEn">🇺🇸 EN</option>
         </select>
     </div>
 
     <div class="nav-bar">
-        <a href="../index.html" class="nav-brand">🛠️ 웹 도구 모음</a>
+        <a href="../../index.html" class="nav-brand" data-i18n="common.siteTitle">🛠️ 웹 도구 모음</a>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="../password-generator/index.html" class="nav-link">비밀번호 생성기</a>
-            <a href="../pdf-tools/png-converter.html" class="nav-link">PDF 변환기</a>
-            <a href="../pdf-tools/hwp-converter.html" class="nav-link">PDF to HWP</a>
-            <a href="webp-to-jpg.html" class="nav-link active">WEBP to JPG</a>
-            <a href="../file-conversion-guide/index.html" class="nav-link">파일 변환 가이드</a>
+            <a href="../password-generator/password.html" class="nav-link" data-i18n="common.passwordGenerator">비밀번호 생성기</a>
+            <a href="png-converter.html" class="nav-link active" data-i18n="common.pdfConverter">PDF 변환기</a>
+            <a href="hwp-converter.html" class="nav-link">PDF to HWP</a>
+            <a href="epub-to-pdf.html" class="nav-link">ePub to PDF</a>
+            <a href="../image-tools/webp-to-jpg.html" class="nav-link">WEBP to JPG</a>
+            <a href="../file-conversion/file-conversion.html" class="nav-link" data-i18n="common.fileConverter">파일 변환 가이드</a>
         </div>
     </div>
     
     
     <div class="main-layout">
         <div class="container">
-            <h1>🖼️ WEBP to JPG 변환기</h1>
+            <h1 data-i18n="pdfConverter.mainTitle">📄 PDF to PNG 변환기</h1>
             
             <div class="upload-area" id="uploadArea">
                 <div class="upload-text">
-                    <p>🖼️ WEBP 파일을 여기에 드래그하거나 클릭하여 JPG로 변환하세요</p>
-                    <input type="file" id="fileInput" accept=".webp" style="display: none;">
-                    <button onclick="document.getElementById('fileInput').click()">파일 선택</button>
+                    <p data-i18n="pdfConverter.uploadText">📄 PDF 파일을 여기에 드래그하거나 클릭하여 업로드하세요</p>
+                    <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+                    <button onclick="document.getElementById('fileInput').click()" data-i18n="pdfConverter.chooseFile">파일 선택</button>
                 </div>
             </div>
             
             <div class="controls">
-                <label for="quality">JPG 품질 (1-100):</label>
-                <input type="range" id="quality" min="1" max="100" value="90">
-                <span id="qualityValue">90</span>
+                <label for="quality" data-i18n="pdfConverter.imageQuality">이미지 품질:</label>
+                <select id="quality">
+                    <option value="1" data-i18n="pdfConverter.qualityStandard">표준 (1x)</option>
+                    <option value="2" selected data-i18n="pdfConverter.qualityHigh">고품질 (2x)</option>
+                    <option value="3" data-i18n="pdfConverter.qualityBest">최고품질 (3x)</option>
+                </select>
             </div>
-
+            
             <div class="progress-container" id="progressContainer" style="display: none;">
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <div class="progress-text" id="progressText">변환 중...</div>
+                <div class="progress-text" id="progressText" data-i18n="pdfConverter.converting">변환 중...</div>
             </div>
             
             <div class="results" id="results" style="display: none;">
-                <h3>변환 결과</h3>
-                <div class="download-section">
-                    <a href="#" id="downloadLink" class="download-btn" download>JPG 파일 다운로드</a>
+                <h3 data-i18n="pdfConverter.conversionResults">변환 결과</h3>
+                <div id="imageResults"></div>
+                <div class="buttons">
+                    <button onclick="downloadAll()" data-i18n="pdfConverter.downloadAll">🔽 모든 이미지 다운로드</button>
+                    <button onclick="clearResults()" data-i18n="pdfConverter.clearResults">🗑️ 결과 지우기</button>
                 </div>
             </div>
-
-            <div class="limit-message" id="limitMessage" style="display: none;"></div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
         // Mobile menu toggle
         function toggleMenu() {
@@ -401,7 +428,7 @@
         document.addEventListener('click', function(e) {
             const navBar = document.querySelector('.nav-bar');
             const navLinks = document.getElementById('navLinks');
-            if (navBar && !navBar.contains(e.target) && navLinks.classList.contains('active')) {
+            if (!navBar.contains(e.target) && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
             }
         });
@@ -413,98 +440,195 @@
                 navLinks.classList.remove('active');
             }
         });
-
+        
+        // PDF.js configuration
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        
+        let convertedImages = [];
+        
         // File upload event setup
         document.addEventListener('DOMContentLoaded', function() {
             const fileInput = document.getElementById('fileInput');
             const uploadArea = document.getElementById('uploadArea');
-            const qualitySlider = document.getElementById('quality');
-            const qualityValueSpan = document.getElementById('qualityValue');
             
             fileInput.addEventListener('change', handleFileSelect);
-            qualitySlider.addEventListener('input', (event) => {
-                qualityValueSpan.textContent = event.target.value;
-            });
             
             // Drag and drop events
             uploadArea.addEventListener('dragover', handleDragOver);
             uploadArea.addEventListener('dragleave', handleDragLeave);
             uploadArea.addEventListener('drop', handleDrop);
         });
-
+        
         function handleFileSelect(event) {
             const file = event.target.files[0];
-            if (file && file.type === 'image/webp') {
-                convertWebpToJpg(file);
+            if (file && file.type === 'application/pdf') {
+                convertPdfToPng(file);
             } else {
-                alert('WEBP 파일만 선택 가능합니다.');
+                const alertMsg = window.i18n ? window.i18n.t('pdfConverter.alerts.selectPdf') : 'Please select a PDF file.';
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast(alertMsg, 'warning');
+                } else {
+                    alert(alertMsg);
+                }
             }
         }
-
+        
         function handleDragOver(event) {
             event.preventDefault();
             event.currentTarget.classList.add('drag-over');
         }
-
+        
         function handleDragLeave(event) {
             event.currentTarget.classList.remove('drag-over');
         }
-
+        
         function handleDrop(event) {
             event.preventDefault();
             event.currentTarget.classList.remove('drag-over');
             
             const files = event.dataTransfer.files;
-            if (files.length > 0 && files[0].type === 'image/webp') {
-                convertWebpToJpg(files[0]);
+            if (files.length > 0 && files[0].type === 'application/pdf') {
+                convertPdfToPng(files[0]);
             } else {
-                alert('WEBP 파일만 업로드 가능합니다.');
+                const alertMsg = window.i18n ? window.i18n.t('pdfConverter.alerts.uploadPdf') : 'Please upload a PDF file.';
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast(alertMsg, 'warning');
+                } else {
+                    alert(alertMsg);
+                }
             }
         }
-
-        async function convertWebpToJpg(file) {
+        
+        async function convertPdfToPng(file) {
             const progressContainer = document.getElementById('progressContainer');
             const progressFill = document.getElementById('progressFill');
             const progressText = document.getElementById('progressText');
             const results = document.getElementById('results');
-            const downloadLink = document.getElementById('downloadLink');
-            const quality = parseFloat(document.getElementById('quality').value) / 100;
-
+            const imageResults = document.getElementById('imageResults');
+            
+            // Initialize
+            convertedImages = [];
+            imageResults.innerHTML = '';
+            results.style.display = 'none';
             progressContainer.style.display = 'block';
             progressFill.style.width = '0%';
-            progressText.textContent = '변환 중...';
-            results.style.display = 'none';
-
+            progressText.textContent = window.i18n ? window.i18n.t('pdfConverter.loadingPdf') : 'Loading PDF...';
+            
             try {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = img.width;
-                        canvas.height = img.height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0);
-
-                        const jpgDataUrl = canvas.toDataURL('image/jpeg', quality);
-                        const fileName = file.name.replace('.webp', '.jpg');
-
-                        downloadLink.href = jpgDataUrl;
-                        downloadLink.download = fileName;
-                        results.style.display = 'block';
-                        progressContainer.style.display = 'none';
-                        progressFill.style.width = '100%';
-                        progressText.textContent = '변환 완료!';
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+                const totalPages = pdf.numPages;
+                
+                progressText.textContent = window.i18n ? window.i18n.t('pdfConverter.convertingPages', {totalPages}) : `Converting ${totalPages} pages...`;
+                
+                const quality = parseFloat(document.getElementById('quality').value);
+                
+                for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+                    const page = await pdf.getPage(pageNumber);
+                    const viewport = page.getViewport({ scale: quality });
+                    
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
                     };
-                    img.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-
+                    
+                    await page.render(renderContext).promise;
+                    
+                    // Convert canvas to PNG
+                    const dataUrl = canvas.toDataURL('image/png');
+                    const fileName = `${file.name.replace('.pdf', '')}_page_${pageNumber}.png`;
+                    
+                    convertedImages.push({
+                        dataUrl: dataUrl,
+                        fileName: fileName,
+                        pageNumber: pageNumber
+                    });
+                    
+                    // Update progress
+                    const progress = (pageNumber / totalPages) * 100;
+                    progressFill.style.width = progress + '%';
+                    progressText.textContent = window.i18n ? window.i18n.t('pdfConverter.pagesConverted', {pageNumber, totalPages}) : `${pageNumber}/${totalPages} pages converted`;
+                    
+                    // Display result image
+                    displayImage(dataUrl, fileName, pageNumber);
+                }
+                
+                progressContainer.style.display = 'none';
+                results.style.display = 'block';
+                
             } catch (error) {
-                console.error('Error during WEBP to JPG conversion:', error);
-                alert('오류가 발생했습니다. 다시 시도해주세요.');
+                console.error('Error during PDF conversion:', error);
+                const errorMsg = window.i18n ? window.i18n.t('pdfConverter.alerts.conversionError') : 'An error occurred during PDF conversion.';
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast(errorMsg, 'error');
+                } else {
+                    alert(errorMsg);
+                }
                 progressContainer.style.display = 'none';
             }
+        }
+        
+        function displayImage(dataUrl, fileName, pageNumber) {
+            const imageResults = document.getElementById('imageResults');
+            
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'image-result';
+            
+            const pageText = window.i18n ? window.i18n.t('pdfConverter.page') : 'Page';
+            const downloadText = window.i18n ? window.i18n.t('pdfConverter.download') : 'Download';
+            
+            resultDiv.innerHTML = `
+                <div class="image-info">
+                    <span>${pageText} ${pageNumber}</span>
+                    <button class="download-btn" onclick="downloadImage('${dataUrl}', '${fileName}')">
+                        ${downloadText}
+                    </button>
+                </div>
+                <img src="${dataUrl}" alt="${pageText} ${pageNumber}">
+            `;
+            
+            imageResults.appendChild(resultDiv);
+        }
+        
+        function downloadImage(dataUrl, fileName) {
+            const link = document.createElement('a');
+            link.download = fileName;
+            link.href = dataUrl;
+            link.click();
+        }
+        
+        function downloadAll() {
+            if (convertedImages.length === 0) {
+                const alertMsg = window.i18n ? window.i18n.t('pdfConverter.alerts.noImages') : 'No converted images available.';
+                if (window.feedbackSystem) {
+                    window.feedbackSystem.showToast(alertMsg, 'warning');
+                } else {
+                    alert(alertMsg);
+                }
+                return;
+            }
+            
+            convertedImages.forEach(image => {
+                setTimeout(() => {
+                    downloadImage(image.dataUrl, image.fileName);
+                }, 100);
+            });
+        }
+        
+        function clearResults() {
+            const results = document.getElementById('results');
+            const imageResults = document.getElementById('imageResults');
+            const fileInput = document.getElementById('fileInput');
+            
+            convertedImages = [];
+            imageResults.innerHTML = '';
+            results.style.display = 'none';
+            fileInput.value = '';
         }
     </script>
 </body>

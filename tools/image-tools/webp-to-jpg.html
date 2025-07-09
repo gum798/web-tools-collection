@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF to HWP 변환기</title>
+    <title>WEBP to JPG 변환기</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="PDF 파일을 HWP 파일로 변환하세요">
-    <meta name="keywords" content="PDF HWP 변환, PDF HWP 변환, 온라인 PDF 변환기">
+    <meta name="description" content="WEBP 파일을 JPG 파일로 변환하세요">
+    <meta name="keywords" content="WEBP JPG 변환, WEBP 이미지 변환, 온라인 WEBP 변환기">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="PDF to HWP 변환기">
-    <meta property="og:description" content="PDF 파일을 HWP 파일로 변환하세요">
+    <meta property="og:title" content="WEBP to JPG 변환기">
+    <meta property="og:description" content="WEBP 파일을 JPG 파일로 변환하세요">
     <meta property="og:type" content="website">
     
     <!-- Google AdSense -->
@@ -342,30 +342,37 @@
     </div>
 
     <div class="nav-bar">
-        <a href="../index.html" class="nav-brand">🛠️ 웹 도구 모음</a>
+        <a href="../../index.html" class="nav-brand">🛠️ 웹 도구 모음</a>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="../password-generator/index.html" class="nav-link">비밀번호 생성기</a>
-            <a href="png-converter.html" class="nav-link">PDF 변환기</a>
-            <a href="hwp-converter.html" class="nav-link active">PDF to HWP</a>
-            <a href="../image-tools/webp-to-jpg.html" class="nav-link">WEBP to JPG</a>
-            <a href="../file-conversion-guide/index.html" class="nav-link">파일 변환 가이드</a>
+            <a href="../password-generator/password.html" class="nav-link">비밀번호 생성기</a>
+            <a href="../pdf-tools/png-converter.html" class="nav-link">PDF 변환기</a>
+            <a href="../pdf-tools/hwp-converter.html" class="nav-link">PDF to HWP</a>
+            <a href="../pdf-tools/epub-to-pdf.html" class="nav-link">ePub to PDF</a>
+            <a href="webp-to-jpg.html" class="nav-link active">WEBP to JPG</a>
+            <a href="../file-conversion/file-conversion.html" class="nav-link">파일 변환 가이드</a>
         </div>
     </div>
     
     
     <div class="main-layout">
         <div class="container">
-            <h1>📄 PDF to HWP 변환기</h1>
+            <h1>🖼️ WEBP to JPG 변환기</h1>
             
             <div class="upload-area" id="uploadArea">
                 <div class="upload-text">
-                    <p>📄 PDF 파일을 여기에 드래그하거나 클릭하여 HWP로 변환하세요</p>
-                    <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+                    <p>🖼️ WEBP 파일을 여기에 드래그하거나 클릭하여 JPG로 변환하세요</p>
+                    <input type="file" id="fileInput" accept=".webp" style="display: none;">
                     <button onclick="document.getElementById('fileInput').click()">파일 선택</button>
                 </div>
             </div>
             
+            <div class="controls">
+                <label for="quality">JPG 품질 (1-100):</label>
+                <input type="range" id="quality" min="1" max="100" value="90">
+                <span id="qualityValue">90</span>
+            </div>
+
             <div class="progress-container" id="progressContainer" style="display: none;">
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
@@ -376,7 +383,7 @@
             <div class="results" id="results" style="display: none;">
                 <h3>변환 결과</h3>
                 <div class="download-section">
-                    <a href="#" id="downloadLink" class="download-btn" download>HWP 파일 다운로드</a>
+                    <a href="#" id="downloadLink" class="download-btn" download>JPG 파일 다운로드</a>
                 </div>
             </div>
 
@@ -384,10 +391,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        const apiKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDIzZTBhMWM2MGM2MWJkN2FkNjc3YzFhOGJjMTI2YWQzMjIxZTQzNWU3ZjlhYjQwYTcxZDliY2YzZGQ3NmZmZTc0MmY2YTE0OGRiNmE3N2EiLCJpYXQiOjE3NTIwMjI3NTAuNzc3NzMxLCJuYmYiOjE3NTIwMjI3NTAuNzc3NzMzLCJleHAiOjQ5MDc2OTYzNTAuNzc0NDU1LCJzdWIiOiI3MjM5MTQ2MSIsInNjb3BlcyI6WyJ1c2VyLnJlYWQiLCJ0YXNrLnJlYWQiLCJ0YXNrLndyaXRlIiwid2ViaG9vay5yZWFkIiwid2ViaG9vay53cml0ZSIsInByZXNldC5yZWFkIiwicHJlc2V0LndyaXRlIl19.qqQX_gKrJiJrC0IGKRq13folAhz8oIRmv39U_oUljIG8_x__e1gWotYuN3FQdvdHPBNlksPfXehnaUIO9NJ0VmywXFw5nIBz4GeLO5lyNlExXDX2vOM0iQFgXi1YCJTpUXc5K1ug3sXoebqfeQMF60pLGiR4QqbvyqhH3gmwcSDS-fRevd7BtQLTo6ZG0Dw-lLkn8bEjWFBzx3assewPwErduB28faNcapGAqJz_4HJoKJPRBayXR4x0Xt1WOp8y8cPdmrkMHFUyC0ZfKt9JFjesk6hPFCpE3Zack58ZUDDJ3lD41et-L0d0abMYeThOo2SMDbBdyLL5T8wSSIETje44mnEHCplGHvUSU5pCMgpG5K7rXOlnnyvsnyu6Qu0koV0Frp375Ox7iyE_BRL370YX6y0g3aiO3kuKxHp2JWlEBkMkcZtmAqHtqOSDkunGWqMsmtpwtcyac6tDWTnC9LQvAv7nYEyWfPeRvRmfX55__gZGlE6Pu_9l0t-ssvma7z-PXnuOPQg5eTRpjQLysC3o1jSBfmO1wDCbIrVvNGfn75XLbawOtufwIA_dD8YxGH3aVqGGZBbZPDKktxFUZO-RuoFJSY7wh5RU79BY02du0aJJDXIRDwUQgl0C2pbtPDlC6vCZQdZ5IXJXRTro3_YyHPOcZ4JOq2MwrsHREYI';
-
         // Mobile menu toggle
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
@@ -415,8 +419,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             const fileInput = document.getElementById('fileInput');
             const uploadArea = document.getElementById('uploadArea');
+            const qualitySlider = document.getElementById('quality');
+            const qualityValueSpan = document.getElementById('qualityValue');
             
             fileInput.addEventListener('change', handleFileSelect);
+            qualitySlider.addEventListener('input', (event) => {
+                qualityValueSpan.textContent = event.target.value;
+            });
             
             // Drag and drop events
             uploadArea.addEventListener('dragover', handleDragOver);
@@ -426,10 +435,10 @@
 
         function handleFileSelect(event) {
             const file = event.target.files[0];
-            if (file && file.type === 'application/pdf') {
-                convertPdfToHwp(file);
+            if (file && file.type === 'image/webp') {
+                convertWebpToJpg(file);
             } else {
-                alert('PDF 파일만 선택 가능합니다.');
+                alert('WEBP 파일만 선택 가능합니다.');
             }
         }
 
@@ -447,121 +456,53 @@
             event.currentTarget.classList.remove('drag-over');
             
             const files = event.dataTransfer.files;
-            if (files.length > 0 && files[0].type === 'application/pdf') {
-                convertPdfToHwp(files[0]);
+            if (files.length > 0 && files[0].type === 'image/webp') {
+                convertWebpToJpg(files[0]);
             } else {
-                alert('PDF 파일만 업로드 가능합니다.');
+                alert('WEBP 파일만 업로드 가능합니다.');
             }
         }
 
-        async function convertPdfToHwp(file) {
-            const limitMessage = document.getElementById('limitMessage');
-            limitMessage.style.display = 'none';
-
-            const conversionData = JSON.parse(localStorage.getItem('conversionData')) || { count: 0, firstConversion: null };
-            if (conversionData.count >= 25) {
-                const now = new Date().getTime();
-                const firstConversion = new Date(conversionData.firstConversion).getTime();
-                const diff = now - firstConversion;
-                if (diff < 24 * 60 * 60 * 1000) {
-                    const resetTime = new Date(firstConversion + 24 * 60 * 60 * 1000);
-                    limitMessage.textContent = `변환 한도에 도달했습니다. ${resetTime.toLocaleString()}에 다시 사용 가능합니다.`;
-                    limitMessage.style.display = 'block';
-                    return;
-                } else {
-                    localStorage.removeItem('conversionData');
-                }
-            }
-
+        async function convertWebpToJpg(file) {
             const progressContainer = document.getElementById('progressContainer');
             const progressFill = document.getElementById('progressFill');
             const progressText = document.getElementById('progressText');
             const results = document.getElementById('results');
             const downloadLink = document.getElementById('downloadLink');
+            const quality = parseFloat(document.getElementById('quality').value) / 100;
 
             progressContainer.style.display = 'block';
             progressFill.style.width = '0%';
-            progressText.textContent = '변환 준비 중...';
+            progressText.textContent = '변환 중...';
             results.style.display = 'none';
 
             try {
-                // 1. Create a job
-                progressText.textContent = '작업 생성 중...';
-                const jobResponse = await axios.post('https://api.cloudconvert.com/v2/jobs', {
-                    "tasks": {
-                        "import-1": {
-                            "operation": "import/upload"
-                        },
-                        "task-1": {
-                            "operation": "convert",
-                            "input": "import-1",
-                            "output_format": "hwp"
-                        },
-                        "export-1": {
-                            "operation": "export/url",
-                            "input": "task-1",
-                            "inline": false,
-                            "archive_multiple_files": false
-                        }
-                    }
-                }, {
-                    headers: {
-                        'Authorization': `Bearer ${apiKey}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
 
-                const job = jobResponse.data.data;
-                const uploadUrl = job.tasks.find(task => task.name === 'import-1').result.form.url;
-                const uploadParams = job.tasks.find(task => task.name === 'import-1').result.form.parameters;
+                        const jpgDataUrl = canvas.toDataURL('image/jpeg', quality);
+                        const fileName = file.name.replace('.webp', '.jpg');
 
-                // 2. Upload the file
-                progressText.textContent = '파일 업로드 중...';
-                const formData = new FormData();
-                for (const key in uploadParams) {
-                    formData.append(key, uploadParams[key]);
-                }
-                formData.append('file', file);
-
-                await axios.post(uploadUrl, formData, {
-                    onUploadProgress: (progressEvent) => {
-                        const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                        progressFill.style.width = `${percentCompleted}%`;
-                    }
-                });
-
-                // 3. Wait for the conversion to finish
-                progressText.textContent = '변환 중...';
-                let jobStatusResponse = await axios.get(`https://api.cloudconvert.com/v2/jobs/${job.id}`, {
-                    headers: { 'Authorization': `Bearer ${apiKey}` }
-                });
-
-                while (jobStatusResponse.data.data.status !== 'finished') {
-                    await new Promise(resolve => setTimeout(resolve, 1000));
-                    jobStatusResponse = await axios.get(`https://api.cloudconvert.com/v2/jobs/${job.id}`, {
-                        headers: { 'Authorization': `Bearer ${apiKey}` }
-                    });
-                }
-
-                // 4. Get the download link
-                const exportTask = jobStatusResponse.data.data.tasks.find(task => task.name === 'export-1');
-                const downloadUrl = exportTask.result.files[0].url;
-
-                downloadLink.href = downloadUrl;
-                downloadLink.download = exportTask.result.files[0].filename;
-                results.style.display = 'block';
-                progressContainer.style.display = 'none';
-
-                // Update conversion count
-                const now = new Date().getTime();
-                if (!conversionData.firstConversion) {
-                    conversionData.firstConversion = new Date().toISOString();
-                }
-                conversionData.count++;
-                localStorage.setItem('conversionData', JSON.stringify(conversionData));
+                        downloadLink.href = jpgDataUrl;
+                        downloadLink.download = fileName;
+                        results.style.display = 'block';
+                        progressContainer.style.display = 'none';
+                        progressFill.style.width = '100%';
+                        progressText.textContent = '변환 완료!';
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
 
             } catch (error) {
-                console.error('Error during PDF to HWP conversion:', error);
+                console.error('Error during WEBP to JPG conversion:', error);
                 alert('오류가 발생했습니다. 다시 시도해주세요.');
                 progressContainer.style.display = 'none';
             }
