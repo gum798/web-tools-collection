@@ -1,39 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- 메인 페이지 -->
   <url>
     <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/</loc>
-    <lastmod>2025-01-08</lastmod>
+    <lastmod>2025-01-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/?lang=ko"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/"/>
   </url>
+  
+  <!-- 비밀번호 생성기 -->
   <url>
-    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/password.html</loc>
-    <lastmod>2025-01-08</lastmod>
+    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/password-generator/password.html</loc>
+    <lastmod>2025-01-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/password.html?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/password.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/password.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/password-generator/password.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/password-generator/password.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/password-generator/password.html"/>
   </url>
+  
+  <!-- PDF 도구들 -->
   <url>
-    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/pdf-converter.html</loc>
-    <lastmod>2025-01-08</lastmod>
+    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/png-converter.html</loc>
+    <lastmod>2025-01-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/pdf-converter.html?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/pdf-converter.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/pdf-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/png-converter.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/png-converter.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/png-converter.html"/>
   </url>
+  
   <url>
-    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html</loc>
-    <lastmod>2025-01-08</lastmod>
+    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/hwp-converter.html</loc>
+    <lastmod>2025-01-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/file-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/hwp-converter.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/hwp-converter.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/hwp-converter.html"/>
+  </url>
+  
+  <url>
+    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/epub-to-pdf.html</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/epub-to-pdf.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/epub-to-pdf.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/epub-to-pdf.html"/>
+  </url>
+  
+  <url>
+    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/pdf-watermark.html</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/pdf-watermark.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/pdf-watermark.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/pdf-tools/pdf-watermark.html"/>
+  </url>
+  
+  <!-- 이미지 도구들 -->
+  <url>
+    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/image-tools/webp-to-jpg.html</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/image-tools/webp-to-jpg.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/image-tools/webp-to-jpg.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/image-tools/webp-to-jpg.html"/>
+  </url>
+  
+  <!-- 파일 변환 가이드 -->
+  <url>
+    <loc>https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/file-conversion/file-conversion.html</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/file-conversion/file-conversion.html?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/file-conversion/file-conversion.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web-tools-collection-git-main-seo-junghwas-projects.vercel.app/tools/file-conversion/file-conversion.html"/>
   </url>
 </urlset>
