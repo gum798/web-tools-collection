@@ -305,6 +305,94 @@
             width: 100%;
         }
         
+        /* 색상 선택기 스타일 */
+        .color-picker-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .color-preview {
+            width: 60px;
+            height: 40px;
+            border-radius: 6px;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .color-preview:hover {
+            transform: scale(1.05);
+        }
+        
+        .color-picker-container input[type="color"] {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+        }
+        
+        .color-presets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        
+        .color-preset {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .color-preset:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .color-preset.active {
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);
+        }
+        
+        .color-hex-input {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 0 10px;
+            width: fit-content;
+        }
+        
+        .color-hex-input span {
+            font-weight: bold;
+            color: #666;
+            font-family: monospace;
+        }
+        
+        .color-hex-input input {
+            border: none;
+            outline: none;
+            padding: 8px 5px;
+            font-family: monospace;
+            font-size: 14px;
+            width: 80px;
+            text-transform: uppercase;
+        }
+        
         .range-value {
             display: inline-block;
             margin-left: 10px;
@@ -529,6 +617,28 @@
             .position-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .color-picker-container {
+                padding: 12px;
+            }
+            
+            .color-presets {
+                gap: 6px;
+            }
+            
+            .color-preset {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .color-hex-input {
+                padding: 0 8px;
+            }
+            
+            .color-hex-input input {
+                width: 70px;
+                font-size: 13px;
+            }
         }
         
         /* 미리보기 스타일 */
@@ -711,7 +821,24 @@
                     
                     <div class="option-group">
                         <label for="textColor" data-i18n="pdfWatermark.textColor">텍스트 색상:</label>
-                        <input type="color" id="textColor" value="#e74c3c" />
+                        <div class="color-picker-container">
+                            <div class="color-preview" id="colorPreview" style="background-color: #e74c3c;"></div>
+                            <input type="color" id="textColor" value="#e74c3c" />
+                            <div class="color-presets">
+                                <div class="color-preset" data-color="#000000" style="background-color: #000000;" title="검정"></div>
+                                <div class="color-preset" data-color="#e74c3c" style="background-color: #e74c3c;" title="빨강"></div>
+                                <div class="color-preset" data-color="#3498db" style="background-color: #3498db;" title="파랑"></div>
+                                <div class="color-preset" data-color="#2ecc71" style="background-color: #2ecc71;" title="초록"></div>
+                                <div class="color-preset" data-color="#f39c12" style="background-color: #f39c12;" title="주황"></div>
+                                <div class="color-preset" data-color="#9b59b6" style="background-color: #9b59b6;" title="보라"></div>
+                                <div class="color-preset" data-color="#95a5a6" style="background-color: #95a5a6;" title="회색"></div>
+                                <div class="color-preset" data-color="#34495e" style="background-color: #34495e;" title="네이비"></div>
+                            </div>
+                            <div class="color-hex-input">
+                                <span>#</span>
+                                <input type="text" id="hexColorInput" value="e74c3c" maxlength="6" placeholder="ffffff">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -799,6 +926,7 @@
                 this.initializeElements();
                 this.bindEvents();
                 this.updateRangeValues();
+                this.updateColorPreview(); // 초기 색상 미리보기 설정
                 this.updatePreview(); // 초기 미리보기 설정
             }
             
@@ -837,6 +965,11 @@
                 this.previewText = document.getElementById('previewText');
                 this.previewImage = document.getElementById('previewImage');
                 
+                // Color picker elements
+                this.colorPreview = document.getElementById('colorPreview');
+                this.hexColorInput = document.getElementById('hexColorInput');
+                this.colorPresets = document.querySelectorAll('.color-preset');
+                
                 // 초기화 확인
                 console.log('Elements initialized:', {
                     textSize: !!this.textSize,
@@ -869,8 +1002,18 @@
                 
                 // Text input changes
                 this.watermarkText.addEventListener('input', () => this.updatePreview());
-                this.textColor.addEventListener('input', () => this.updatePreview());
+                this.textColor.addEventListener('input', () => {
+                    this.updateColorPreview();
+                    this.updatePreview();
+                });
                 this.watermarkImage.addEventListener('change', () => this.updatePreview());
+                
+                // Color picker events
+                this.colorPreview.addEventListener('click', () => this.textColor.click());
+                this.hexColorInput.addEventListener('input', (e) => this.handleHexInput(e));
+                this.colorPresets.forEach(preset => {
+                    preset.addEventListener('click', (e) => this.selectColorPreset(e));
+                });
                 
                 // Range inputs - 안전하게 이벤트 리스너 추가
                 if (this.textSize) {
@@ -1092,6 +1235,46 @@
                 this.positionButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 this.selectedPosition = btn.dataset.position;
+            }
+            
+            // 색상 관련 메소드들
+            updateColorPreview() {
+                const color = this.textColor.value;
+                this.colorPreview.style.backgroundColor = color;
+                this.hexColorInput.value = color.substring(1);
+                this.updateColorPresetSelection(color);
+            }
+            
+            updateColorPresetSelection(color) {
+                this.colorPresets.forEach(preset => {
+                    preset.classList.remove('active');
+                    if (preset.dataset.color.toLowerCase() === color.toLowerCase()) {
+                        preset.classList.add('active');
+                    }
+                });
+            }
+            
+            selectColorPreset(e) {
+                const color = e.target.dataset.color;
+                this.textColor.value = color;
+                this.updateColorPreview();
+                this.updatePreview();
+            }
+            
+            handleHexInput(e) {
+                let hex = e.target.value.replace(/[^0-9a-fA-F]/g, '');
+                if (hex.length > 6) {
+                    hex = hex.substring(0, 6);
+                }
+                e.target.value = hex;
+                
+                if (hex.length === 6) {
+                    const color = '#' + hex;
+                    this.textColor.value = color;
+                    this.colorPreview.style.backgroundColor = color;
+                    this.updateColorPresetSelection(color);
+                    this.updatePreview();
+                }
             }
             
             handleDragOver(e) {
