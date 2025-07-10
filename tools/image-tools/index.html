@@ -4,129 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="image.title">이미지 변환기 모음</title>
-    
     <!-- SEO Meta Tags -->
-    <meta name="description" content="이미지 변환 도구 모음. WEBP to PNG, PNG to WEBP, AI 변환기, SVG 변환기, HEIC to JPG 등 다양한 이미지 변환 도구를 제공합니다.">
-    <meta name="keywords" content="이미지 변환기, WEBP to PNG, PNG to WEBP, AI 변환기, SVG 변환기, HEIC to JPG, 이미지 도구">
-    
+    <meta name="description" content="이미지 변환 도구 모음. WEBP to JPG, PNG to WEBP, AI 변환기, SVG 변환기, HEIC to JPG 등 다양한 이미지 변환 도구를 제공합니다.">
+    <meta name="keywords" content="이미지 변환기, WEBP to JPG, PNG to WEBP, AI 변환기, SVG 변환기, HEIC to JPG, 이미지 도구">
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖼️</text></svg>">
-    
-    <!-- i18n System -->
-    <script src="../../i18n.js"></script>
-    
-    <!-- Common Styles -->
     <link rel="stylesheet" href="../../layout/layout.css">
     <link rel="stylesheet" href="../../layout/nav.css">
-    <link rel="stylesheet" href="image-tools.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-        
-        .language-switcher {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 1000;
-        }
-        
-        .language-switcher select {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #fff;
-            cursor: pointer;
-        }
-        
-        #navbar-placeholder {
-            margin-bottom: 20px;
-        }
-        
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 1.2rem;
-            color: #666;
-        }
-        
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .tool-card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        
-        .tool-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .tool-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .tool-title {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .tool-description {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 15px;
-        }
-        
-        .badge {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 15px;
-            background: #667eea;
-            color: #fff;
-            font-size: 0.875rem;
-        }
-        
-        .coming-soon {
-            opacity: 0.7;
-        }
-        
-        .coming-soon .badge {
-            background: #aaa;
-        }
-    </style>
-
+    <link rel="stylesheet" href="./image-tools.css">
 </head>
 <body>
     <div class="language-switcher">
@@ -136,60 +21,89 @@
         </select>
     </div>
     <div id="navbar-placeholder"></div>
-
-    <div class="main-container">
-        <div class="header">
+    <div class="main-layout">
+        <div class="container">
             <h1 data-i18n="image.mainTitle">🖼️ 이미지 변환기 모음</h1>
-            <p data-i18n="image.mainDescription">다양한 이미지 변환 도구를 한 곳에서 이용하세요. 모든 도구는 브라우저에서 안전하게 처리됩니다.</p>
-        </div>
-        
-        <div class="tools-grid">
-            <a href="webp-to-jpg.html" class="tool-card">
-                <div class="tool-icon">🔄</div>
-                <div class="tool-title" data-i18n="image.tools.webpToJpg.title">WEBP to JPG 변환기</div>
-                <div class="tool-description" data-i18n="image.tools.webpToJpg.description">
-                    WEBP 이미지를 JPG 형식으로 변환합니다. 품질 설정과 일괄 처리를 지원합니다.
-                </div>
-                <span class="badge">변환 도구</span>
-            </a>
-            
-            <div class="tool-card coming-soon">
-                <div class="tool-icon">📷</div>
-                <div class="tool-title" data-i18n="image.tools.pngToWebp.title">PNG to WEBP 변환기</div>
-                <div class="tool-description" data-i18n="image.tools.pngToWebp.description">
-                    PNG 이미지를 WEBP 형식으로 변환하여 파일 크기를 줄입니다.
-                </div>
-                <span class="badge coming-soon">준비 중</span>
+            <div class="security-warning">
+                <h4 data-i18n="image.securityTitle">🔒 개인정보 보호</h4>
+                <ul>
+                    <li><strong>브라우저 처리:</strong> 모든 변환은 사용자 브라우저에서 직접 처리</li>
+                    <li><strong>서버 전송 없음:</strong> 이미지가 외부 서버로 전송되지 않음</li>
+                    <li><strong>즉시 삭제:</strong> 변환 후 원본 파일 자동 제거</li>
+                    <li><strong>고품질 처리:</strong> 원본 품질 유지하며 빠른 변환</li>
+                </ul>
             </div>
             
-            <div class="tool-card coming-soon">
-                <div class="tool-icon">🤖</div>
-                <div class="tool-title" data-i18n="image.tools.aiConverter.title">AI 변환기</div>
-                <div class="tool-description" data-i18n="image.tools.aiConverter.description">
-                    AI 기술을 활용한 SVG, JPG, PNG, GIF 간 고품질 변환을 제공합니다.
+            <div class="supported-formats">
+                <h4>📋 지원 형식</h4>
+                <div class="format-grid">
+                    <div class="format-item">WEBP</div>
+                    <div class="format-item">JPG</div>
+                    <div class="format-item">PNG</div>
+                    <div class="format-item">SVG</div>
+                    <div class="format-item">GIF</div>
+                    <div class="format-item">HEIC</div>
                 </div>
-                <span class="badge coming-soon">준비 중</span>
             </div>
             
-            <div class="tool-card coming-soon">
-                <div class="tool-icon">🎨</div>
-                <div class="tool-title" data-i18n="image.tools.svgConverter.title">SVG 변환기</div>
-                <div class="tool-description" data-i18n="image.tools.svgConverter.description">
-                    SVG 파일을 JPG, PNG, GIF 형식으로 변환합니다. 크기와 품질 조정이 가능합니다.
+            <div class="converter-grid">
+                <a href="webp-to-jpg.html" class="converter-card available">
+                    <h3 data-i18n="image.tools.webpToJpg.title">🔄 WEBP to JPG 변환기 <span class="popular-badge" data-i18n="image.tools.popular">인기</span></h3>
+                    <div class="tool-description" data-i18n="image.tools.webpToJpg.description">
+                        WEBP 이미지를 JPG 형식으로 변환합니다. 품질 설정과 일괄 처리를 지원합니다.
+                    </div>
+                    <span class="tool-link available">내장 도구</span>
+                </a>
+                <div class="converter-card coming-soon">
+                    <h3 data-i18n="image.tools.pngToWebp.title">📷 PNG to WEBP 변환기 <span class="coming-soon-badge" data-i18n="image.tools.comingSoon">준비중</span></h3>
+                    <div class="tool-description" data-i18n="image.tools.pngToWebp.description">
+                        PNG 이미지를 WEBP 형식으로 변환하여 파일 크기를 줄입니다.
+                    </div>
+                    <span class="tool-link coming-soon">준비 중</span>
                 </div>
-                <span class="badge coming-soon">준비 중</span>
+                <div class="converter-card coming-soon">
+                    <h3 data-i18n="image.tools.aiConverter.title">🤖 AI 이미지 변환기 <span class="coming-soon-badge" data-i18n="image.tools.comingSoon">준비중</span></h3>
+                    <div class="tool-description" data-i18n="image.tools.aiConverter.description">
+                        AI 기술을 활용한 SVG, JPG, PNG, GIF 간 고품질 변환을 제공합니다.
+                    </div>
+                    <span class="tool-link coming-soon">준비 중</span>
+                </div>
+                <div class="converter-card coming-soon">
+                    <h3 data-i18n="image.tools.svgConverter.title">🎨 SVG 변환기 <span class="coming-soon-badge" data-i18n="image.tools.comingSoon">준비중</span></h3>
+                    <div class="tool-description" data-i18n="image.tools.svgConverter.description">
+                        SVG 파일을 JPG, PNG, GIF 형식으로 변환합니다. 크기와 품질 조정이 가능합니다.
+                    </div>
+                    <span class="tool-link coming-soon">준비 중</span>
+                </div>
+                <div class="converter-card coming-soon">
+                    <h3 data-i18n="image.tools.heicToJpg.title">📱 HEIC to JPG 변환기 <span class="coming-soon-badge" data-i18n="image.tools.comingSoon">준비중</span></h3>
+                    <div class="tool-description" data-i18n="image.tools.heicToJpg.description">
+                        아이폰 HEIC 이미지를 JPG 형식으로 변환하여 호환성을 개선합니다.
+                    </div>
+                    <span class="tool-link coming-soon">준비 중</span>
+                </div>
             </div>
-            
-            <div class="tool-card coming-soon">
-                <div class="tool-icon">📱</div>
-                <div class="tool-title" data-i18n="image.tools.heicToJpg.title">HEIC to JPG 변환기</div>
-                <div class="tool-description" data-i18n="image.tools.heicToJpg.description">
-                    아이폰 HEIC 이미지를 JPG 형식으로 변환하여 호환성을 개선합니다.
-                </div>
-                <span class="badge coming-soon">준비 중</span>
+            <div class="guide-section">
+                <h4 data-i18n="image.recommendedTools">💡 추천 이미지 편집/변환 도구 특징</h4>
+                <ul>
+                    <li><strong>GIMP:</strong> 무료 오픈소스, 강력한 이미지 편집 기능</li>
+                    <li><strong>Photopea:</strong> 브라우저 기반, 포토샵과 유사한 인터페이스</li>
+                    <li><strong>Canva:</strong> 온라인 디자인, 다양한 템플릿 제공</li>
+                    <li><strong>TinyPNG:</strong> 온라인 이미지 압축, 품질 손실 최소화</li>
+                </ul>
+            </div>
+            <div class="guide-section">
+                <h4 data-i18n="image.offlineAlternatives">🔧 오프라인 대안 (보안 중요 시)</h4>
+                <ul>
+                    <li><strong>Adobe Photoshop:</strong> 유료, 최고 수준의 이미지 편집</li>
+                    <li><strong>XnConvert:</strong> 무료, 일괄 변환 및 편집 지원</li>
+                    <li><strong>IrfanView:</strong> 무료, 가벼운 이미지 뷰어 및 변환기</li>
+                </ul>
             </div>
         </div>
     </div>
+    <script src="../../js/utils/feedback.js"></script>
     <script src="../../js/utils/nav-loader.js"></script>
+    <script src="../../js/utils/i18n.js"></script>
 </body>
 </html>

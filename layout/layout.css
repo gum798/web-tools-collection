@@ -11,9 +11,11 @@ body {
     align-items: center;
 }
 
-.main-container {
+.main-container,
+.main-layout {
     width: 100%;
     max-width: 1200px;
     padding: 20px;
     flex-grow: 1;
+    margin: 0 auto;
 }

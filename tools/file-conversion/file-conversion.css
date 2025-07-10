@@ -1,6 +1,12 @@
-/* Image Tools 페이지 전용 CSS */
+/* File Conversion Tools 페이지 전용 CSS */
 
-/* 메인 레이아웃은 layout.css에서 정의됨 */
+/* 메인 레이아웃 */
+.main-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: calc(100vh - 120px); /* Adjust as needed based on footer/header height */
+}
 
 .container {
     background: rgba(255, 255, 255, 0.1);
@@ -24,19 +30,23 @@
 
 /* 보안 경고 섹션 */
 .security-warning {
-    background: rgba(40, 167, 69, 0.1);
-    border: 1px solid rgba(40, 167, 69, 0.3);
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
     border-radius: 15px;
     padding: 25px;
     margin-bottom: 40px;
+    border-left: 4px solid #ffc107;
     backdrop-filter: blur(5px);
 }
 
 .security-warning h4 {
-    color: #28a745;
+    color: #ffc107;
     margin-bottom: 15px;
     font-size: 1.2em;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .security-warning ul {
@@ -51,7 +61,7 @@
 }
 
 .security-warning strong {
-    color: #28a745;
+    color: #ffc107;
 }
 
 /* 변환기 그리드 */
@@ -69,7 +79,7 @@
     padding: 25px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     text-decoration: none;
-    color: white;
+    color: white; /* Ensure text is visible on transparent background */
     display: block;
     transition: all 0.3s ease;
     position: relative;
@@ -98,22 +108,6 @@
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-.converter-card.available:hover {
-    border-color: rgba(40, 167, 69, 0.5);
-    box-shadow: 0 15px 30px rgba(40, 167, 69, 0.1);
-}
-
-.converter-card.coming-soon {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.converter-card.coming-soon:hover {
-    transform: none;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: none;
-}
-
 .converter-card h3 {
     font-size: 1.3em;
     font-weight: bold;
@@ -123,6 +117,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 10px;
+    color: white; /* Ensure h3 is white */
 }
 
 .popular-badge {
@@ -133,15 +128,6 @@
     font-size: 0.7em;
     font-weight: normal;
     animation: pulse 2s infinite;
-}
-
-.coming-soon-badge {
-    background: linear-gradient(45deg, #6c757d, #495057);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.7em;
-    font-weight: normal;
 }
 
 @keyframes pulse {
@@ -155,6 +141,11 @@
     line-height: 1.5;
     opacity: 0.9;
     margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.9); /* Ensure description is visible */
+}
+
+.converter-tools {
+    margin: 15px 0;
 }
 
 .tool-link {
@@ -163,19 +154,28 @@
     color: white;
     padding: 8px 16px;
     border-radius: 20px;
+    text-decoration: none;
+    margin: 5px 10px 5px 0;
     font-size: 0.85em;
     font-weight: 500;
     border: 1px solid rgba(0, 123, 255, 0.9);
+    transition: all 0.3s ease;
 }
 
-.tool-link.available {
+.tool-link:hover {
+    background: rgba(0, 123, 255, 1);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.tool-link.recommended {
     background: linear-gradient(45deg, #28a745, #20c997);
     border-color: #28a745;
 }
 
-.tool-link.coming-soon {
-    background: linear-gradient(45deg, #6c757d, #495057);
-    border-color: #6c757d;
+.tool-link.recommended:hover {
+    background: linear-gradient(45deg, #20c997, #28a745); /* Slightly change gradient on hover */
+    border-color: #20c997;
 }
 
 /* 가이드 섹션 */
@@ -188,7 +188,7 @@
 }
 
 .guide-section h4 {
-    color: #17a2b8;
+    color: #ffc107;
     margin-bottom: 15px;
     font-size: 1.1em;
     font-weight: bold;
@@ -206,41 +206,46 @@
 }
 
 .guide-section strong {
-    color: #20c997;
+    color: #17a2b8;
     font-weight: 600;
 }
 
-/* 지원 형식 표시 */
-.supported-formats {
-    background: rgba(23, 162, 184, 0.1);
-    border: 1px solid rgba(23, 162, 184, 0.3);
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 30px;
+/* Step List for conversion methods */
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    padding: 0;
 }
 
-.supported-formats h4 {
-    color: #17a2b8;
-    margin-bottom: 15px;
-    font-size: 1.1em;
-}
-
-.format-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 15px;
-}
-
-.format-item {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
+.step-list li {
+    counter-increment: step-counter;
+    margin: 10px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1); /* Transparent background for steps */
     border-radius: 8px;
-    text-align: center;
-    font-size: 0.9em;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid rgba(0, 123, 255, 0.7); /* Transparent border */
+    position: relative;
+    color: rgba(255, 255, 255, 0.9); /* Text color for steps */
 }
 
-/* 모바일 반응형 */
+.step-list li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: -20px;
+    top: 15px;
+    background: rgba(0, 123, 255, 0.9); /* Transparent background for step number */
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Mobile responsiveness */
 @media (max-width: 768px) {
     .main-layout {
         padding: 15px;
@@ -270,14 +275,8 @@
     }
     
     .security-warning,
-    .guide-section,
-    .supported-formats {
+    .guide-section {
         padding: 20px;
-    }
-    
-    .format-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 10px;
     }
 }
 
@@ -296,12 +295,7 @@
         gap: 8px;
     }
     
-    .popular-badge,
-    .coming-soon-badge {
+    .popular-badge {
         align-self: flex-start;
-    }
-    
-    .format-grid {
-        grid-template-columns: repeat(2, 1fr);
     }
 }

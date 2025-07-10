@@ -172,29 +172,39 @@ class FeedbackSystem {
                 position: fixed;
                 bottom: 30px;
                 right: 30px;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
                 color: white;
-                border: none;
-                border-radius: 50px;
-                padding: 15px 25px;
-                font-size: 16px;
-                font-weight: bold;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 25px;
+                padding: 15px 20px;
+                font-size: 14px;
+                font-weight: 500;
                 cursor: pointer;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-                z-index: 1000;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+                z-index: 1300;
                 transition: all 0.3s ease;
-                animation: pulse 2s infinite;
+                animation: feedbackPulse 3s infinite;
+                text-shadow: 0 1px 2px rgba(0,0,0,0.3);
             }
             
             .feedback-floating-btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+                transform: translateY(-3px);
+                background: rgba(255, 255, 255, 0.15);
+                box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+                border-color: rgba(255, 255, 255, 0.3);
             }
             
-            @keyframes pulse {
-                0% { box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3); }
-                50% { box-shadow: 0 4px 20px rgba(102, 126, 234, 0.6); }
-                100% { box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3); }
+            @keyframes feedbackPulse {
+                0% { 
+                    box-shadow: 0 8px 32px rgba(0,0,0,0.1), 0 0 0 0 rgba(255, 255, 255, 0.4);
+                }
+                50% { 
+                    box-shadow: 0 8px 32px rgba(0,0,0,0.1), 0 0 0 8px rgba(255, 255, 255, 0.1);
+                }
+                100% { 
+                    box-shadow: 0 8px 32px rgba(0,0,0,0.1), 0 0 0 0 rgba(255, 255, 255, 0);
+                }
             }
             
             .feedback-modal {
@@ -224,14 +234,16 @@ class FeedbackSystem {
             
             .feedback-modal-content {
                 position: relative;
-                background: white;
+                background: rgba(255, 255, 255, 0.3); /* Slightly less transparent white */
+                backdrop-filter: blur(10px); /* Frosted glass effect */
                 border-radius: 15px;
                 padding: 0;
                 width: 90%;
                 max-width: 500px;
                 max-height: 90vh;
                 overflow-y: auto;
-                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Subtle shadow */
+                border: 1px solid rgba(255, 255, 255, 0.18); /* Light border */
             }
             
             .feedback-header {
@@ -240,6 +252,7 @@ class FeedbackSystem {
                 padding: 25px;
                 border-radius: 15px 15px 0 0;
                 position: relative;
+                backdrop-filter: blur(10px);
             }
             
             .feedback-header h2 {
@@ -282,7 +295,7 @@ class FeedbackSystem {
                 display: block;
                 margin-bottom: 8px;
                 font-weight: bold;
-                color: #333;
+                color: white; /* Changed to white for better contrast */
             }
             
             .feedback-form-group input,
@@ -290,18 +303,33 @@ class FeedbackSystem {
             .feedback-form-group textarea {
                 width: 100%;
                 padding: 12px;
-                border: 2px solid #e1e5e9;
+                border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 8px;
                 font-size: 14px;
-                transition: border-color 0.3s ease;
+                transition: all 0.3s ease;
                 box-sizing: border-box;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(5px);
+                color: white;
             }
             
             .feedback-form-group input:focus,
             .feedback-form-group select:focus,
             .feedback-form-group textarea:focus {
                 outline: none;
-                border-color: #667eea;
+                border-color: rgba(255, 255, 255, 0.4);
+                box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+                background: rgba(255, 255, 255, 0.15);
+            }
+            
+            .feedback-form-group input::placeholder,
+            .feedback-form-group textarea::placeholder {
+                color: rgba(255, 255, 255, 0.6);
+            }
+            
+            .feedback-form-group select option {
+                background: #333;
+                color: white;
             }
             
             .feedback-form-group textarea {
@@ -320,25 +348,26 @@ class FeedbackSystem {
             }
             
             #optional-fields-btn {
-                background: #f8f9fa;
-                border: 2px dashed #dee2e6;
-                color: #6c757d;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px dashed rgba(255, 255, 255, 0.3);
+                color: rgba(255, 255, 255, 0.8);
                 padding: 10px 20px;
                 border-radius: 8px;
                 cursor: pointer;
                 font-size: 14px;
                 transition: all 0.3s ease;
+                backdrop-filter: blur(5px);
             }
             
             #optional-fields-btn:hover {
-                background: #e9ecef;
-                border-color: #6c757d;
-                color: #495057;
+                background: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.4);
+                color: white;
             }
             
             #optional-fields-btn.active {
-                background: #667eea;
-                border-color: #667eea;
+                background: rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.5);
                 color: white;
             }
             
@@ -369,7 +398,9 @@ class FeedbackSystem {
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background: white;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 12px;
                 box-shadow: 0 8px 32px rgba(0,0,0,0.2);
                 z-index: 10001;
@@ -421,8 +452,9 @@ class FeedbackSystem {
             .feedback-toast-message {
                 font-size: 14px;
                 font-weight: 500;
-                color: #333;
+                color: white;
                 line-height: 1.4;
+                text-shadow: 0 1px 2px rgba(0,0,0,0.3);
             }
             
             @media (max-width: 600px) {
@@ -448,32 +480,36 @@ class FeedbackSystem {
             .feedback-btn-submit {
                 flex: 1;
                 padding: 12px 20px;
-                border: none;
+                border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 8px;
-                font-size: 16px;
-                font-weight: bold;
+                font-size: 14px;
+                font-weight: 500;
                 cursor: pointer;
                 transition: all 0.3s ease;
+                backdrop-filter: blur(5px);
             }
             
             .feedback-btn-cancel {
-                background: #f8f9fa;
-                color: #6c757d;
-                border: 2px solid #e1e5e9;
+                background: rgba(255, 255, 255, 0.1);
+                color: rgba(255, 255, 255, 0.8);
             }
             
             .feedback-btn-cancel:hover {
-                background: #e9ecef;
+                background: rgba(255, 255, 255, 0.15);
+                color: white;
+                border-color: rgba(255, 255, 255, 0.3);
             }
             
             .feedback-btn-submit {
                 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                 color: white;
+                border-color: transparent;
             }
             
             .feedback-btn-submit:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+                background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
             }
             
             @media (max-width: 600px) {

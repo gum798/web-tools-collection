@@ -1,84 +1,236 @@
-.header {
-    margin-bottom: 40px;
-}
+/* PDF Tools 페이지 전용 CSS */
 
-.header h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    text-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
+/* 메인 레이아웃은 layout.css에서 정의됨 */
 
-.header p {
-    font-size: 1.2em;
-    opacity: 0.9;
-    margin-bottom: 30px;
-}
-
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-.tool-card {
+.container {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    transition: all 0.3s ease;
+    padding: 40px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-    display: block;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
 }
 
-.tool-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+/* 헤더 스타일 */
+.container h1 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    color: white;
 }
 
-.tool-icon {
-    font-size: 3em;
+/* 보안 경고 섹션 */
+.security-warning {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(5px);
+}
+
+.security-warning h4 {
+    color: #ffc107;
     margin-bottom: 15px;
-    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
-.tool-title {
-    font-size: 1.5em;
+.security-warning ul {
+    margin: 0;
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+.security-warning li {
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.security-warning strong {
+    color: #ffc107;
+}
+
+/* 변환기 그리드 */
+.converter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.converter-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.converter-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.converter-card:hover::before {
+    left: 100%;
+}
+
+.converter-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.converter-card h3 {
+    font-size: 1.3em;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.popular-badge {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7em;
+    font-weight: normal;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
 .tool-description {
-    font-size: 1em;
-    opacity: 0.9;
+    font-size: 0.95em;
     line-height: 1.5;
+    opacity: 0.9;
+    margin-bottom: 15px;
 }
 
-.badge {
+.tool-link {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 5px 12px;
+    background: rgba(0, 123, 255, 0.8);
+    color: white;
+    padding: 8px 16px;
     border-radius: 20px;
-    font-size: 0.8em;
-    margin-top: 10px;
+    font-size: 0.85em;
+    font-weight: 500;
+    border: 1px solid rgba(0, 123, 255, 0.9);
 }
 
+.tool-link.recommended {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    border-color: #28a745;
+}
+
+/* 가이드 섹션 */
+.guide-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.guide-section h4 {
+    color: #ffc107;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.guide-section ul {
+    margin: 0;
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+.guide-section li {
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.guide-section strong {
+    color: #17a2b8;
+    font-weight: 600;
+}
+
+/* 모바일 반응형 */
 @media (max-width: 768px) {
-    .tools-grid {
+    .main-layout {
+        padding: 15px;
+    }
+    
+    .container {
+        padding: 25px;
+        border-radius: 15px;
+    }
+    
+    .container h1 {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+    
+    .converter-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
     
-    .tool-card {
-        padding: 25px;
+    .converter-card {
+        padding: 20px;
     }
     
-    .header h1 {
-        font-size: 2em;
+    .converter-card h3 {
+        font-size: 1.2em;
+    }
+    
+    .security-warning,
+    .guide-section {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .container h1 {
+        font-size: 1.8em;
+    }
+    
+    .converter-card h3 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .popular-badge {
+        align-self: flex-start;
     }
 }

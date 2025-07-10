@@ -9,6 +9,8 @@
             width: 100%;
             padding: 20px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
         
         .header {
@@ -30,7 +32,7 @@
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            gap: 30px;
             margin-bottom: 60px;
         }
         
@@ -38,14 +40,32 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 40px;
-            text-align: center;
+            padding: 35px;
+            text-align: left;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
             text-decoration: none;
             color: inherit;
             display: block;
+            position: relative;
+            overflow: hidden;
+            min-height: 320px;
+        }
+        
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .tool-card:hover::before {
+            left: 100%;
         }
         
         .tool-card:hover {
@@ -55,21 +75,26 @@
         }
         
         .tool-icon {
-            font-size: 4em;
+            font-size: 3.5em;
             margin-bottom: 20px;
             display: block;
+            text-align: center;
         }
         
         .tool-title {
-            font-size: 1.8em;
+            font-size: 1.6em;
             font-weight: bold;
             margin-bottom: 15px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
         .tool-description {
-            font-size: 1.1em;
+            font-size: 1em;
             opacity: 0.9;
             line-height: 1.6;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
         }
         
         .feature-list {
@@ -219,7 +244,7 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            z-index: 1000;
+            z-index: 1200;
         }
         
         .language-switcher select {
@@ -271,10 +296,78 @@
         }
         
         .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 5px 12px;
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.8em;
-            margin-top: 10px;
+            font-size: 0.75em;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .badge.security {
+            background: linear-gradient(45deg, #28a745, #20c997);
+        }
+        
+        .badge.conversion {
+            background: linear-gradient(45deg, #ffc107, #fd7e14);
+        }
+        
+        .badge.guide {
+            background: linear-gradient(45deg, #6f42c1, #e83e8c);
+        }
+        
+        /* 메인 페이지 모바일 개선 */
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .tool-card {
+                padding: 30px;
+                min-height: 280px;
+            }
+            
+            .header h1 {
+                font-size: 2.8em;
+            }
+            
+            .badge {
+                top: 15px;
+                right: 15px;
+                font-size: 0.7em;
+                padding: 5px 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .tool-card {
+                padding: 25px;
+                min-height: 260px;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .tool-icon {
+                font-size: 3em;
+            }
+            
+            .tool-title {
+                font-size: 1.4em;
+            }
+            
+            .badge {
+                position: static;
+                margin-top: 15px;
+                margin-bottom: 0;
+            }
         }
