@@ -6,7 +6,27 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadNavigation() {
     try {
         // 1. nav.html 파일 내용을 비동기적으로 가져오기
-        const response = await fetch('/layout/nav.html');
+        // 현재 페이지 경로에 따라 적절한 상대 경로 계산
+        const currentPath = window.location.pathname;
+        let navPath = '/layout/nav.html';
+        
+        // 로컬 개발 환경에서는 상대 경로 사용
+        if (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            if (currentPath.includes('/tools/')) {
+                if (currentPath.split('/').length > 3) {
+                    // tools/subfolder/file.html
+                    navPath = '../../layout/nav.html';
+                } else {
+                    // tools/file.html
+                    navPath = '../layout/nav.html';
+                }
+            } else {
+                // root level
+                navPath = 'layout/nav.html';
+            }
+        }
+        
+        const response = await fetch(navPath);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
