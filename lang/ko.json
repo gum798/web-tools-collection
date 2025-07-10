@@ -1,7 +1,6 @@
 {
   "common": {
     "siteTitle": "🛠️ 웹 도구 모음",
-    "home": "홈",
     "passwordGenerator": "비밀번호 생성기",
     "pdfConverter": "PDF 변환기",
     "fileConverter": "파일 변환 가이드",
@@ -394,9 +393,58 @@
       }
     }
   },
+  "pdf": {
+    "title": "PDF 변환기 모음",
+    "mainTitle": "📄 PDF 변환기 모음",
+    "mainDescription": "다양한 PDF 변환 도구를 한 곳에서 이용하세요. 모든 도구는 브라우저에서 안전하게 처리됩니다.",
+    "tools": {
+      "pdfToPng": {
+        "title": "PDF to PNG 변환기",
+        "description": "PDF 파일을 고품질 PNG 이미지로 변환하세요. 다중 페이지 처리와 품질 설정을 지원합니다."
+      },
+      "hwpToPdf": {
+        "title": "HWP to PDF 변환기",
+        "description": "한글(HWP) 파일을 PDF로 변환하는 방법과 도구를 안내합니다."
+      },
+      "epubToPdf": {
+        "title": "ePub to PDF 변환기",
+        "description": "ePub 파일을 PDF로 변환하세요. 페이지 설정과 글꼴 조정을 지원합니다."
+      },
+      "pdfWatermark": {
+        "title": "PDF 워터마크 추가",
+        "description": "PDF 파일에 텍스트나 이미지 워터마크를 추가하세요. 투명도와 위치를 조정할 수 있습니다."
+      }
+    }
+  },
+  "image": {
+    "title": "이미지 변환기 모음",
+    "mainTitle": "🖼️ 이미지 변환기 모음",
+    "mainDescription": "다양한 이미지 변환 도구를 한 곳에서 이용하세요. 모든 도구는 브라우저에서 안전하게 처리됩니다.",
+    "tools": {
+      "webpToJpg": {
+        "title": "WEBP to JPG 변환기",
+        "description": "WEBP 이미지를 JPG 형식으로 변환합니다. 품질 설정과 일괄 처리를 지원합니다."
+      },
+      "pngToWebp": {
+        "title": "PNG to WEBP 변환기",
+        "description": "PNG 이미지를 WEBP 형식으로 변환하여 파일 크기를 줄입니다."
+      },
+      "aiConverter": {
+        "title": "AI 변환기",
+        "description": "AI 기술을 활용한 SVG, JPG, PNG, GIF 간 고품질 변환을 제공합니다."
+      },
+      "svgConverter": {
+        "title": "SVG 변환기",
+        "description": "SVG 파일을 JPG, PNG, GIF 형식으로 변환합니다. 크기와 품질 조정이 가능합니다."
+      },
+      "heicToJpg": {
+        "title": "HEIC to JPG 변환기",
+        "description": "아이폰 HEIC 이미지를 JPG 형식으로 변환하여 호환성을 개선합니다."
+      }
+    }
+  },
   "nav": {
     "siteTitle": "🛠️ 웹 도구 모음",
-    "home": "홈",
     "passwordGenerator": "비밀번호 생성기",
     "pdfTools": "PDF 변환기",
     "pdfToPng": "PDF to PNG",

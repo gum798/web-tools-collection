@@ -1,7 +1,6 @@
 {
   "common": {
     "siteTitle": "🛠️ Web Tools Collection",
-    "home": "Home",
     "passwordGenerator": "Password Generator",
     "pdfConverter": "PDF Converter",
     "fileConverter": "File Converter Guide",
@@ -393,9 +392,58 @@
       }
     }
   },
+  "pdf": {
+    "title": "PDF Converter Collection",
+    "mainTitle": "📄 PDF Converter Collection",
+    "mainDescription": "Access various PDF conversion tools in one place. All tools are processed securely in your browser.",
+    "tools": {
+      "pdfToPng": {
+        "title": "PDF to PNG Converter",
+        "description": "Convert PDF files to high-quality PNG images with multi-page processing and quality settings."
+      },
+      "hwpToPdf": {
+        "title": "HWP to PDF Converter",
+        "description": "Guide and tools for converting Korean HWP files to PDF format."
+      },
+      "epubToPdf": {
+        "title": "ePub to PDF Converter",
+        "description": "Convert ePub files to PDF with customizable page settings and font adjustments."
+      },
+      "pdfWatermark": {
+        "title": "PDF Watermark Tool",
+        "description": "Add text or image watermarks to PDF files with adjustable opacity and positioning."
+      }
+    }
+  },
+  "image": {
+    "title": "Image Converter Collection",
+    "mainTitle": "🖼️ Image Converter Collection",
+    "mainDescription": "Access various image conversion tools in one place. All tools are processed securely in your browser.",
+    "tools": {
+      "webpToJpg": {
+        "title": "WEBP to JPG Converter",
+        "description": "Convert WEBP images to JPG format with quality settings and batch processing support."
+      },
+      "pngToWebp": {
+        "title": "PNG to WEBP Converter",
+        "description": "Convert PNG images to WEBP format to reduce file size while maintaining quality."
+      },
+      "aiConverter": {
+        "title": "AI Image Converter",
+        "description": "AI-powered high-quality conversion between SVG, JPG, PNG, and GIF formats."
+      },
+      "svgConverter": {
+        "title": "SVG Converter",
+        "description": "Convert SVG files to JPG, PNG, or GIF formats with customizable size and quality settings."
+      },
+      "heicToJpg": {
+        "title": "HEIC to JPG Converter",
+        "description": "Convert iPhone HEIC images to JPG format for improved compatibility."
+      }
+    }
+  },
   "nav": {
     "siteTitle": "🛠️ Web Tools Collection",
-    "home": "Home",
     "passwordGenerator": "Password Generator",
     "pdfTools": "PDF Converter",
     "pdfToPng": "PDF to PNG",

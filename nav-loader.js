@@ -22,6 +22,11 @@ async function loadNavigation() {
             
             // 4. 모바일 메뉴 기능 초기화
             initializeMobileMenu();
+            
+            // 5. i18n 시스템이 있다면 네비게이션 번역 적용
+            if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+                window.i18n.applyTranslations();
+            }
         }
     } catch (error) {
         console.error('Navigation loading failed:', error);
@@ -33,8 +38,6 @@ function setActiveNavigation() {
     
     // 경로에 따른 페이지 식별자 매핑
     const pathMapping = {
-        '/index.html': 'home',
-        '/': 'home',
         '/tools/pdf-tools/index.html': 'pdf-tools',
         '/tools/pdf-tools/png-converter.html': 'pdf-png',
         '/tools/pdf-tools/hwp-converter.html': 'pdf-hwp',
@@ -59,9 +62,8 @@ function setActiveNavigation() {
             currentPage = 'file-conversion';
         } else if (currentPath.includes('/password-generator/')) {
             currentPage = 'password-generator';
-        } else {
-            currentPage = 'home';
         }
+        // 메인 페이지(index.html)는 active 처리하지 않음
     }
     
     // 모든 active 클래스 제거
@@ -69,17 +71,19 @@ function setActiveNavigation() {
         link.classList.remove('active');
     });
     
-    // 현재 페이지에 해당하는 링크에 active 클래스 추가
-    const activeLink = document.querySelector(`[data-page="${currentPage}"]`);
-    if (activeLink) {
-        activeLink.classList.add('active');
-        
-        // 드롭다운 메뉴 내의 링크인 경우 부모 드롭다운도 active 처리
-        const dropdown = activeLink.closest('.nav-dropdown');
-        if (dropdown) {
-            const parentLink = dropdown.querySelector('.has-dropdown');
-            if (parentLink) {
-                parentLink.classList.add('active');
+    // 현재 페이지에 해당하는 링크에 active 클래스 추가 (메인 페이지 제외)
+    if (currentPage) {
+        const activeLink = document.querySelector(`[data-page="${currentPage}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+            
+            // 드롭다운 메뉴 내의 링크인 경우 부모 드롭다운도 active 처리
+            const dropdown = activeLink.closest('.nav-dropdown');
+            if (dropdown) {
+                const parentLink = dropdown.querySelector('.has-dropdown');
+                if (parentLink) {
+                    parentLink.classList.add('active');
+                }
             }
         }
     }

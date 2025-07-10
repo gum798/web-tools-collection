@@ -93,6 +93,17 @@
     color: white;
 }
 
+.nav-dropdown-content a.disabled {
+    color: rgba(255, 255, 255, 0.4);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.nav-dropdown-content a.disabled:hover {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.4);
+}
+
 .nav-dropdown:hover .nav-dropdown-content {
     display: block;
 }
