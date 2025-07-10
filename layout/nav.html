@@ -1,24 +1,27 @@
 <div class="nav-bar">
-    <a href="/index.html" class="nav-brand">🛠️ 웹 도구 모음</a>
+    <a href="/index.html" class="nav-brand"><span data-i18n="nav.siteTitle">🛠️ 웹 도구 모음</span></a>
     <div class="nav-links" id="navLinks">
-        <a href="/index.html" class="nav-link" data-page="home">홈</a>
+        <a href="/index.html" class="nav-link" data-page="home"><span data-i18n="nav.home">홈</span></a>
+        <a href="/tools/password-generator/password.html" class="nav-link" data-page="password-generator"><span data-i18n="nav.passwordGenerator">비밀번호 생성기</span></a>
         <div class="nav-dropdown">
-            <a href="/tools/pdf-tools/index.html" class="nav-link has-dropdown" data-page="pdf-tools">PDF 도구</a>
+            <a href="/tools/pdf-tools/index.html" class="nav-link has-dropdown" data-page="pdf-tools"><span data-i18n="nav.pdfTools">PDF 변환기</span></a>
             <div class="nav-dropdown-content">
-                <a href="/tools/pdf-tools/png-converter.html" data-page="pdf-png">PDF to PNG</a>
-                <a href="/tools/pdf-tools/hwp-converter.html" data-page="pdf-hwp">HWP to PDF</a>
-                <a href="/tools/pdf-tools/epub-to-pdf.html" data-page="pdf-epub">ePub to PDF</a>
-                <a href="/tools/pdf-tools/pdf-watermark.html" data-page="pdf-watermark">PDF 워터마크</a>
+                <a href="/tools/pdf-tools/png-converter.html" data-page="pdf-png"><span data-i18n="nav.pdfToPng">PDF to PNG</span></a>
+                <a href="/tools/pdf-tools/hwp-converter.html" data-page="pdf-hwp"><span data-i18n="nav.hwpToPdf">HWP to PDF</span></a>
+                <a href="/tools/pdf-tools/epub-to-pdf.html" data-page="pdf-epub"><span data-i18n="nav.epubToPdf">ePub to PDF</span></a>
+                <a href="/tools/pdf-tools/pdf-watermark.html" data-page="pdf-watermark"><span data-i18n="nav.pdfWatermark">PDF 워터마크</span></a>
             </div>
         </div>
         <div class="nav-dropdown">
-            <a href="/tools/image-tools/index.html" class="nav-link has-dropdown" data-page="image-tools">이미지 도구</a>
+            <a href="/tools/image-tools/index.html" class="nav-link has-dropdown" data-page="image-tools"><span data-i18n="nav.imageTools">이미지 변환기</span></a>
             <div class="nav-dropdown-content">
-                <a href="/tools/image-tools/webp-to-jpg.html" data-page="image-webp">WEBP to JPG</a>
+                <a href="/tools/image-tools/webp-to-jpg.html" data-page="image-webp"><span data-i18n="nav.webpToJpg">WEBP to JPG</span></a>
+                <a href="#" class="disabled"><span data-i18n="nav.aiConverter">AI 변환기 (준비중)</span></a>
+                <a href="#" class="disabled"><span data-i18n="nav.svgConverter">SVG 변환기 (준비중)</span></a>
+                <a href="#" class="disabled"><span data-i18n="nav.heicToJpg">HEIC to JPG (준비중)</span></a>
             </div>
         </div>
-        <a href="/tools/file-conversion/file-conversion.html" class="nav-link" data-page="file-conversion">파일 변환</a>
-        <a href="/tools/password-generator/password.html" class="nav-link" data-page="password-generator">비밀번호 생성기</a>
+        <a href="/tools/file-conversion/file-conversion.html" class="nav-link" data-page="file-conversion"><span data-i18n="nav.fileConverter">파일 변환 가이드</span></a>
     </div>
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 </div>

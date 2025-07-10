@@ -586,31 +586,9 @@
             <option value="en" data-i18n="common.languageEn">🇺🇸 EN</option>
         </select>
     </div>
+    <div id="navbar-placeholder"></div>
+    <script src="../../nav-loader.js"></script>
 
-    <div class="nav-bar">
-        <a href="../../index.html" class="nav-brand" data-i18n="common.siteTitle">🛠️ 웹 도구 모음</a>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <div class="nav-links" id="navLinks">
-            <a href="../../index.html" class="nav-link" data-i18n="common.home">홈</a>
-            <div class="nav-dropdown">
-                <a href="../pdf-tools/index.html" class="nav-link active has-dropdown" data-i18n="common.pdfTools">PDF 도구</a>
-                <div class="nav-dropdown-content">
-                    <a href="png-converter.html">PDF to PNG</a>
-                    <a href="hwp-converter.html">HWP to PDF</a>
-                    <a href="epub-to-pdf.html" class="active">ePub to PDF</a>
-                    <a href="pdf-watermark.html">PDF 워터마크</a>
-                </div>
-            </div>
-            <div class="nav-dropdown">
-                <a href="../image-tools/index.html" class="nav-link has-dropdown" data-i18n="common.imageTools">이미지 도구</a>
-                <div class="nav-dropdown-content">
-                    <a href="../image-tools/webp-to-jpg.html">WEBP to JPG</a>
-                </div>
-            </div>
-            <a href="../file-conversion/file-conversion.html" class="nav-link" data-i18n="common.fileConversion">파일 변환</a>
-        </div>
-    </div>
-    
     <div class="main-layout">
         <div class="container">
             <h1 data-i18n="epubToPdf.mainTitle">📚 ePub to PDF 변환기</h1>

@@ -392,5 +392,21 @@
         "description": "Works on PC, tablets, mobile devices, and more."
       }
     }
+  },
+  "nav": {
+    "siteTitle": "🛠️ Web Tools Collection",
+    "home": "Home",
+    "passwordGenerator": "Password Generator",
+    "pdfTools": "PDF Converter",
+    "pdfToPng": "PDF to PNG",
+    "hwpToPdf": "HWP to PDF",
+    "epubToPdf": "ePub to PDF",
+    "pdfWatermark": "PDF Watermark",
+    "imageTools": "Image Converter",
+    "webpToJpg": "WEBP to JPG",
+    "aiConverter": "AI Converter (Coming Soon)",
+    "svgConverter": "SVG Converter (Coming Soon)",
+    "heicToJpg": "HEIC to JPG (Coming Soon)",
+    "fileConverter": "File Converter Guide"
   }
 }

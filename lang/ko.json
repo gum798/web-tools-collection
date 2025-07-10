@@ -393,5 +393,21 @@
         "description": "PC, 태블릿, 모바일 등 모든 기기에서 사용할 수 있습니다."
       }
     }
+  },
+  "nav": {
+    "siteTitle": "🛠️ 웹 도구 모음",
+    "home": "홈",
+    "passwordGenerator": "비밀번호 생성기",
+    "pdfTools": "PDF 변환기",
+    "pdfToPng": "PDF to PNG",
+    "hwpToPdf": "HWP to PDF",
+    "epubToPdf": "ePub to PDF",
+    "pdfWatermark": "PDF 워터마크",
+    "imageTools": "이미지 변환기",
+    "webpToJpg": "WEBP to JPG",
+    "aiConverter": "AI 변환기 (준비중)",
+    "svgConverter": "SVG 변환기 (준비중)",
+    "heicToJpg": "HEIC to JPG (준비중)",
+    "fileConverter": "파일 변환 가이드"
   }
 }
