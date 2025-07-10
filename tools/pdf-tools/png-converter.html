@@ -4,178 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="pdfConverter.title">PDF to PNG 변환기</title>
-    
     <!-- SEO Meta Tags -->
     <meta name="description" content="PDF 파일을 고품질 PNG 이미지로 변환하세요">
     <meta name="keywords" content="PDF PNG 변환, PDF 이미지 변환, 온라인 PDF 변환기">
-    
     <!-- Open Graph -->
     <meta property="og:title" content="PDF to PNG 변환기">
     <meta property="og:description" content="PDF 파일을 고품질 PNG 이미지로 변환하세요">
     <meta property="og:type" content="website">
-    
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434360911371069"
-     crossorigin="anonymous"></script>
-    
-    <!-- Auto ads -->
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-9434360911371069",
-              enable_page_level_ads: true
-         });
-    </script>
-    
-    <!-- Feedback System -->
-    <script src="../../feedback.js"></script>
-    
-    <!-- i18n System -->
-    <script src="../../i18n.js"></script>
-    
-    <!-- Common Styles -->
+    <link rel="stylesheet" href="../../layout/layout.css">
     <link rel="stylesheet" href="../../layout/nav.css">
-    
+    <link rel="stylesheet" href="./pdf-tools.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-        
-        .main-layout {
-            margin-top: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        .upload-area {
-            background-color: #f8f9fa;
-            border: 2px dashed #ddd;
-            border-radius: 10px;
-            padding: 40px;
-            margin-bottom: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .upload-area:hover {
-            border-color: #007bff;
-            background-color: #e3f2fd;
-        }
-        .upload-area.drag-over {
-            border-color: #007bff;
-            background-color: #e3f2fd;
-        }
-        .upload-text p {
-            margin: 0 0 20px 0;
-            font-size: 16px;
-            color: #666;
-        }
-        .progress-container {
-            margin: 20px 0;
-        }
-        .progress-bar {
-            width: 100%;
-            height: 20px;
-            background-color: #e9ecef;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-        .progress-fill {
-            height: 100%;
-            background-color: #007bff;
-            transition: width 0.3s ease;
-            width: 0%;
-        }
-        .progress-text {
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-        }
-        .results {
-            margin-top: 20px;
-        }
-        .image-result {
-            margin: 15px 0;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f8f9fa;
-        }
         .image-result img {
             max-width: 100%;
             height: auto;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .image-result .image-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .image-result .download-btn {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .image-result .download-btn:hover {
-            background-color: #1e7e34;
-        }
-        .controls {
-            margin-bottom: 20px;
-        }
-        label {
             display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        select {
-            width: 200px;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: white;
-        }
-        .buttons {
-            text-align: center;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            margin: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -189,53 +33,73 @@
     <div id="navbar-placeholder"></div>
     <div class="main-layout">
         <div class="container">
-            <h1 data-i18n="pdfConverter.mainTitle">📄 PDF to PNG 변환기</h1>
-            
-            <div class="upload-area" id="uploadArea">
-                <div class="upload-text">
-                    <p data-i18n="pdfConverter.uploadText">📄 PDF 파일을 여기에 드래그하거나 클릭하여 업로드하세요</p>
-                    <input type="file" id="fileInput" accept=".pdf" style="display: none;">
-                    <button onclick="document.getElementById('fileInput').click()" data-i18n="pdfConverter.chooseFile">파일 선택</button>
+            <h1 data-i18n="pdfConverter.mainTitle">🖼️ PDF to PNG 변환기</h1>
+            <div class="security-warning">
+                <h4 data-i18n="pdf.securityTitle">🔒 보안 주의사항</h4>
+                <ul>
+                    <li><strong>개인정보 주의:</strong> 민감한 정보가 포함된 PDF는 온라인 변환 피하기</li>
+                    <li><strong>파일 삭제:</strong> 변환 후 업로드된 파일이 자동 삭제되는지 확인</li>
+                    <li><strong>HTTPS 확인:</strong> 보안 연결(🔒)이 된 사이트만 이용</li>
+                    <li><strong>바이러스 검사:</strong> 변환된 파일 다운로드 후 검사 권장</li>
+                </ul>
+            </div>
+            <div class="converter-grid">
+                <div class="converter-card" style="max-width:600px;margin:0 auto;">
+                    <h3 data-i18n="pdfConverter.cardTitle">PDF → PNG 변환</h3>
+                    <div class="tool-description" data-i18n="pdfConverter.cardDesc">
+                        PDF 파일을 고품질 PNG 이미지로 변환합니다. 여러 페이지도 한 번에 변환할 수 있습니다.
+                    </div>
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-text">
+                            <p data-i18n="pdfConverter.uploadText">📄 PDF 파일을 여기에 드래그하거나 클릭하여 업로드하세요</p>
+                            <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+                            <button class="tool-link recommended" onclick="document.getElementById('fileInput').click()" data-i18n="pdfConverter.chooseFile">파일 선택</button>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <label for="quality" data-i18n="pdfConverter.imageQuality">이미지 품질:</label>
+                        <select id="quality">
+                            <option value="1" data-i18n="pdfConverter.qualityStandard">표준 (1x)</option>
+                            <option value="2" selected data-i18n="pdfConverter.qualityHigh">고품질 (2x)</option>
+                            <option value="3" data-i18n="pdfConverter.qualityBest">최고품질 (3x)</option>
+                        </select>
+                    </div>
+                    <div class="progress-container" id="progressContainer" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText" data-i18n="pdfConverter.converting">변환 중...</div>
+                    </div>
+                    <div class="results" id="results" style="display: none;">
+                        <h3 data-i18n="pdfConverter.conversionResults">변환 결과</h3>
+                        <div class="buttons">
+                            <button class="tool-link recommended" onclick="downloadAll()" data-i18n="pdfConverter.downloadAll">🔽 모든 이미지 다운로드</button>
+                            <button class="tool-link" onclick="clearResults()" data-i18n="pdfConverter.clearResults">🗑️ 결과 지우기</button>
+                        </div>
+                        <div id="imageResults"></div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="controls">
-                <label for="quality" data-i18n="pdfConverter.imageQuality">이미지 품질:</label>
-                <select id="quality">
-                    <option value="1" data-i18n="pdfConverter.qualityStandard">표준 (1x)</option>
-                    <option value="2" selected data-i18n="pdfConverter.qualityHigh">고품질 (2x)</option>
-                    <option value="3" data-i18n="pdfConverter.qualityBest">최고품질 (3x)</option>
-                </select>
-            </div>
-            
-            <div class="progress-container" id="progressContainer" style="display: none;">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-                <div class="progress-text" id="progressText" data-i18n="pdfConverter.converting">변환 중...</div>
-            </div>
-            
-            <div class="results" id="results" style="display: none;">
-                <h3 data-i18n="pdfConverter.conversionResults">변환 결과</h3>
-                <div class="buttons">
-                    <button onclick="downloadAll()" data-i18n="pdfConverter.downloadAll">🔽 모든 이미지 다운로드</button>
-                    <button onclick="clearResults()" data-i18n="pdfConverter.clearResults">🗑️ 결과 지우기</button>
-                </div>
-                <div id="imageResults"></div>
+            <div class="guide-section">
+                <h4 data-i18n="pdfConverter.guideTitle">💡 사용 가이드</h4>
+                <ul>
+                    <li>PDF 파일을 업로드하면 각 페이지가 PNG 이미지로 변환됩니다.</li>
+                    <li>이미지 품질(해상도)을 선택할 수 있습니다.</li>
+                    <li>모든 이미지를 ZIP 파일로 한 번에 다운로드할 수 있습니다.</li>
+                </ul>
             </div>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="../../js/utils/nav-loader.js"></script>
+    <script src="../../js/utils/i18n.js"></script>
     <script>
         // Mobile menu toggle
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
-        
-        // Close menu when clicking outside
         document.addEventListener('click', function(e) {
             const navBar = document.querySelector('.nav-bar');
             const navLinks = document.getElementById('navLinks');
@@ -243,33 +107,22 @@
                 navLinks.classList.remove('active');
             }
         });
-        
-        // Close menu when window is resized to desktop
         window.addEventListener('resize', function() {
             const navLinks = document.getElementById('navLinks');
             if (window.innerWidth > 768) {
                 navLinks.classList.remove('active');
             }
         });
-        
-        // PDF.js configuration
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        
         let convertedImages = [];
-        
-        // File upload event setup
         document.addEventListener('DOMContentLoaded', function() {
             const fileInput = document.getElementById('fileInput');
             const uploadArea = document.getElementById('uploadArea');
-            
             fileInput.addEventListener('change', handleFileSelect);
-            
-            // Drag and drop events
             uploadArea.addEventListener('dragover', handleDragOver);
             uploadArea.addEventListener('dragleave', handleDragLeave);
             uploadArea.addEventListener('drop', handleDrop);
         });
-        
         function handleFileSelect(event) {
             const file = event.target.files[0];
             if (file && file.type === 'application/pdf') {
@@ -283,20 +136,16 @@
                 }
             }
         }
-        
         function handleDragOver(event) {
             event.preventDefault();
             event.currentTarget.classList.add('drag-over');
         }
-        
         function handleDragLeave(event) {
             event.currentTarget.classList.remove('drag-over');
         }
-        
         function handleDrop(event) {
             event.preventDefault();
             event.currentTarget.classList.remove('drag-over');
-            
             const files = event.dataTransfer.files;
             if (files.length > 0 && files[0].type === 'application/pdf') {
                 convertPdfToPng(files[0]);
@@ -309,69 +158,50 @@
                 }
             }
         }
-        
         async function convertPdfToPng(file) {
             const progressContainer = document.getElementById('progressContainer');
             const progressFill = document.getElementById('progressFill');
             const progressText = document.getElementById('progressText');
             const results = document.getElementById('results');
             const imageResults = document.getElementById('imageResults');
-            
-            // Initialize
             convertedImages = [];
             imageResults.innerHTML = '';
             results.style.display = 'none';
             progressContainer.style.display = 'block';
             progressFill.style.width = '0%';
             progressText.textContent = window.i18n ? window.i18n.t('pdfConverter.loadingPdf') : 'Loading PDF...';
-            
             try {
                 const arrayBuffer = await file.arrayBuffer();
                 const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
                 const totalPages = pdf.numPages;
-                
                 progressText.textContent = window.i18n ? window.i18n.t('pdfConverter.convertingPages', {totalPages}) : `Converting ${totalPages} pages...`;
-                
                 const quality = parseFloat(document.getElementById('quality').value);
-                
                 for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
                     const page = await pdf.getPage(pageNumber);
                     const viewport = page.getViewport({ scale: quality });
-                    
                     const canvas = document.createElement('canvas');
                     const context = canvas.getContext('2d');
                     canvas.height = viewport.height;
                     canvas.width = viewport.width;
-                    
                     const renderContext = {
                         canvasContext: context,
                         viewport: viewport
                     };
-                    
                     await page.render(renderContext).promise;
-                    
-                    // Convert canvas to PNG
                     const dataUrl = canvas.toDataURL('image/png');
                     const fileName = `${file.name.replace('.pdf', '')}_page_${pageNumber}.png`;
-                    
                     convertedImages.push({
                         dataUrl: dataUrl,
                         fileName: fileName,
                         pageNumber: pageNumber
                     });
-                    
-                    // Update progress
                     const progress = (pageNumber / totalPages) * 100;
                     progressFill.style.width = progress + '%';
                     progressText.textContent = window.i18n ? window.i18n.t('pdfConverter.pagesConverted', {pageNumber, totalPages}) : `${pageNumber}/${totalPages} pages converted`;
-                    
-                    // Display result image
                     displayImage(dataUrl, fileName, pageNumber);
                 }
-                
                 progressContainer.style.display = 'none';
                 results.style.display = 'block';
-                
             } catch (error) {
                 console.error('Error during PDF conversion:', error);
                 const errorMsg = window.i18n ? window.i18n.t('pdfConverter.alerts.conversionError') : 'An error occurred during PDF conversion.';
@@ -383,16 +213,12 @@
                 progressContainer.style.display = 'none';
             }
         }
-        
         function displayImage(dataUrl, fileName, pageNumber) {
             const imageResults = document.getElementById('imageResults');
-            
             const resultDiv = document.createElement('div');
             resultDiv.className = 'image-result';
-            
             const pageText = window.i18n ? window.i18n.t('pdfConverter.page') : 'Page';
             const downloadText = window.i18n ? window.i18n.t('pdfConverter.download') : 'Download';
-            
             resultDiv.innerHTML = `
                 <div class="image-info">
                     <span>${pageText} ${pageNumber}</span>
@@ -402,17 +228,14 @@
                 </div>
                 <img src="${dataUrl}" alt="${pageText} ${pageNumber}">
             `;
-            
             imageResults.appendChild(resultDiv);
         }
-        
         function downloadImage(dataUrl, fileName) {
             const link = document.createElement('a');
             link.download = fileName;
             link.href = dataUrl;
             link.click();
         }
-        
         async function downloadAll() {
             if (convertedImages.length === 0) {
                 const alertMsg = window.i18n ? window.i18n.t('pdfConverter.alerts.noImages') : 'No converted images available.';
@@ -423,38 +246,29 @@
                 }
                 return;
             }
-
             const zip = new JSZip();
             convertedImages.forEach(image => {
-                // Extract base64 data from data URL
                 const base64Data = image.dataUrl.split(',')[1];
                 zip.file(image.fileName, base64Data, {base64: true});
             });
-
-            // Generate the zip file
             const zipBlob = await zip.generateAsync({type:"blob"});
-
-            // Create a download link and trigger click
             const link = document.createElement('a');
             link.href = URL.createObjectURL(zipBlob);
-            link.download = 'converted_images.zip'; // Name of the zip file
-            document.body.appendChild(link); // Append to body to make it clickable
+            link.download = 'converted_images.zip';
+            document.body.appendChild(link);
             link.click();
-            document.body.removeChild(link); // Clean up the link
-            URL.revokeObjectURL(link.href); // Release the object URL
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
         }
-        
         function clearResults() {
             const results = document.getElementById('results');
             const imageResults = document.getElementById('imageResults');
             const fileInput = document.getElementById('fileInput');
-            
             convertedImages = [];
             imageResults.innerHTML = '';
             results.style.display = 'none';
             fileInput.value = '';
         }
     </script>
-    <script src=\"../../js/utils/nav-loader.js\"></script>
 </body>
 </html>
