@@ -1,7 +1,21 @@
 // Navigation Loader Script
 document.addEventListener('DOMContentLoaded', function() {
     loadNavigation();
+    loadFeedbackScript();
 });
+
+function loadFeedbackScript() {
+    const currentPath = window.location.pathname;
+    let feedbackScriptPath = '/js/utils/feedback.js';
+
+
+    if (!document.querySelector('script[src="' + feedbackScriptPath + '"]')) {
+        const script = document.createElement('script');
+        script.src = feedbackScriptPath;
+        script.defer = true;
+        document.head.appendChild(script);
+    }
+}
 
 async function loadNavigation() {
     try {
@@ -37,7 +51,7 @@ async function loadNavigation() {
         if (placeholder) {
             placeholder.innerHTML = navHTML;
             
-            // 3. 현재 페이지에 맞는 active 클래스 추가
+            // 3. 현재 ��이지에 맞는 active 클래스 추가
             setActiveNavigation();
             
             // 4. 모바일 메뉴 기능 초기화
