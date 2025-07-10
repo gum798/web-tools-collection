@@ -216,6 +216,55 @@
             }
         }
         
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .nav-dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            z-index: 1;
+            border-radius: 8px;
+            top: 100%;
+            left: 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 0;
+        }
+        
+        .nav-dropdown-content a {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 10px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dropdown-content a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .nav-dropdown-content a.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .nav-dropdown:hover .nav-dropdown-content {
+            display: block;
+        }
+        
+        .nav-link.has-dropdown::after {
+            content: ' ▼';
+            font-size: 10px;
+            margin-left: 5px;
+        }
+        
         .main-layout {
             display: grid;
             grid-template-columns: 1fr;
@@ -374,6 +423,33 @@
             }
         }
         
+        @media (max-width: 768px) {
+            .nav-dropdown {
+                position: static;
+                display: block;
+                width: 100%;
+            }
+            
+            .nav-dropdown-content {
+                display: block;
+                position: static;
+                background: rgba(0, 0, 0, 0.5);
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                margin-left: 20px;
+            }
+            
+            .nav-dropdown-content a {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            .nav-link.has-dropdown::after {
+                display: none;
+            }
+        }
+        
         @media (max-width: 480px) {
             .nav-bar {
                 padding: 10px 15px;
@@ -417,13 +493,23 @@
         <a href="../../index.html" class="nav-brand" data-i18n="common.siteTitle">🛠️ 웹 도구 모음</a>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="../password-generator/password.html" class="nav-link" data-i18n="common.passwordGenerator">비밀번호 생성기</a>
-            <a href="../pdf-tools/png-converter.html" class="nav-link" data-i18n="common.pdfConverter">PDF 변환기</a>
-            <a href="../pdf-tools/hwp-converter.html" class="nav-link" data-i18n="common.hwpConverter">PDF to HWP</a>
-            <a href="../pdf-tools/epub-to-pdf.html" class="nav-link" data-i18n="common.epubToPdf">ePub to PDF</a>
-            <a href="../pdf-tools/pdf-watermark.html" class="nav-link" data-i18n="common.pdfWatermark">PDF 워터마크</a>
-            <a href="../image-tools/webp-to-jpg.html" class="nav-link" data-i18n="common.webpToJpg">WEBP to JPG</a>
-            <a href="file-conversion.html" class="nav-link active" data-i18n="common.fileConverter">파일 변환 가이드</a>
+            <a href="../../index.html" class="nav-link" data-i18n="common.home">홈</a>
+            <div class="nav-dropdown">
+                <a href="../pdf-tools/index.html" class="nav-link has-dropdown" data-i18n="common.pdfTools">PDF 도구</a>
+                <div class="nav-dropdown-content">
+                    <a href="../pdf-tools/png-converter.html">PDF to PNG</a>
+                    <a href="../pdf-tools/hwp-converter.html">HWP to PDF</a>
+                    <a href="../pdf-tools/epub-to-pdf.html">ePub to PDF</a>
+                    <a href="../pdf-tools/pdf-watermark.html">PDF 워터마크</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a href="../image-tools/index.html" class="nav-link has-dropdown" data-i18n="common.imageTools">이미지 도구</a>
+                <div class="nav-dropdown-content">
+                    <a href="../image-tools/webp-to-jpg.html">WEBP to JPG</a>
+                </div>
+            </div>
+            <a href="../file-conversion/file-conversion.html" class="nav-link active" data-i18n="common.fileConversion">파일 변환</a>
         </div>
     </div>
     

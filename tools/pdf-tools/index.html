@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="pdf.title">PDF 변환기 모음</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="PDF 변환 도구 모음. PDF to PNG, HWP to PDF, ePub to PDF, PDF 워터마크 추가 등 다양한 PDF 변환 도구를 제공합니다.">
+    <meta name="keywords" content="PDF 변환기, PDF to PNG, HWP to PDF, ePub to PDF, PDF 워터마크, 파일 변환, 온라인 도구">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+    
+    <!-- i18n System -->
+    <script src="../../i18n.js"></script>
+    
+    <!-- Common Styles -->
+    <link rel="stylesheet" href="../../layout/layout.css">
+    <link rel="stylesheet" href="../../layout/nav.css">
+    
+    <!-- Page-specific Styles -->
+    <link rel="stylesheet" href="pdf-tools.css">
+
+    <!-- Navigation Loader -->
+    <script src="../../nav-loader.js"></script>
+</head>
+<body>
+    <div class="language-switcher">
+        <select id="languageSelect">
+            <option value="ko" data-i18n="common.languageKo">🇰🇷 KO</option>
+            <option value="en" data-i18n="common.languageEn">🇺🇸 EN</option>
+        </select>
+    </div>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="main-container">
+        <div class="header">
+            <h1 data-i18n="pdf.mainTitle">📄 PDF 변환기 모음</h1>
+            <p data-i18n="pdf.mainDescription">다양한 PDF 변환 도구를 한 곳에서 이용하세요. 모든 도구는 브라우저에서 안전하게 처리됩니다.</p>
+        </div>
+        
+        <div class="tools-grid">
+            <a href="png-converter.html" class="tool-card">
+                <div class="tool-icon">🖼️</div>
+                <div class="tool-title" data-i18n="pdf.tools.pdfToPng.title">PDF to PNG 변환기</div>
+                <div class="tool-description" data-i18n="pdf.tools.pdfToPng.description">
+                    PDF 파일을 고품질 PNG 이미지로 변환하세요. 다중 페이지 처리와 품질 설정을 지원합니다.
+                </div>
+                <span class="badge">변환 도구</span>
+            </a>
+            
+            <a href="hwp-converter.html" class="tool-card">
+                <div class="tool-icon">📑</div>
+                <div class="tool-title" data-i18n="pdf.tools.hwpToPdf.title">HWP to PDF 변환기</div>
+                <div class="tool-description" data-i18n="pdf.tools.hwpToPdf.description">
+                    한글(HWP) 파일을 PDF로 변환하는 방법과 도구를 안내합니다.
+                </div>
+                <span class="badge">변환 도구</span>
+            </a>
+            
+            <a href="epub-to-pdf.html" class="tool-card">
+                <div class="tool-icon">📚</div>
+                <div class="tool-title" data-i18n="pdf.tools.epubToPdf.title">ePub to PDF 변환기</div>
+                <div class="tool-description" data-i18n="pdf.tools.epubToPdf.description">
+                    ePub 파일을 PDF로 변환하세요. 페이지 설정과 글꼴 조정을 지원합니다.
+                </div>
+                <span class="badge">변환 도구</span>
+            </a>
+            
+            <a href="pdf-watermark.html" class="tool-card">
+                <div class="tool-icon">🏷️</div>
+                <div class="tool-title" data-i18n="pdf.tools.pdfWatermark.title">PDF 워터마크 추가</div>
+                <div class="tool-description" data-i18n="pdf.tools.pdfWatermark.description">
+                    PDF 파일에 텍스트나 이미지 워터마크를 추가하세요. 투명도와 위치를 조정할 수 있습니다.
+                </div>
+                <span class="badge">편집 도구</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

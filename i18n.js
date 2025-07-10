@@ -367,8 +367,5 @@ class I18n {
 let i18n;
 
 document.addEventListener('DOMContentLoaded', async () => {
-    i18n = new I18n();
+    window.i18n = new I18n();
 });
-
-// Export for use in other scripts
-window.i18n = i18n;

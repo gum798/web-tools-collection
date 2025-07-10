@@ -1,0 +1,214 @@
+/* 공통 네비게이션 CSS */
+.nav-bar {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+.nav-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* 드롭다운 메뉴 스타일 */
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 0;
+    margin-top: 5px;
+}
+
+.nav-dropdown-content a {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.nav-dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.nav-dropdown-content a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.nav-dropdown:hover .nav-dropdown-content {
+    display: block;
+}
+
+.nav-link.has-dropdown::after {
+    content: ' ▼';
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        flex-direction: column;
+        gap: 0;
+        padding: 15px 0;
+        z-index: 1000;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-top: none;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-links .nav-link {
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 0;
+        display: block;
+        width: 100%;
+        text-align: left;
+        transition: background-color 0.3s ease;
+    }
+    
+    .nav-links .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-links .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+    
+    /* 모바일에서 드롭다운 처리 */
+    .nav-dropdown {
+        width: 100%;
+    }
+    
+    .nav-dropdown-content {
+        position: static;
+        display: block;
+        background: rgba(255, 255, 255, 0.05);
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .nav-dropdown-content a {
+        padding: 8px 40px;
+        font-size: 14px;
+        border-left: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .nav-link.has-dropdown::after {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-bar {
+        padding: 10px 15px;
+        min-height: 45px;
+    }
+    
+    .nav-brand {
+        font-size: 1.2em;
+    }
+    
+    .nav-links .nav-link {
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+    
+    .menu-toggle {
+        font-size: 22px;
+    }
+}

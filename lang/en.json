@@ -38,6 +38,14 @@
         "title": "🖼️ WEBP to JPG Converter",
         "description": "Convert WEBP images to JPG format. Processed securely in your browser."
       },
+      "pdfTools": {
+        "title": "📄 PDF Converter",
+        "description": "Comprehensive PDF conversion tools including PDF to PNG, HWP to PDF, ePub to PDF, and watermark addition features."
+      },
+      "imageTools": {
+        "title": "🖼️ Image Converter",
+        "description": "Image format conversion tools supporting WEBP, PNG, JPG, SVG, HEIC and other formats with high-quality processing."
+      },
       "fileConverter": {
         "title": "📁 File Converter Guide",
         "description": "Collection of free tools and safe conversion methods for various file format conversions like HWP to Word, Excel to PDF, and more."

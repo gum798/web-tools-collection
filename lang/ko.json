@@ -38,6 +38,14 @@
         "title": "🖼️ WEBP to JPG 변환기",
         "description": "WEBP 이미지를 JPG 형식으로 변환합니다. 브라우저에서 안전하게 처리됩니다."
       },
+      "pdfTools": {
+        "title": "📄 PDF 변환기",
+        "description": "PDF 관련 다양한 변환 도구를 제공합니다. PDF to PNG, HWP to PDF, ePub to PDF, 워터마크 추가 등의 기능이 포함되어 있습니다."
+      },
+      "imageTools": {
+        "title": "🖼️ 이미지 변환기",
+        "description": "이미지 형식 변환 도구를 제공합니다. WEBP, PNG, JPG, SVG, HEIC 등 다양한 형식 간 변환이 가능합니다."
+      },
       "fileConverter": {
         "title": "📁 파일 변환 가이드",
         "description": "HWP to Word, Excel to PDF 등 다양한 파일 형식 변환을 위한 무료 도구 모음과 안전한 변환 방법을 안내합니다."
