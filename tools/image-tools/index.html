@@ -38,6 +38,29 @@
     <link rel="stylesheet" href="../../layout/layout.css">
     <link rel="stylesheet" href="../../layout/nav.css">
     <link rel="stylesheet" href="./image-tools.css">
+    <style>
+        /* language-switcher 스타일 (epub-to-pdf.html과 동일) */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .language-switcher select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            color: white;
+            padding: 8px 12px;
+            font-size: 14px;
+            width: 90px;
+            text-align: center;
+        }
+        .language-switcher option {
+            background: #222b36;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="language-switcher">

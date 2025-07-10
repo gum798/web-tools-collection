@@ -648,6 +648,118 @@
                 max-height: 60px;
             }
         }
+        
+        /* 보안 주의사항 스타일 */
+        .security-warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffeeba;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .security-warning h4 {
+            margin-bottom: 10px;
+            color: #856404;
+        }
+        
+        .security-warning ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        
+        .security-warning li {
+            margin-bottom: 5px;
+            color: #856404;
+        }
+        
+        /* 카드 구조 통일 */
+        .converter-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+            margin-bottom: 30px;
+        }
+        
+        .converter-card h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.5em;
+        }
+        
+        .converter-card .tool-description {
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        /* 안내문구 스타일 */
+        .guide-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 1px solid #e9ecef;
+        }
+        
+        .guide-section h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .guide-section ul {
+            list-style-type: circle;
+            padding-left: 20px;
+        }
+        
+        .guide-section li {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        /* 버튼 스타일 통일 */
+        .tool-link {
+            display: inline-block;
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 5px 0;
+        }
+        
+        .tool-link.recommended {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+        }
+        
+        .tool-link.recommended:hover {
+            background: linear-gradient(135deg, #5561b3 0%, #634a8c 100%);
+        }
+        
+        .tool-link:not(.recommended) {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .tool-link:not(.recommended):hover {
+            background: #e1e1e1;
+        }
+        
+        @media (max-width: 768px) {
+            .security-warning,
+            .guide-section {
+                padding: 15px;
+            }
+            
+            .converter-card {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -662,141 +774,160 @@
     <div class="main-layout">
         <div class="container">
             <h1 data-i18n="pdfWatermark.mainTitle">📄 PDF 워터마크 추가기</h1>
-            
-            <div class="upload-section">
-                <div class="upload-area" id="uploadArea">
-                    <div class="upload-icon">📄</div>
-                    <div class="upload-text" data-i18n="pdfWatermark.uploadText">PDF 파일을 선택하거나 드래그하세요</div>
-                    <div class="upload-subtext" data-i18n="pdfWatermark.uploadSubtext">지원 형식: .pdf (최대 50MB)</div>
-                    <input type="file" id="fileInput" accept=".pdf" />
-                </div>
-                
-                <div class="file-info" id="fileInfo">
-                    <div class="file-name" id="fileName"></div>
-                    <div class="file-size" id="fileSize"></div>
-                </div>
+            <!-- 보안 주의사항 안내 -->
+            <div class="security-warning">
+                <h4 data-i18n="pdf.securityTitle">🔒 보안 주의사항</h4>
+                <ul>
+                    <li><strong>개인정보 주의:</strong> 민감한 정보가 포함된 PDF는 온라인 변환 피하기</li>
+                    <li><strong>파일 삭제:</strong> 변환 후 업로드된 파일이 자동 삭제되는지 확인</li>
+                    <li><strong>HTTPS 확인:</strong> 보안 연결(🔒)이 된 사이트만 이용</li>
+                    <li><strong>바이러스 검사:</strong> 변환된 파일 다운로드 후 검사 권장</li>
+                </ul>
             </div>
-            
-            <div class="error-message" id="errorMessage"></div>
-            
-            <div class="watermark-options">
-                <h3 data-i18n="pdfWatermark.watermarkOptions">워터마크 옵션</h3>
-                
-                <!-- 미리보기 섹션 -->
-                <div class="preview-section">
-                    <h4 data-i18n="pdfWatermark.preview">미리보기</h4>
-                    <div class="preview-container">
-                        <div class="preview-page" id="previewPage">
-                            <div class="preview-content">
-                                <div class="preview-text">Sample PDF Document</div>
-                                <div class="preview-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                                <div class="preview-text">Sed do eiusmod tempor incididunt ut labore et dolore magna.</div>
-                                <div class="preview-text">Ut enim ad minim veniam, quis nostrud exercitation.</div>
-                                <div class="preview-watermark" id="previewWatermark">
-                                    <span id="previewText">WATERMARK</span>
-                                    <img id="previewImage" style="display: none;" />
+            <div class="converter-grid">
+                <div class="converter-card" style="max-width:600px;margin:0 auto;">
+                    <h3 data-i18n="pdfWatermark.cardTitle">PDF 워터마크 추가</h3>
+                    <div class="tool-description" data-i18n="pdfWatermark.cardDesc">
+                        PDF 파일에 텍스트 또는 이미지 워터마크를 추가할 수 있습니다. 모든 처리는 브라우저에서 안전하게 이루어집니다.
+                    </div>
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📄</div>
+                        <div class="upload-text" data-i18n="pdfWatermark.uploadText">PDF 파일을 선택하거나 드래그하세요</div>
+                        <div class="upload-subtext" data-i18n="pdfWatermark.uploadSubtext">지원 형식: .pdf (최대 50MB)</div>
+                        <input type="file" id="fileInput" accept=".pdf" style="display:none;" />
+                        <button class="tool-link recommended" type="button" onclick="document.getElementById('fileInput').click()" data-i18n="pdfWatermark.chooseFile">파일 선택</button>
+                    </div>
+                    <div class="file-info" id="fileInfo">
+                        <div class="file-name" id="fileName"></div>
+                        <div class="file-size" id="fileSize"></div>
+                    </div>
+                    <div class="error-message" id="errorMessage"></div>
+                    <div class="watermark-options">
+                        <h3 data-i18n="pdfWatermark.watermarkOptions">워터마크 옵션</h3>
+                        
+                        <!-- 미리보기 섹션 -->
+                        <div class="preview-section">
+                            <h4 data-i18n="pdfWatermark.preview">미리보기</h4>
+                            <div class="preview-container">
+                                <div class="preview-page" id="previewPage">
+                                    <div class="preview-content">
+                                        <div class="preview-text">Sample PDF Document</div>
+                                        <div class="preview-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                        <div class="preview-text">Sed do eiusmod tempor incididunt ut labore et dolore magna.</div>
+                                        <div class="preview-text">Ut enim ad minim veniam, quis nostrud exercitation.</div>
+                                        <div class="preview-watermark" id="previewWatermark">
+                                            <span id="previewText">WATERMARK</span>
+                                            <img id="previewImage" style="display: none;" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="watermark-type">
-                    <div class="type-option">
-                        <input type="radio" name="watermarkType" id="textWatermark" value="text" checked>
-                        <label for="textWatermark" data-i18n="pdfWatermark.textWatermark">텍스트 워터마크</label>
-                    </div>
-                    <div class="type-option">
-                        <input type="radio" name="watermarkType" id="imageWatermark" value="image">
-                        <label for="imageWatermark" data-i18n="pdfWatermark.imageWatermark">이미지 워터마크</label>
-                    </div>
-                </div>
-                
-                <div class="text-watermark-options active" id="textOptions">
-                    <div class="option-group">
-                        <label for="watermarkText" data-i18n="pdfWatermark.watermarkText">워터마크 텍스트:</label>
-                        <input type="text" id="watermarkText" placeholder="워터마크 텍스트를 입력하세요" data-i18n-placeholder="pdfWatermark.textPlaceholder">
-                        <small style="color: #666; font-size: 0.9em; margin-top: 5px; display: block;" data-i18n="pdfWatermark.textNote">
-                            ℹ️ 한글/특수문자는 이미지로 변환되어 처리됩니다
-                        </small>
-                    </div>
-                    
-                    <div class="option-group">
-                        <label for="textSize" data-i18n="pdfWatermark.textSize">텍스트 크기: <span class="range-value" id="textSizeValue">36px</span></label>
-                        <input type="range" id="textSize" min="12" max="72" value="36" />
-                    </div>
-                    
-                    <div class="option-group">
-                        <label for="textColor" data-i18n="pdfWatermark.textColor">텍스트 색상:</label>
-                        <div class="color-picker-container">
-                            <div class="color-preview" id="colorPreview" style="background-color: #e74c3c;"></div>
-                            <input type="color" id="textColor" value="#e74c3c" />
-                            <div class="color-presets">
-                                <div class="color-preset" data-color="#000000" style="background-color: #000000;" title="검정"></div>
-                                <div class="color-preset" data-color="#e74c3c" style="background-color: #e74c3c;" title="빨강"></div>
-                                <div class="color-preset" data-color="#3498db" style="background-color: #3498db;" title="파랑"></div>
-                                <div class="color-preset" data-color="#2ecc71" style="background-color: #2ecc71;" title="초록"></div>
-                                <div class="color-preset" data-color="#f39c12" style="background-color: #f39c12;" title="주황"></div>
-                                <div class="color-preset" data-color="#9b59b6" style="background-color: #9b59b6;" title="보라"></div>
-                                <div class="color-preset" data-color="#95a5a6" style="background-color: #95a5a6;" title="회색"></div>
-                                <div class="color-preset" data-color="#34495e" style="background-color: #34495e;" title="네이비"></div>
+                        
+                        <div class="watermark-type">
+                            <div class="type-option">
+                                <input type="radio" name="watermarkType" id="textWatermark" value="text" checked>
+                                <label for="textWatermark" data-i18n="pdfWatermark.textWatermark">텍스트 워터마크</label>
                             </div>
-                            <div class="color-hex-input">
-                                <span>#</span>
-                                <input type="text" id="hexColorInput" value="e74c3c" maxlength="6" placeholder="ffffff">
+                            <div class="type-option">
+                                <input type="radio" name="watermarkType" id="imageWatermark" value="image">
+                                <label for="imageWatermark" data-i18n="pdfWatermark.imageWatermark">이미지 워터마크</label>
+                            </div>
+                        </div>
+                        
+                        <div class="text-watermark-options active" id="textOptions">
+                            <div class="option-group">
+                                <label for="watermarkText" data-i18n="pdfWatermark.watermarkText">워터마크 텍스트:</label>
+                                <input type="text" id="watermarkText" placeholder="워터마크 텍스트를 입력하세요" data-i18n-placeholder="pdfWatermark.textPlaceholder">
+                                <small style="color: #666; font-size: 0.9em; margin-top: 5px; display: block;" data-i18n="pdfWatermark.textNote">
+                                    ℹ️ 한글/특수문자는 이미지로 변환되어 처리됩니다
+                                </small>
+                            </div>
+                            
+                            <div class="option-group">
+                                <label for="textSize" data-i18n="pdfWatermark.textSize">텍스트 크기: <span class="range-value" id="textSizeValue">36px</span></label>
+                                <input type="range" id="textSize" min="12" max="72" value="36" />
+                            </div>
+                            
+                            <div class="option-group">
+                                <label for="textColor" data-i18n="pdfWatermark.textColor">텍스트 색상:</label>
+                                <div class="color-picker-container">
+                                    <div class="color-preview" id="colorPreview" style="background-color: #e74c3c;"></div>
+                                    <input type="color" id="textColor" value="#e74c3c" />
+                                    <div class="color-presets">
+                                        <div class="color-preset" data-color="#000000" style="background-color: #000000;" title="검정"></div>
+                                        <div class="color-preset" data-color="#e74c3c" style="background-color: #e74c3c;" title="빨강"></div>
+                                        <div class="color-preset" data-color="#3498db" style="background-color: #3498db;" title="파랑"></div>
+                                        <div class="color-preset" data-color="#2ecc71" style="background-color: #2ecc71;" title="초록"></div>
+                                        <div class="color-preset" data-color="#f39c12" style="background-color: #f39c12;" title="주황"></div>
+                                        <div class="color-preset" data-color="#9b59b6" style="background-color: #9b59b6;" title="보라"></div>
+                                        <div class="color-preset" data-color="#95a5a6" style="background-color: #95a5a6;" title="회색"></div>
+                                        <div class="color-preset" data-color="#34495e" style="background-color: #34495e;" title="네이비"></div>
+                                    </div>
+                                    <div class="color-hex-input">
+                                        <span>#</span>
+                                        <input type="text" id="hexColorInput" value="e74c3c" maxlength="6" placeholder="ffffff">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="image-watermark-options" id="imageOptions">
+                            <div class="option-group">
+                                <label for="watermarkImage" data-i18n="pdfWatermark.watermarkImage">워터마크 이미지:</label>
+                                <input type="file" id="watermarkImage" accept="image/*" />
+                            </div>
+                            
+                            <div class="option-group">
+                                <label for="imageSize" data-i18n="pdfWatermark.imageSize">이미지 크기: <span class="range-value" id="imageSizeValue">100px</span></label>
+                                <input type="range" id="imageSize" min="50" max="300" value="100" />
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label for="opacity" data-i18n="pdfWatermark.opacity">투명도: <span class="range-value" id="opacityValue">50%</span></label>
+                            <input type="range" id="opacity" min="10" max="100" value="50" />
+                        </div>
+                        
+                        <div class="option-group">
+                            <label data-i18n="pdfWatermark.position">위치:</label>
+                            <div class="position-grid">
+                                <button class="position-btn" data-position="top-left" data-i18n="pdfWatermark.topLeft">왼쪽 상단</button>
+                                <button class="position-btn" data-position="top-center" data-i18n="pdfWatermark.topCenter">중앙 상단</button>
+                                <button class="position-btn" data-position="top-right" data-i18n="pdfWatermark.topRight">오른쪽 상단</button>
+                                <button class="position-btn" data-position="center-left" data-i18n="pdfWatermark.centerLeft">왼쪽 중앙</button>
+                                <button class="position-btn active" data-position="center" data-i18n="pdfWatermark.center">중앙</button>
+                                <button class="position-btn" data-position="center-right" data-i18n="pdfWatermark.centerRight">오른쪽 중앙</button>
+                                <button class="position-btn" data-position="bottom-left" data-i18n="pdfWatermark.bottomLeft">왼쪽 하단</button>
+                                <button class="position-btn" data-position="bottom-center" data-i18n="pdfWatermark.bottomCenter">중앙 하단</button>
+                                <button class="position-btn" data-position="bottom-right" data-i18n="pdfWatermark.bottomRight">오른쪽 하단</button>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="image-watermark-options" id="imageOptions">
-                    <div class="option-group">
-                        <label for="watermarkImage" data-i18n="pdfWatermark.watermarkImage">워터마크 이미지:</label>
-                        <input type="file" id="watermarkImage" accept="image/*" />
-                    </div>
                     
-                    <div class="option-group">
-                        <label for="imageSize" data-i18n="pdfWatermark.imageSize">이미지 크기: <span class="range-value" id="imageSizeValue">100px</span></label>
-                        <input type="range" id="imageSize" min="50" max="300" value="100" />
+                    <button class="tool-link recommended process-btn" id="processBtn" disabled data-i18n="pdfWatermark.addWatermark">워터마크 추가하기</button>
+                    <div class="progress-section" id="progressSection">
+                        <div class="progress-text" id="progressText" data-i18n="pdfWatermark.processing">처리 중...</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="option-group">
-                    <label for="opacity" data-i18n="pdfWatermark.opacity">투명도: <span class="range-value" id="opacityValue">50%</span></label>
-                    <input type="range" id="opacity" min="10" max="100" value="50" />
-                </div>
-                
-                <div class="option-group">
-                    <label data-i18n="pdfWatermark.position">위치:</label>
-                    <div class="position-grid">
-                        <button class="position-btn" data-position="top-left" data-i18n="pdfWatermark.topLeft">왼쪽 상단</button>
-                        <button class="position-btn" data-position="top-center" data-i18n="pdfWatermark.topCenter">중앙 상단</button>
-                        <button class="position-btn" data-position="top-right" data-i18n="pdfWatermark.topRight">오른쪽 상단</button>
-                        <button class="position-btn" data-position="center-left" data-i18n="pdfWatermark.centerLeft">왼쪽 중앙</button>
-                        <button class="position-btn active" data-position="center" data-i18n="pdfWatermark.center">중앙</button>
-                        <button class="position-btn" data-position="center-right" data-i18n="pdfWatermark.centerRight">오른쪽 중앙</button>
-                        <button class="position-btn" data-position="bottom-left" data-i18n="pdfWatermark.bottomLeft">왼쪽 하단</button>
-                        <button class="position-btn" data-position="bottom-center" data-i18n="pdfWatermark.bottomCenter">중앙 하단</button>
-                        <button class="position-btn" data-position="bottom-right" data-i18n="pdfWatermark.bottomRight">오른쪽 하단</button>
+                    <div class="download-section" id="downloadSection">
+                        <h3 data-i18n="pdfWatermark.complete">✅ 완료!</h3>
+                        <p data-i18n="pdfWatermark.completeDesc">PDF 파일에 워터마크가 성공적으로 추가되었습니다.</p>
+                        <a href="#" class="tool-link recommended download-btn" id="downloadBtn" data-i18n="pdfWatermark.downloadBtn">📥 PDF 다운로드</a>
+                        <button class="tool-link" type="button" onclick="window.location.reload()" data-i18n="pdfWatermark.clearResults">🗑️ 결과 지우기</button>
                     </div>
                 </div>
             </div>
-            
-            <button class="process-btn" id="processBtn" disabled data-i18n="pdfWatermark.addWatermark">워터마크 추가하기</button>
-            
-            <div class="progress-section" id="progressSection">
-                <div class="progress-text" id="progressText" data-i18n="pdfWatermark.processing">처리 중...</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
+            <div class="guide-section">
+                <h4 data-i18n="pdfWatermark.guideTitle">💡 사용 가이드</h4>
+                <ul>
+                    <li>PDF 파일을 업로드하면 모든 페이지에 워터마크가 추가됩니다.</li>
+                    <li>텍스트/이미지, 크기, 색상, 위치, 투명도 등 다양한 옵션을 설정할 수 있습니다.</li>
+                    <li>완료 후 PDF를 다운로드할 수 있습니다.</li>
+                </ul>
             </div>
-            
-            <div class="download-section" id="downloadSection">
-                <h3 data-i18n="pdfWatermark.complete">✅ 완료!</h3>
-                <p data-i18n="pdfWatermark.completeDesc">PDF 파일에 워터마크가 성공적으로 추가되었습니다.</p>
-                <a href="#" class="download-btn" id="downloadBtn" data-i18n="pdfWatermark.downloadBtn">📥 PDF 다운로드</a>
-            </div>
-            
             <div class="features-section">
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
