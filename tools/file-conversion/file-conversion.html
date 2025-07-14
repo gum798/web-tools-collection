@@ -225,7 +225,7 @@
         document.addEventListener('click', function(e) {
             const navBar = document.querySelector('.nav-bar');
             const navLinks = document.getElementById('navLinks');
-            if (!navBar.contains(e.target) && navLinks.classList.contains('active')) {
+            if (navBar && !navBar.contains(e.target) && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
             }
         });
